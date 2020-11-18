@@ -1,4 +1,2 @@
 spring.data.mongodb:
     database: allYourFavorites
-    host: localhost
-    port: 27017
