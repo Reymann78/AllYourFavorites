@@ -21,8 +21,7 @@ export default createGlobalStyle`
    
    --blue-shadow: 2px 2px 2px var(--blue-main);
    --blue-border: 2px solid var(--blue-main);
-   
-   --white-background: #FFFFFF;
+  
   }
 
   * {
@@ -33,5 +32,6 @@ export default createGlobalStyle`
     margin: 0;
     color: #FFFFFF;
     font-family: 'Arial', sans-serif;
+    background: #FFFFFF;
   }
 `;
