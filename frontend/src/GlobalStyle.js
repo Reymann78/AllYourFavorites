@@ -29,7 +29,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   
-  html, body {
+  html, header, body {
     margin: 0;
     color: #FFFFFF;
     font-family: 'Arial', sans-serif;
