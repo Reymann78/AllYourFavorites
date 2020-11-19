@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { AiOutlineMenu } from 'react-icons/all';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 
 export default function Header({ title }) {
