@@ -4,7 +4,7 @@ import Header from '../commons/Header';
 export default function HomePage() {
   return (
     <>
-      <Header title="All your Favorites" />;
+      <Header title="All your Favorites" />
     </>
   );
 }
