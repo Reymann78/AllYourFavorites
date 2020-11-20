@@ -32,6 +32,6 @@ export default createGlobalStyle`
     margin: 0;
     color: #FFFFFF;
     font-family: 'Arial', sans-serif;
-    background: #FFFFFF;
+    background: lightslategrey;
   }
 `;
