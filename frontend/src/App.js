@@ -1,26 +1,23 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import HomePage from './homePage/HomePage';
-import MenuPage from './menuPage/MenuPage';
-
-import AddFavoritePage from './addFavoritePage/AddFavoritePage';
-import RemoveFavoritePage from './removeFavoritePage/RemoveFavoritePage';
 import { Switch, Route } from 'react-router-dom';
+import SoccerTeamContextProvider from './contexts/SoccerTeamContextProvider';
+import OpenMenuContextProvider from './contexts/OpenMenuContextProvider';
 
 function App() {
   return (
-    <>
-      <PageLayout>
-        <Switch>
-          <Route exact path={['/', '/home']}>
-            <HomePage />
-          </Route>
-          <Route path="/menu" component={MenuPage} />
-          <Route path="/add" component={AddFavoritePage} />
-          <Route path="/remove" component={RemoveFavoritePage} />
-        </Switch>
-      </PageLayout>
-    </>
+    <SoccerTeamContextProvider>
+      <OpenMenuContextProvider>
+        <PageLayout>
+          <Switch>
+            <Route exact path={['/', '/home']}>
+              <HomePage />
+            </Route>
+          </Switch>
+        </PageLayout>
+      </OpenMenuContextProvider>
+    </SoccerTeamContextProvider>
   );
 }
 

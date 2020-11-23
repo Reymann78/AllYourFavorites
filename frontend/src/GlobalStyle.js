@@ -19,19 +19,31 @@ export default createGlobalStyle`
    --size-xl: 24px;
    --size-xxl: 32px;
    
+   --bg: var(--blue-main);
+   --bg-accent: var(--varblue-25);
+   --text-color: #ffffff;
+   
+   --nav-size: 50px;
+   
    --blue-shadow: 2px 2px 2px var(--blue-main);
    --blue-border: 2px solid var(--blue-main);
+   --border-radius: 8px;
+   
+   --speed: 500ms;
   
   }
 
-  * {
-    box-sizing: border-box;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   
   html, header, body {
     margin: 0;
-    color: #FFFFFF;
+    color: #ffffff;
     font-family: 'Arial', sans-serif;
-    background: lightslategrey;
+    background: #ffffff;
   }
 `;
