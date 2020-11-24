@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { IoMdLogOut, FaMinus, FaPlus } from 'react-icons/all';
+import { FaMinus, FaPlus } from 'react-icons/fa';
+import { IoMdLogOut } from 'react-icons/io';
 import Navbar from './Navbar';
 import NavItem from './NavItem';
 import AddDropdownMenu from './AddDropdownMenu';

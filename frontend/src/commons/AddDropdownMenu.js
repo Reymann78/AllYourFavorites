@@ -1,13 +1,9 @@
 import '../index.css';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
-import {
-  CgChevronRight,
-  CgChevronLeft,
-  GiSoccerBall,
-  BsFillCaretUpFill,
-  GiBasketballBall,
-} from 'react-icons/all';
+import { CgChevronRight, CgChevronLeft } from 'react-icons/cg';
+import { GiSoccerBall, GiBasketballBall } from 'react-icons/gi';
+import { BsFillCaretUpFill } from 'react-icons/bs';
 import { CSSTransition } from 'react-transition-group';
 import SoccerTeamList from '../component/SoccerTeamList';
 import OpenMenuContext from '../contexts/OpenMenuContext';
