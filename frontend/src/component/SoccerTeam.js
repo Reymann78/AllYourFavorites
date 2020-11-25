@@ -5,13 +5,14 @@ export default function SoccerTeam({ soccerTeam }) {
   return <SoccerTeamStyled>{soccerTeam.name}</SoccerTeamStyled>;
 }
 
-const SoccerTeamStyled = styled.span`
+const SoccerTeamStyled = styled.section`
   height: 50px;
-  display: flex;
   align-items: center;
+  display: grid;
+  grid-gap: 2px;
   border-radius: var(--border-radius);
   transition: background var(--speed);
-  padding: 0.2rem;
+  padding: 0.2px;
   color: var(--blue-50);
   font-size: var(--size-l);
   text-decoration: none;

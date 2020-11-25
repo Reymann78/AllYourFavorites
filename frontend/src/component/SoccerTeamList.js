@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import SoccerTeamContext from '../contexts/SoccerTeamContext';
-import SoccerTeam from '../commons/SoccerTeam';
+import SoccerTeam from './SoccerTeam';
 
 export default function SoccerTeamList() {
   const { soccerTeams } = useContext(SoccerTeamContext);

@@ -6,6 +6,7 @@ export default createGlobalStyle`
    --blue-75: #0431B4;
    --blue-50: #2E64FE;
    --blue-25: #81BEF7;
+   --white: #ffffff;
 
    //--red-main: #8A1C0E;
    //--red-75: #B40404;
@@ -20,8 +21,8 @@ export default createGlobalStyle`
    --size-xxl: 32px;
    
    --bg: var(--blue-main);
-   --bg-accent: var(--varblue-25);
-   --text-color: #ffffff;
+   --bg-accent: var(--blue-25);
+   --text-color: var(--white);
    
    --nav-size: 50px;
    
@@ -42,8 +43,8 @@ export default createGlobalStyle`
   
   html, header, body {
     margin: 0;
-    color: #ffffff;
+    color: var(--white);
     font-family: 'Arial', sans-serif;
-    background: #ffffff;
+    background: var(--white);;
   }
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { FaMinus, FaPlus } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import { IoMdLogOut } from 'react-icons/io';
 import Navbar from './Navbar';
 import NavItem from './NavItem';
@@ -14,7 +14,6 @@ export default function Header({ title }) {
         <NavItem icon={<FaPlus />}>
           <AddDropdownMenu></AddDropdownMenu>
         </NavItem>
-        <NavItem icon={<FaMinus />} />
         <NavItem icon={<IoMdLogOut />} />
       </Navbar>
     </HeaderStyled>

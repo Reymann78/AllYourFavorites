@@ -1,4 +1,4 @@
-import '../index.css';
+import './menu.css';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import { CgChevronRight, CgChevronLeft } from 'react-icons/cg';
