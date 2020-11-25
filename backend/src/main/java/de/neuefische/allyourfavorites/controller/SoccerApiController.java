@@ -2,9 +2,7 @@ package de.neuefische.allyourfavorites.controller;
 
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.service.SoccerTeamService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +16,8 @@ public class SoccerApiController {
         this.soccerTeamService = soccerTeamService;
     }
 
-    @GetMapping()
-    public List<SoccerTeam> getSoccerTeamsByCompetitionId(int competitionId) {
+    @GetMapping("competitions/{competitionId}/teams")
+    public List<SoccerTeam> getSoccerTeamsByCompetitionId( @PathVariable int competitionId) {
         return soccerTeamService.getSoccerTeamsByCompetitionId(competitionId);
     }
 }
