@@ -1,17 +1,21 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { useHistory } from 'react-router-dom';
+import { FaPlus } from 'react-icons/fa';
+import { IoMdLogOut } from 'react-icons/io';
+import Navbar from './Navbar';
+import NavItem from './NavItem';
+import AddDropdownMenu from './AddDropdownMenu';
 
 export default function Header({ title }) {
-  const history = useHistory();
-
   return (
     <HeaderStyled>
       <HeadingStyled>{title}</HeadingStyled>
-      <button onClick={() => history.push('/menu/')}>
-        <AiOutlineMenu />
-      </button>
+      <Navbar>
+        <NavItem icon={<FaPlus />}>
+          <AddDropdownMenu></AddDropdownMenu>
+        </NavItem>
+        <NavItem icon={<IoMdLogOut />} />
+      </Navbar>
     </HeaderStyled>
   );
 }

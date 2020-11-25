@@ -6,6 +6,7 @@ export default createGlobalStyle`
    --blue-75: #0431B4;
    --blue-50: #2E64FE;
    --blue-25: #81BEF7;
+   --white: #ffffff;
 
    //--red-main: #8A1C0E;
    //--red-75: #B40404;
@@ -19,19 +20,31 @@ export default createGlobalStyle`
    --size-xl: 24px;
    --size-xxl: 32px;
    
+   --bg: var(--blue-main);
+   --bg-accent: var(--blue-25);
+   --text-color: var(--white);
+   
+   --nav-size: 50px;
+   
    --blue-shadow: 2px 2px 2px var(--blue-main);
    --blue-border: 2px solid var(--blue-main);
+   --border-radius: 8px;
+   
+   --speed: 500ms;
   
   }
 
-  * {
-    box-sizing: border-box;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   
   html, header, body {
     margin: 0;
-    color: #FFFFFF;
+    color: var(--white);
     font-family: 'Arial', sans-serif;
-    background: lightslategrey;
+    background: var(--white);;
   }
 `;
