@@ -38,9 +38,9 @@ public class FavoriteSoccerControllerTest {
     public void getMappingTest() {
         //GIVEN
         List<SoccerTeam> teamsInSoccerTeamDb = new ArrayList<>(List.of(
-                new SoccerTeam("Borussia Dortmund"),
-                new SoccerTeam("Bayern München"),
-                new SoccerTeam("Eintracht Frankfurt")
+                new SoccerTeam(1,"Borussia Dortmund", "bvbUrl"),
+                new SoccerTeam(2, "Bayern München", "fcbUrl"),
+                new SoccerTeam(3, "Eintracht Frankfurt", "sgeURl")
         ));
         String url = getSoccerTeamsUrl();
         when(favoriteSoccerService.getListOfSoccerTeams()).thenReturn(teamsInSoccerTeamDb);

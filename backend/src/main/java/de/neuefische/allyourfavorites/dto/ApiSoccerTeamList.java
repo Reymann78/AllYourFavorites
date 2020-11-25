@@ -13,7 +13,7 @@ import java.util.List;
 public class ApiSoccerTeamList {
 
     private int count;
-    private Filters filters;
+    private ApiFilter filters;
     private ApiCompetition competition;
     private ApiSeason season;
     private List<ApiSoccerTeam> teams;

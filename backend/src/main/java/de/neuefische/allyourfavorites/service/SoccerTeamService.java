@@ -23,21 +23,25 @@ public class SoccerTeamService {
         this.soccerApiService = soccerApiService;
     }
 
-    @PostConstruct
-    public SoccerTeamList getSoccerTeamsByCompetitionId(int competitionId) {
+//    @PostConstruct
+//    private void postConstruct() {
+//        soccerTeamDb.saveAll(getSoccerTeamsByCompetitionId("2002"))
+//    }
+
+    public SoccerTeamList getSoccerTeamsByCompetitionId(String competitionId) {
         List<SoccerTeam> listOfSoccerTeams = new ArrayList<>();
         SoccerTeamList soccerTeams = new SoccerTeamList();
         ApiSoccerTeamList apiSoccerTeams = soccerApiService.getSoccerTeamsByCompetitionId(competitionId);
-
         for (ApiSoccerTeam apiSoccerTeam : apiSoccerTeams.getTeams()) {
             SoccerTeam soccerTeam = new SoccerTeam(
-                    apiSoccerTeam.getTeamId(),
+                    apiSoccerTeam.getId(),
                     apiSoccerTeam.getName(),
                     apiSoccerTeam.getCrestUrl());
             listOfSoccerTeams.add(soccerTeam);
         }
+        soccerTeams.setCompetitionId(apiSoccerTeams.getCompetition().getId());
         soccerTeams.setSoccerTeams(listOfSoccerTeams);
 
-        return soccerTeamDb.save(soccerTeams);
+        return soccerTeams;
     }
 }

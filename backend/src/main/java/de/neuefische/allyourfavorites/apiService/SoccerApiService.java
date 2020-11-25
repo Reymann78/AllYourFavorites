@@ -14,16 +14,16 @@ import java.util.Objects;
 @Service
 public class SoccerApiService {
 
-    @Value("${api.xAuthToken: defaultXAuthToken")
+    @Value("${x.Auth.Token}")
     private String xAuthToken;
 
     private final String soccerApiUrl = "https://api.football-data.org/v2/";
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public ApiSoccerTeamList getSoccerTeamsByCompetitionId(int competitionId) {
+    public ApiSoccerTeamList getSoccerTeamsByCompetitionId(String competitionId) {
         HttpEntity<String> entity = new HttpEntity<>("parameters", createHttpHeaders(xAuthToken));
         ResponseEntity<ApiSoccerTeamList> response = restTemplate
-                .exchange(soccerApiUrl + "competitions" + competitionId, HttpMethod.GET, entity, ApiSoccerTeamList.class);
+                .exchange(soccerApiUrl + "competitions/" + competitionId + "/teams", HttpMethod.GET, entity, ApiSoccerTeamList.class);
         return Objects.requireNonNull(response.getBody());
     }
 
@@ -32,6 +32,5 @@ public class SoccerApiService {
         headers.add("x-auth-token", xAuthToken);
         return headers;
     }
-
 
 }

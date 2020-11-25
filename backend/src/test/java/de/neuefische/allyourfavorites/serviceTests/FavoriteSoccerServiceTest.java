@@ -24,9 +24,9 @@ public class FavoriteSoccerServiceTest {
     void getListOfSoccerTeamsTest() {
         //GIVEN
         List<SoccerTeam> teamsInSoccerTeamDb = new ArrayList<>(List.of(
-                new SoccerTeam("Borussia Dortmund"),
-                new SoccerTeam("Bayern München"),
-                new SoccerTeam("Eintracht Frankfurt")
+                new SoccerTeam(1,"Borussia Dortmund", "bvbUrl"),
+                new SoccerTeam(2, "Bayern München", "fcbUrl"),
+                new SoccerTeam(3, "Eintracht Frankfurt", "sgeURl")
                 ));
 
         when(soccerTeamDb.findAll()).thenReturn(teamsInSoccerTeamDb);

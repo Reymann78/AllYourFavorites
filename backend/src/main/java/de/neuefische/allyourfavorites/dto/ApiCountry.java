@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class ApiCountry {
-    private int countryId;
+    private int id;
     private String name;
 }

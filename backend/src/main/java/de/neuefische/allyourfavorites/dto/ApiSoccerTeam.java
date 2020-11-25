@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApiSoccerTeam {
-    private int teamId;
+    private int id;
     private ApiCountry area;
     private String name;
     private String shortName;
@@ -23,5 +21,5 @@ public class ApiSoccerTeam {
     private String founded;
     private String clubColors;
     private String venue;
-    private Date lastUpdate;
+    private String lastUpdate;
 }
