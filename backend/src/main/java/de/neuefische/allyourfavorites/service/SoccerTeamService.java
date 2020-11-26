@@ -5,7 +5,7 @@ import de.neuefische.allyourfavorites.db.SoccerTeamDb;
 import de.neuefische.allyourfavorites.dto.ApiSoccerTeam;
 import de.neuefische.allyourfavorites.dto.ApiSoccerTeamList;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
-import de.neuefische.allyourfavorites.model.SoccerTeamList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -17,20 +17,24 @@ public class SoccerTeamService {
 
     private final SoccerTeamDb soccerTeamDb;
     private final SoccerApiService soccerApiService;
+    private final static String BUNDESLIGA = "2002";
 
+    @Autowired
     public SoccerTeamService(SoccerTeamDb soccerTeamDb, SoccerApiService soccerApiService) {
         this.soccerTeamDb = soccerTeamDb;
         this.soccerApiService = soccerApiService;
     }
 
-//    @PostConstruct
-//    private void postConstruct() {
-//        soccerTeamDb.saveAll(getSoccerTeamsByCompetitionId("2002"))
-//    }
+    @PostConstruct
+    private void postConstruct() {
+        List<SoccerTeam> list = getSoccerTeamsByCompetitionId(BUNDESLIGA);
+        for(SoccerTeam soccerTeam : list) {
+            soccerTeamDb.save(soccerTeam);
+        }
+    }
 
-    public SoccerTeamList getSoccerTeamsByCompetitionId(String competitionId) {
+    public List<SoccerTeam> getSoccerTeamsByCompetitionId(String competitionId) {
         List<SoccerTeam> listOfSoccerTeams = new ArrayList<>();
-        SoccerTeamList soccerTeams = new SoccerTeamList();
         ApiSoccerTeamList apiSoccerTeams = soccerApiService.getSoccerTeamsByCompetitionId(competitionId);
         for (ApiSoccerTeam apiSoccerTeam : apiSoccerTeams.getTeams()) {
             SoccerTeam soccerTeam = new SoccerTeam(
@@ -39,9 +43,7 @@ public class SoccerTeamService {
                     apiSoccerTeam.getCrestUrl());
             listOfSoccerTeams.add(soccerTeam);
         }
-        soccerTeams.setCompetitionId(apiSoccerTeams.getCompetition().getId());
-        soccerTeams.setSoccerTeams(listOfSoccerTeams);
 
-        return soccerTeams;
+        return listOfSoccerTeams;
     }
 }

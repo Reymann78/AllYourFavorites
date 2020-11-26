@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "soccerTeams")
 public class SoccerTeam {
     @Id
     private int teamId;

@@ -23,18 +23,18 @@ public class FavoriteSoccerServiceTest {
     @DisplayName("The getListOfSoccerTeams method should return all soccer teams of the soccer db")
     void getListOfSoccerTeamsTest() {
         //GIVEN
-        List<SoccerTeam> teamsInSoccerTeamDb = new ArrayList<>(List.of(
+        List <SoccerTeam> listOfTeamsInSoccerTeamDb = new ArrayList<>(List.of(
                 new SoccerTeam(1,"Borussia Dortmund", "bvbUrl"),
                 new SoccerTeam(2, "Bayern München", "fcbUrl"),
-                new SoccerTeam(3, "Eintracht Frankfurt", "sgeURl")
-                ));
+                new SoccerTeam(3, "Eintracht Frankfurt", "sgeUrl")
+        ));
 
-        when(soccerTeamDb.findAll()).thenReturn(teamsInSoccerTeamDb);
+        when(soccerTeamDb.findAll()).thenReturn(listOfTeamsInSoccerTeamDb);
 
         //When
         List<SoccerTeam> allTeams = favoriteSoccerService.getListOfSoccerTeams();
 
         //Then
-        assertThat(allTeams, containsInAnyOrder(teamsInSoccerTeamDb.toArray()));
+        assertThat(allTeams, containsInAnyOrder(listOfTeamsInSoccerTeamDb.toArray()));
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,9 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource(properties = {
+        "x.Auth.Token=4599aaf68eaf463f9499272dda3d7591"
+})
 public class FavoriteSoccerControllerTest {
 
     @LocalServerPort
@@ -37,20 +41,21 @@ public class FavoriteSoccerControllerTest {
     @Test
     public void getMappingTest() {
         //GIVEN
-        List<SoccerTeam> teamsInSoccerTeamDb = new ArrayList<>(List.of(
+        List <SoccerTeam> listOfTeamsInSoccerTeamDb = new ArrayList<>(List.of(
                 new SoccerTeam(1,"Borussia Dortmund", "bvbUrl"),
                 new SoccerTeam(2, "Bayern München", "fcbUrl"),
-                new SoccerTeam(3, "Eintracht Frankfurt", "sgeURl")
+                new SoccerTeam(3, "Eintracht Frankfurt", "sgeUrl")
         ));
+
         String url = getSoccerTeamsUrl();
-        when(favoriteSoccerService.getListOfSoccerTeams()).thenReturn(teamsInSoccerTeamDb);
+        when(favoriteSoccerService.getListOfSoccerTeams()).thenReturn(listOfTeamsInSoccerTeamDb);
 
         //WHEN
         ResponseEntity<SoccerTeam[]> response = restTemplate.getForEntity(url, SoccerTeam[].class);
 
         //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(response.getBody(), is(teamsInSoccerTeamDb.toArray()));
+        assertThat(response.getBody(), is(listOfTeamsInSoccerTeamDb.toArray()));
     }
 
 }
