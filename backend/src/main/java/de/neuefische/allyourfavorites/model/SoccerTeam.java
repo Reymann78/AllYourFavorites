@@ -15,4 +15,5 @@ public class SoccerTeam {
     private int teamId;
     private String name;
     private String crestUrl;
+    private String competitionName;
 }

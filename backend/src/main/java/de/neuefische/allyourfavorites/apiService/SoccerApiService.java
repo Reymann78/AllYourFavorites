@@ -14,7 +14,7 @@ import java.util.Objects;
 @Service
 public class SoccerApiService {
 
-    @Value("${x.Auth.Token}")
+    @Value("${x.auth.token}")
     private String xAuthToken;
 
     private final String soccerApiUrl = "https://api.football-data.org/v2/";

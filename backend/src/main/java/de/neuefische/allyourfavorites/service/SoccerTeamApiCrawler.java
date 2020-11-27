@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SoccerTeamService {
+public class SoccerTeamApiCrawler {
 
     private final SoccerTeamDb soccerTeamDb;
     private final SoccerApiService soccerApiService;
     private final static String BUNDESLIGA = "2002";
 
     @Autowired
-    public SoccerTeamService(SoccerTeamDb soccerTeamDb, SoccerApiService soccerApiService) {
+    public SoccerTeamApiCrawler(SoccerTeamDb soccerTeamDb, SoccerApiService soccerApiService) {
         this.soccerTeamDb = soccerTeamDb;
         this.soccerApiService = soccerApiService;
     }
@@ -36,11 +36,14 @@ public class SoccerTeamService {
     public List<SoccerTeam> getSoccerTeamsByCompetitionId(String competitionId) {
         List<SoccerTeam> listOfSoccerTeams = new ArrayList<>();
         ApiSoccerTeamList apiSoccerTeams = soccerApiService.getSoccerTeamsByCompetitionId(competitionId);
+        String competitionName = apiSoccerTeams.getCompetition().getName();
+
         for (ApiSoccerTeam apiSoccerTeam : apiSoccerTeams.getTeams()) {
             SoccerTeam soccerTeam = new SoccerTeam(
                     apiSoccerTeam.getId(),
                     apiSoccerTeam.getName(),
-                    apiSoccerTeam.getCrestUrl());
+                    apiSoccerTeam.getCrestUrl(),
+                    competitionName);
             listOfSoccerTeams.add(soccerTeam);
         }
 

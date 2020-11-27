@@ -2,6 +2,7 @@ package de.neuefische.allyourfavorites.controllerTests;
 
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.service.FavoriteSoccerService;
+import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +11,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.TestPropertySource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,6 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource(properties = {
-        "x.Auth.Token=4599aaf68eaf463f9499272dda3d7591"
-})
 public class FavoriteSoccerControllerTest {
 
     @LocalServerPort
@@ -34,6 +31,9 @@ public class FavoriteSoccerControllerTest {
     @MockBean
     private FavoriteSoccerService favoriteSoccerService;
 
+    @MockBean
+    private SoccerTeamApiCrawler soccerTeamApiCrawler;
+
     private String getSoccerTeamsUrl() {
         return "http://localhost:" + port + "/favorites/soccerTeams";
     }
@@ -42,9 +42,9 @@ public class FavoriteSoccerControllerTest {
     public void getMappingTest() {
         //GIVEN
         List <SoccerTeam> listOfTeamsInSoccerTeamDb = new ArrayList<>(List.of(
-                new SoccerTeam(1,"Borussia Dortmund", "bvbUrl"),
-                new SoccerTeam(2, "Bayern München", "fcbUrl"),
-                new SoccerTeam(3, "Eintracht Frankfurt", "sgeUrl")
+                new SoccerTeam(1,"Borussia Dortmund", "bvbUrl", "Bundesliga"),
+                new SoccerTeam(2, "Bayern München", "fcbUrl", "Bundesliga"),
+                new SoccerTeam(3, "Eintracht Frankfurt", "sgeUrl", "Bundesliga")
         ));
 
         String url = getSoccerTeamsUrl();
