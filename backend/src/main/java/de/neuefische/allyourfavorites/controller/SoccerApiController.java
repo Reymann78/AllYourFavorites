@@ -5,6 +5,7 @@ import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class SoccerApiController {
     }
 
     @GetMapping("competitions/{competitionId}/teams")
-    public List<SoccerTeam> getSoccerTeamsByCompetitionId(@PathVariable String competitionId) {
+    public List<SoccerTeam> getSoccerTeamsByCompetitionId(@PathVariable String competitionId, Principal principal) {
         return soccerTeamApiCrawler.getSoccerTeamsByCompetitionId(competitionId);
     }
 }
