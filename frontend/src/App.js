@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import HomePage from './homePage/HomePage';
-import { Switch, Route } from 'react-router-dom';
+import { Redirect, Switch, Route } from 'react-router-dom';
 import SoccerTeamContextProvider from './contexts/SoccerTeamContextProvider';
 import OpenMenuContextProvider from './contexts/OpenMenuContextProvider';
 import LoginPage from './loginPage/LoginPage';
 import UserContextProvider from './contexts/UserContextProvider';
+import ProtectedRoute from './routing/ProtectedRoute';
 
 function App() {
   return (
@@ -14,11 +15,10 @@ function App() {
         <OpenMenuContextProvider>
           <PageLayout>
             <Switch>
-              <Route path="/login">
-                <LoginPage />
-              </Route>
-              <Route exact path={['/', '/api/favorites/soccerTeams']}>
-                <HomePage />
+              <Route path="/login" component={LoginPage} />
+              <ProtectedRoute path="/favorites" component={HomePage} />
+              <Route path="/">
+                <Redirect to="/login" />
               </Route>
             </Switch>
           </PageLayout>
