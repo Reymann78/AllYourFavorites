@@ -35,7 +35,7 @@ public class LoginController {
             try {
                 authenticationManager.authenticate(authentication);
             } catch (AuthenticationException e) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "bad credentials");
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "bad credentials");
             }
 
         return jwtUtils.createToken(loginData.getUsername(), new HashMap<>());
