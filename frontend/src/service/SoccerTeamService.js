@@ -1,4 +1,12 @@
 import axios from 'axios';
 
-export const getSoccerTeams = () =>
-  axios.get('/api/favorites/soccerTeams').then((response) => response.data);
+const header = (token) => ({
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
+export const getSoccerTeams = (token) =>
+  axios
+    .get('/api/favorites/soccerTeams', header(token))
+    .then((response) => response.data);
