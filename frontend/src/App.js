@@ -4,20 +4,27 @@ import HomePage from './homePage/HomePage';
 import { Switch, Route } from 'react-router-dom';
 import SoccerTeamContextProvider from './contexts/SoccerTeamContextProvider';
 import OpenMenuContextProvider from './contexts/OpenMenuContextProvider';
+import LoginPage from './loginPage/LoginPage';
+import UserContextProvider from './contexts/UserContextProvider';
 
 function App() {
   return (
-    <SoccerTeamContextProvider>
-      <OpenMenuContextProvider>
-        <PageLayout>
-          <Switch>
-            <Route exact path={['/', '/home']}>
-              <HomePage />
-            </Route>
-          </Switch>
-        </PageLayout>
-      </OpenMenuContextProvider>
-    </SoccerTeamContextProvider>
+    <UserContextProvider>
+      <SoccerTeamContextProvider>
+        <OpenMenuContextProvider>
+          <PageLayout>
+            <Switch>
+              <Route path="/login">
+                <LoginPage />
+              </Route>
+              <Route exact path={['/', '/api/favorites/soccerTeams']}>
+                <HomePage />
+              </Route>
+            </Switch>
+          </PageLayout>
+        </OpenMenuContextProvider>
+      </SoccerTeamContextProvider>
+    </UserContextProvider>
   );
 }
 
