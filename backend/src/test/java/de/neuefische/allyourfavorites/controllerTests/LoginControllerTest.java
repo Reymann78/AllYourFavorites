@@ -77,7 +77,7 @@ class LoginControllerTest {
         //GIVEN
         UserLoginDto userloginDto = new UserLoginDto(
                 "sven",
-                "12345"
+                "wrongPassword"
         );
 
         //WHEN

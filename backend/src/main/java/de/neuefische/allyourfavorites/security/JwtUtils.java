@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 public class JwtUtils {
 
-    @Value("jwt.secretkey")
+    @Value("${jwt.secretkey}")
     private String secretKey;
 
     public String createToken(String username, Map<String, Object> claims) {
