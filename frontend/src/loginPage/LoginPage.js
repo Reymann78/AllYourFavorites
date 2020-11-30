@@ -4,14 +4,14 @@ import styled from 'styled-components/macro';
 import UserContext from '../contexts/UserContext';
 import { useHistory } from 'react-router-dom';
 
-const initialState = {
+const emptyCredentials = {
   username: '',
   password: '',
 };
 
 export default function LoginPage() {
   const { postLogin } = useContext(UserContext);
-  const [loginData, setLoginData] = useState({ initialState });
+  const [credentials, setCredentials] = useState(emptyCredentials);
   const history = useHistory();
   const [error, setError] = useState('');
   return (
@@ -23,7 +23,7 @@ export default function LoginPage() {
             Username
             <input
               name="username"
-              value={loginData.username}
+              value={credentials.username}
               onChange={handleChange}
               type="text"
             />
@@ -32,12 +32,12 @@ export default function LoginPage() {
             Password
             <input
               name="password"
-              value={loginData.password}
+              value={credentials.password}
               onChange={handleChange}
               type="password"
             />
           </Label>
-          {error && <p>error</p>}
+          {error && <p>{error}</p>}
           <Button>Login</Button>
         </Form>
       </Main>
@@ -46,13 +46,13 @@ export default function LoginPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    postLogin(loginData)
+    postLogin(credentials)
       .then(() => history.push('/favorites'))
       .catch(() => setError('Unknown username or password!'));
   }
 
   function handleChange(event) {
-    setLoginData({ ...loginData, [event.target.name]: event.target.value });
+    setCredentials({ ...credentials, [event.target.name]: event.target.value });
   }
 }
 
@@ -62,6 +62,7 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   padding: var(--size-xl);
+  color: var(--blue-main);
 `;
 
 const Form = styled.form`
