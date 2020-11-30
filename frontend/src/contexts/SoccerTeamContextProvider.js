@@ -1,13 +1,15 @@
 import SoccerTeamContext from './SoccerTeamContext';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getSoccerTeams } from '../service/SoccerTeamService';
+import UserContext from './UserContext';
 
 export default function SoccerTeamContextProvider({ children }) {
   const [soccerTeams, setSoccerTeams] = useState([]);
+  const { token } = useContext(UserContext);
 
   useEffect(() => {
-    getSoccerTeams().then(setSoccerTeams).catch(console.log);
-  }, []);
+    token && getSoccerTeams(token).then(setSoccerTeams).catch(console.log);
+  }, [token]);
 
   return (
     <SoccerTeamContext.Provider value={{ soccerTeams }}>

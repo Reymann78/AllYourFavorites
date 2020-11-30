@@ -9,6 +9,6 @@ test('renders All Your Favorites', () => {
       <App />
     </Router>
   );
-  const linkElement = screen.getByText(/All Your Favorites/i);
+  const linkElement = screen.getByText(/Username/i);
   expect(linkElement).toBeInTheDocument();
 });
