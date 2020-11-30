@@ -17,5 +17,5 @@ public class User {
     @Id
     private String username;
     private String password;
-    private List<SoccerTeam> favorites;
+    private List<String> favorites;
 }

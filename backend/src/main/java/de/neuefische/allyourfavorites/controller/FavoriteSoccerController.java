@@ -3,10 +3,9 @@ package de.neuefische.allyourfavorites.controller;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.service.FavoriteSoccerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -23,6 +22,11 @@ public class FavoriteSoccerController {
     @GetMapping("soccerTeams")
     public List<SoccerTeam> getAllSoccerTeamsOfSelectedLeague() {
         return favoriteSoccerService.getListOfSoccerTeams();
+    }
+
+    @PostMapping
+    public String addToFavorites(@RequestBody String nameOfFavorite, Principal principal) {
+        return this.favoriteSoccerService.add(nameOfFavorite, principal.getName());
     }
 
 }
