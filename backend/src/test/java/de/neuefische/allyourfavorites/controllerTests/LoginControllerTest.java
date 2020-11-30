@@ -19,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.TestPropertySource;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -45,7 +46,7 @@ class LoginControllerTest {
     public void setupUser() {
         userDb.deleteAll();
         String password = new BCryptPasswordEncoder().encode("123456");
-        userDb.save(new User("sven", password));
+        userDb.save(new User("sven", password, List.of()));
     }
 
     @Test
