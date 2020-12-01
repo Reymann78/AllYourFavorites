@@ -30,13 +30,13 @@ public class FavoriteSoccerController {
     }
 
     @PostMapping
-    public String addFavorite(@RequestBody String nameOfFavorite, Principal principal) {
-        return this.favoriteSoccerService.addFavorite(nameOfFavorite, principal.getName());
+    public String addFavorite(@RequestBody String favoriteTeamName, Principal principal) {
+        return this.favoriteSoccerService.addFavorite(favoriteTeamName, principal.getName());
     }
 
     @DeleteMapping("delete")
-    public void removeFavorite(@RequestBody String teamName, Principal principal) {
-        favoriteSoccerService.removeFavorite(teamName, principal.getName());
+    public void removeFavorite(@RequestBody String favoriteTeamName, Principal principal) {
+        favoriteSoccerService.removeFavorite(favoriteTeamName, principal.getName());
     }
 
 }

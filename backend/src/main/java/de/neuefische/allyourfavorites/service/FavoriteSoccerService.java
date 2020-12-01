@@ -38,24 +38,24 @@ public class FavoriteSoccerService {
         return user.getFavorites();
     }
 
-    public String addFavorite(String nameOfFavorite, String principalName) {
+    public String addFavorite(String favoriteTeamName, String principalName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(principalName));
 
         Update update = new Update();
-        update.addToSet("favorites", nameOfFavorite);
+        update.addToSet("favorites", favoriteTeamName);
 
         mongoTemplate.updateFirst(query, update, User.class);
 
-        return nameOfFavorite;
+        return favoriteTeamName;
     }
 
-    public void removeFavorite(String teamName, String principalName) {
+    public void removeFavorite(String favoriteTeamName, String principalName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(principalName));
 
         Update update = new Update();
-        update.pull("favorites", teamName);
+        update.pull("favorites", favoriteTeamName);
 
         mongoTemplate.updateFirst(query, update, "user");
     }
