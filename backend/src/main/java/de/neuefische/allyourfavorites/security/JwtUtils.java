@@ -22,7 +22,7 @@ public class JwtUtils {
                 .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(Date.from(Instant.now()))
-                .setExpiration(Date.from(Instant.now().plus(Duration.ofMinutes(30))))
+                .setExpiration(Date.from(Instant.now().plus(Duration.ofMinutes(180))))
                 .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }

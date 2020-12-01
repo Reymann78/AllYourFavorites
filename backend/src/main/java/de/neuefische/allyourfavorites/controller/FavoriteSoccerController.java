@@ -24,9 +24,19 @@ public class FavoriteSoccerController {
         return favoriteSoccerService.getListOfSoccerTeams();
     }
 
+    @GetMapping("favorites")
+    public List<String> getAllFavoritesOfUser(Principal principal) {
+        return favoriteSoccerService.getAllFavoritesOfUser(principal.getName());
+    }
+
     @PostMapping
-    public String addToFavorites(@RequestBody String nameOfFavorite, Principal principal) {
-        return this.favoriteSoccerService.add(nameOfFavorite, principal.getName());
+    public String addFavorite(@RequestBody String nameOfFavorite, Principal principal) {
+        return this.favoriteSoccerService.addFavorite(nameOfFavorite, principal.getName());
+    }
+
+    @DeleteMapping("delete")
+    public void removeFavorite(@RequestBody String teamName, Principal principal) {
+        favoriteSoccerService.removeFavorite(teamName, principal.getName());
     }
 
 }

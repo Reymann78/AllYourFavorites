@@ -1,6 +1,7 @@
 package de.neuefische.allyourfavorites.serviceTests;
 
 import de.neuefische.allyourfavorites.db.SoccerTeamDb;
+import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.service.FavoriteSoccerService;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +20,8 @@ public class FavoriteSoccerServiceTest {
 
     final SoccerTeamDb soccerTeamDb = mock(SoccerTeamDb.class);
     final MongoTemplate mongoTemplate = mock(MongoTemplate.class);
-    final FavoriteSoccerService favoriteSoccerService = new FavoriteSoccerService(soccerTeamDb, mongoTemplate);
+    final UserDb userDb = mock(UserDb.class);
+    final FavoriteSoccerService favoriteSoccerService = new FavoriteSoccerService(soccerTeamDb, mongoTemplate, userDb);
 
     @Test
     @DisplayName("The getListOfSoccerTeams method should return all soccer teams of the soccer db")
