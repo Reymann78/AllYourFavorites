@@ -47,11 +47,11 @@ public class FavoriteSoccerControllerTest {
     public void setupDb() {
         userDb.deleteAll();
         String password = new BCryptPasswordEncoder().encode("123456");
-        userDb.save(new User("sven", password));
+        userDb.save(new User("sven", password, List.of()));
     }
 
     private String getSoccerTeamsUrl() {
-        return "http://localhost:" + port + "/api/favorites/soccerTeams";
+        return "http://localhost:" + port + "/api/favorites";
     }
 
     private String login(){
@@ -63,12 +63,12 @@ public class FavoriteSoccerControllerTest {
         return response.getBody();
     }
 
-    private HttpEntity<Void> getValidAuthorizationEntity() {
+    private <T> HttpEntity<T> getValidAuthorizationEntity(T data) {
         String token = login();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
-        return new HttpEntity<>(headers);
+        return new HttpEntity<>(data, headers);
     }
 
     @Test
@@ -80,11 +80,11 @@ public class FavoriteSoccerControllerTest {
                 new SoccerTeam(3, "Eintracht Frankfurt", "sgeUrl", "Bundesliga")
         ));
 
-        String url = getSoccerTeamsUrl();
+        String url = getSoccerTeamsUrl() + "/soccerTeams";
         when(favoriteSoccerService.getListOfSoccerTeams()).thenReturn(listOfTeamsInSoccerTeamDb);
 
         //WHEN
-        HttpEntity<Void> entity = getValidAuthorizationEntity();
+        HttpEntity<Void> entity = getValidAuthorizationEntity(null);
         ResponseEntity<SoccerTeam[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, SoccerTeam[].class);
 
         //THEN
