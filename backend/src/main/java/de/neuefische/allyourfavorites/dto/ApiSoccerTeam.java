@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApiSoccerTeam {
-    private int id;
+    private String id;
     private ApiCountry area;
     private String name;
     private String shortName;

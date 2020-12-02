@@ -143,12 +143,12 @@ const RightIconStyled = styled.span`
 const DropdownMenuStyled = styled.span`
   position: absolute;
   top: 70px;
-  width: 180px;
+  width: 240px;
   transform: translateX(-45%);
   background-color: ghostwhite;
   border: var(--blue-border);
   border-radius: var(--border-radius);
-  padding: 1rem;
+  padding: 0.5rem;
   overflow: hidden;
   transition: height var(--spees) ease;
 `;

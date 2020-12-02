@@ -26,7 +26,7 @@ const IconButtonStyled = styled.button`
   --button-size: calc(var(--nav-size) * 0.8);
   width: var(--button-size);
   height: var(--button-size);
-  background-color: #ffffff;
+  background-color: var(--white);
   color: var(--blue-50);
   border-radius: var(--border-radius);
   padding: 5px;

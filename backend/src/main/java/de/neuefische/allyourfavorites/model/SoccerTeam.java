@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "soccerTeams")
 public class SoccerTeam {
     @Id
-    private int teamId;
+    private String teamId;
     private String name;
     private String crestUrl;
     private String competitionName;

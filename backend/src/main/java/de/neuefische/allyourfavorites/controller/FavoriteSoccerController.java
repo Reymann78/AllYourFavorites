@@ -1,5 +1,6 @@
 package de.neuefische.allyourfavorites.controller;
 
+import de.neuefische.allyourfavorites.dto.TeamIdDto;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.service.FavoriteSoccerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +26,18 @@ public class FavoriteSoccerController {
     }
 
     @GetMapping("favorites")
-    public List<String> getAllFavoritesOfUser(Principal principal) {
+    public List<String> getAllTeamIdsOfFavoritesOfUser(Principal principal) {
         return favoriteSoccerService.getAllFavoritesOfUser(principal.getName());
     }
 
     @PostMapping
-    public String addFavorite(@RequestBody String favoriteTeamName, Principal principal) {
-        return this.favoriteSoccerService.addFavorite(favoriteTeamName, principal.getName());
+    public String addFavorite(@RequestBody TeamIdDto favoriteTeam, Principal principal) {
+        return this.favoriteSoccerService.addFavoriteTeamId(favoriteTeam.getTeamId(), principal.getName());
     }
 
     @DeleteMapping("delete")
-    public void removeFavorite(@RequestBody String favoriteTeamName, Principal principal) {
-        favoriteSoccerService.removeFavorite(favoriteTeamName, principal.getName());
+    public void removeFavorite(@RequestBody String favoriteTeamId, Principal principal) {
+        favoriteSoccerService.removeFavoriteTeamId(favoriteTeamId, principal.getName());
     }
 
 }

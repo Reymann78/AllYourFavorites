@@ -75,9 +75,9 @@ public class FavoriteSoccerControllerTest {
     public void testGetMappingWithValidJwt() {
         //GIVEN
         List <SoccerTeam> listOfTeamsInSoccerTeamDb = new ArrayList<>(List.of(
-                new SoccerTeam(1,"Borussia Dortmund", "bvbUrl", "Bundesliga"),
-                new SoccerTeam(2, "Bayern München", "fcbUrl", "Bundesliga"),
-                new SoccerTeam(3, "Eintracht Frankfurt", "sgeUrl", "Bundesliga")
+                new SoccerTeam("1","Borussia Dortmund", "bvbUrl", "Bundesliga"),
+                new SoccerTeam("2", "Bayern München", "fcbUrl", "Bundesliga"),
+                new SoccerTeam("3", "Eintracht Frankfurt", "sgeUrl", "Bundesliga")
         ));
 
         String url = getSoccerTeamsUrl() + "/soccerTeams";
