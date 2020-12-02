@@ -7,23 +7,26 @@ import OpenMenuContextProvider from './contexts/OpenMenuContextProvider';
 import LoginPage from './loginPage/LoginPage';
 import UserContextProvider from './contexts/UserContextProvider';
 import ProtectedRoute from './routing/ProtectedRoute';
+import FavoriteContextProvider from './contexts/FavoriteContextProvider';
 
 function App() {
   return (
     <UserContextProvider>
-      <SoccerTeamContextProvider>
-        <OpenMenuContextProvider>
-          <PageLayout>
-            <Switch>
-              <Route path="/login" component={LoginPage} />
-              <ProtectedRoute path="/favorites" component={HomePage} />
-              <Route path="/">
-                <Redirect to="/login" />
-              </Route>
-            </Switch>
-          </PageLayout>
-        </OpenMenuContextProvider>
-      </SoccerTeamContextProvider>
+      <FavoriteContextProvider>
+        <SoccerTeamContextProvider>
+          <OpenMenuContextProvider>
+            <PageLayout>
+              <Switch>
+                <Route path="/login" component={LoginPage} />
+                <ProtectedRoute path="/favorites" component={HomePage} />
+                <Route path="/">
+                  <Redirect to="/login" />
+                </Route>
+              </Switch>
+            </PageLayout>
+          </OpenMenuContextProvider>
+        </SoccerTeamContextProvider>
+      </FavoriteContextProvider>
     </UserContextProvider>
   );
 }
