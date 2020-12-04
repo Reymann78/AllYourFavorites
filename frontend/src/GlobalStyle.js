@@ -22,14 +22,13 @@ export default createGlobalStyle`
    
    --nav-size: 50px;
    
-   --blue-shadow: 2px 2px 2px var(--blue-main);
+   --blue-shadow: 1px 1px 1px var(--blue-50);
    --blue-border: 2px solid var(--blue-main);
    --border-radius: 8px;
    
    --speed: 500ms;
   
   }
-
 
   ul {
     list-style: none;

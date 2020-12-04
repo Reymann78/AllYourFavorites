@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+import { CgRemoveR } from 'react-icons/cg';
 
 export default function Favorite({ favorite, className }) {
   return (
@@ -8,12 +8,12 @@ export default function Favorite({ favorite, className }) {
       <FavoriteHeader>
         <LogoStyled src={favorite.crestUrl} alt="Team Logo" />
         {favorite.name}
-        <RemoveButtonStyled>{<RiDeleteBin6Line />}</RemoveButtonStyled>
+        <RemoveButtonStyled>{<CgRemoveR />}</RemoveButtonStyled>
       </FavoriteHeader>
       <MatchStyled>
         <div class="date">Sa 28.11.2020 15:30 Uhr</div>
         <div>{favorite.lastMatch.homeTeam}</div>
-        <div>
+        <div class="result">
           {favorite.lastMatch.homeTeamGoals} :{' '}
           {favorite.lastMatch.awayTeamGoals}
         </div>
@@ -22,7 +22,7 @@ export default function Favorite({ favorite, className }) {
       <MatchStyled>
         <div className="date">Mi 02.12.2020 21:00 Uhr</div>
         <div>{favorite.currentMatch.homeTeam}</div>
-        <div>
+        <div class="result">
           {favorite.currentMatch.homeTeamGoals} :{' '}
           {favorite.currentMatch.awayTeamGoals}
         </div>
@@ -31,7 +31,7 @@ export default function Favorite({ favorite, className }) {
       <MatchStyled>
         <div className="date">Sa 05.12.2020 15:30 Uhr</div>
         <div>{favorite.nextMatch.homeTeam}</div>
-        <div>
+        <div class="result">
           {favorite.nextMatch.homeTeamGoals} :{' '}
           {favorite.nextMatch.awayTeamGoals}
         </div>
@@ -43,17 +43,17 @@ export default function Favorite({ favorite, className }) {
 
 const FavoriteStyled = styled.section`
   padding: var(--size-s);
-  box-shadow: var(--blue-shadow);
+  box-shadow: var(--blue-25);
   border: var(--blue-border);
   border-radius: var(--size-s);
-  background: #e0e6f8;
+  background: #eff8fb;
 `;
 
 const FavoriteHeader = styled.header`
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
   align-items: center;
-  padding: var(--size-xs);
+  padding-bottom: var(--size-s);
   color: var(--blue-main);
   text-align: center;
   font-weight: bold;
@@ -76,28 +76,34 @@ const MatchStyled = styled.div`
   grid-template-columns: 2fr 1fr 2fr;
   grid-template-rows: 1fr 3fr;
   align-items: center;
-  border-bottom: var(--size-xs) solid #e0e6f8;
+  border-bottom: var(--size-xs) solid #eff8fb;
   padding: var(--size-s);
   background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
 
   .date {
     text-align: center;
+    font-weight: bold;
     grid-column: 1/4;
+  }
+
+  .result {
+    padding: var(--size-s);
+  }
 `;
 
 const RemoveButtonStyled = styled.button`
-  --button-size: calc(var(--nav-size) * 0.7);
+  --button-size: calc(var(--nav-size) * 0.6);
   width: var(--button-size);
   height: var(--button-size);
-  background-color: var(--white);
-  color: firebrick;
-  border-radius: var(--border-radius);
-  border-color: firebrick;
+  color: #cc0033;
   justify-self: end;
   font-weight: bold;
   font-size: var(--size-xl);
+  background-color: #eff8fb;
+  padding: 0;
+  border: 0;
 
   &:hover {
-    background-color: lightgrey;
+    color: darkgrey;
   }
 `;
