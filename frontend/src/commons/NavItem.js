@@ -27,14 +27,14 @@ const IconButtonStyled = styled.button`
   width: var(--button-size);
   height: var(--button-size);
   background-color: var(--white);
-  color: var(--blue-50);
+  color: var(--blue-main);
   border-radius: var(--border-radius);
   padding: 5px;
   margin: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-color: var(--blue-50);
+  border-color: var(--blue-main);
 
   &:hover {
     color: var(--blue-main);

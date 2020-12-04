@@ -7,12 +7,7 @@ export default createGlobalStyle`
    --blue-50: #2E64FE;
    --blue-25: #81BEF7;
    --white: #ffffff;
-
-   //--red-main: #8A1C0E;
-   //--red-75: #B40404;
-   //--red-50: #FF0000;
-   //--red-25: #FE2E2E;
-  
+ 
    --size-xs: 4px;
    --size-s: 8px;
    --size-m: 12px;
@@ -41,10 +36,10 @@ export default createGlobalStyle`
     padding: 0;
   }
   
-  html, header, body {
+  html, header, body, p {
     margin: 0;
+    padding: 0;
     color: var(--white);
-    font-family: 'Arial', sans-serif;
-    background: var(--white);;
+    font-family: "Helvetica Neue", sans-serif;
   }
 `;
