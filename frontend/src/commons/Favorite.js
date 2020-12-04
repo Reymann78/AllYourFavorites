@@ -43,7 +43,7 @@ export default function Favorite({ favorite, className }) {
 
 const FavoriteStyled = styled.section`
   padding: var(--size-s);
-  box-shadow: var(--blue-25);
+  box-shadow: 2px 2px 2px var(--blue-75);
   border: var(--blue-border);
   border-radius: var(--size-s);
   background: #eff8fb;
