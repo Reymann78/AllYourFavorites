@@ -12,8 +12,9 @@ export default createGlobalStyle`
    --size-s: 8px;
    --size-m: 12px;
    --size-l: 16px;
-   --size-xl: 24px;
-   --size-xxl: 32px;
+   --size-xl: 20px;
+   --size-xxl: 24px;
+   --size-xxxl: 32px;
    
    --bg: var(--blue-main);
    --bg-accent: var(--blue-25);

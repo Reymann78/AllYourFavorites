@@ -68,6 +68,7 @@ const LogoStyled = styled.img`
   height: 2rem;
   padding-right: var(--size-xs);
   justify-self: end;
+  font-weight: bold;
 `;
 
 const MatchStyled = styled.div`
@@ -93,6 +94,8 @@ const RemoveButtonStyled = styled.button`
   border-radius: var(--border-radius);
   border-color: firebrick;
   justify-self: end;
+  font-weight: bold;
+  font-size: var(--size-xl);
 
   &:hover {
     background-color: lightgrey;

@@ -61,7 +61,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--size-xl);
+  padding: var(--size-xxl);
   color: var(--blue-main);
 `;
 
@@ -69,13 +69,13 @@ const Form = styled.form`
   width: 100%;
   display: grid;
   grid-auto-rows: min-content;
-  gap: var(--size-xl);
+  gap: var(--size-xxl);
 
   input {
     border-color: var(--blue-main);
     display: block;
     width: 100%;
-    font-size: var(--size-xl);
+    font-size: var(--size-xxl);
     color: var(--blue-main);
   }
 `;

@@ -35,6 +35,7 @@ const IconButtonStyled = styled.button`
   align-items: center;
   justify-content: center;
   border-color: var(--blue-main);
+  font-size: var(--size-xl);
 
   &:hover {
     color: var(--blue-main);
