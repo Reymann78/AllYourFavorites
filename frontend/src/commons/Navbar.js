@@ -11,7 +11,7 @@ export default function Navbar({ children }) {
 
 const NavbarStyled = styled.nav`
   height: var(--nav-size);
-  padding: 0 1px;
+  display: flex;
 `;
 
 const NavbarNavStyled = styled.ul`

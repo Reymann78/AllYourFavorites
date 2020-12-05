@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import { CgRemoveR } from 'react-icons/cg';
+import FavoriteContext from '../contexts/FavoriteContext';
 
 export default function Favorite({ favorite, className }) {
+  const { deleteFavorite } = useContext(FavoriteContext);
+  console.log(favorite);
   return (
     <FavoriteStyled className={className}>
       <FavoriteHeader>
         <LogoStyled src={favorite.crestUrl} alt="Team Logo" />
         {favorite.name}
-        <RemoveButtonStyled>{<CgRemoveR />}</RemoveButtonStyled>
+        <RemoveButtonStyled key="remove" onClick={handleRemove}>
+          {<CgRemoveR />}
+        </RemoveButtonStyled>
       </FavoriteHeader>
       <MatchStyled>
-        <div class="date">Sa 28.11.2020 15:30 Uhr</div>
+        <div className="date">Sa 28.11.2020 15:30 Uhr</div>
         <div>{favorite.lastMatch.homeTeam}</div>
-        <div class="result">
+        <div className="result">
           {favorite.lastMatch.homeTeamGoals} :{' '}
           {favorite.lastMatch.awayTeamGoals}
         </div>
@@ -22,7 +27,7 @@ export default function Favorite({ favorite, className }) {
       <MatchStyled>
         <div className="date">Mi 02.12.2020 21:00 Uhr</div>
         <div>{favorite.currentMatch.homeTeam}</div>
-        <div class="result">
+        <div className="result">
           {favorite.currentMatch.homeTeamGoals} :{' '}
           {favorite.currentMatch.awayTeamGoals}
         </div>
@@ -31,7 +36,7 @@ export default function Favorite({ favorite, className }) {
       <MatchStyled>
         <div className="date">Sa 05.12.2020 15:30 Uhr</div>
         <div>{favorite.nextMatch.homeTeam}</div>
-        <div class="result">
+        <div className="result">
           {favorite.nextMatch.homeTeamGoals} :{' '}
           {favorite.nextMatch.awayTeamGoals}
         </div>
@@ -39,6 +44,10 @@ export default function Favorite({ favorite, className }) {
       </MatchStyled>
     </FavoriteStyled>
   );
+
+  function handleRemove() {
+    deleteFavorite(favorite.teamId);
+  }
 }
 
 const FavoriteStyled = styled.section`
@@ -97,11 +106,10 @@ const RemoveButtonStyled = styled.button`
   height: var(--button-size);
   color: #cc0033;
   justify-self: end;
-  font-weight: bold;
   font-size: var(--size-xl);
   background-color: #eff8fb;
-  padding: 0;
-  border: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
 
   &:hover {
     color: darkgrey;

@@ -29,7 +29,13 @@ export default createGlobalStyle`
    --speed: 500ms;
   
   }
-
+  
+  button {
+  border: none;
+  color: white;
+  padding: 0;
+  }
+  
   ul {
     list-style: none;
     margin: 0;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { FaPlus } from 'react-icons/fa';
+import { CgAddR } from 'react-icons/cg';
 import { IoMdLogOut } from 'react-icons/io';
 import Navbar from './Navbar';
 import NavItem from './NavItem';
@@ -11,7 +11,7 @@ export default function Header({ title }) {
     <HeaderStyled>
       <HeadingStyled>{title}</HeadingStyled>
       <Navbar>
-        <NavItem icon={<FaPlus />}>
+        <NavItem icon={<CgAddR />}>
           <AddDropdownMenu></AddDropdownMenu>
         </NavItem>
         <NavItem icon={<IoMdLogOut />} />

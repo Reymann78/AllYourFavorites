@@ -34,13 +34,13 @@ public class FavoriteSoccerController {
     }
 
     @PostMapping
-    public String addFavorite(@RequestBody TeamIdDto favoriteTeam, Principal principal) {
-        return this.favoriteSoccerService.addFavoriteTeamId(favoriteTeam.getTeamId(), principal.getName());
+    public void addFavorite(@RequestBody TeamIdDto favoriteTeam, Principal principal) {
+        favoriteSoccerService.addFavoriteTeamId(favoriteTeam.getTeamId(), principal.getName());
     }
 
-    @DeleteMapping("delete")
-    public void removeFavorite(@RequestBody String favoriteTeamId, Principal principal) {
-        favoriteSoccerService.removeFavoriteTeamId(favoriteTeamId, principal.getName());
+    @DeleteMapping("{teamId}")
+    public void removeFavorite(@PathVariable String teamId, Principal principal) {
+        favoriteSoccerService.removeFavoriteTeamId(teamId, principal.getName());
     }
 
 }

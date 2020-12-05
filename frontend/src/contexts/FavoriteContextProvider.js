@@ -1,6 +1,10 @@
 import FavoriteContext from './FavoriteContext';
 import React, { useContext, useEffect, useState } from 'react';
-import { addFavorite, getFavorites } from '../service/FavoriteService';
+import {
+  addFavorite,
+  getFavorites,
+  removeFavorite,
+} from '../service/FavoriteService';
 import UserContext from './UserContext';
 
 export default function FavoriteContextProvider({ children }) {
@@ -13,11 +17,21 @@ export default function FavoriteContextProvider({ children }) {
 
   const createFavorite = (teamId) =>
     addFavorite(teamId, token)
-      .then((newFavorite) => setFavorites([...favorites, newFavorite]))
+      .then(token && getFavorites(token).then(setFavorites))
+      //.then((newFavorite) => setFavorites([...favorites, newFavorite]))
+      .catch(console.log);
+
+  const deleteFavorite = (teamId) =>
+    removeFavorite(teamId, token)
+      .then(() =>
+        setFavorites(favorites.filter((favorite) => favorite.teamId !== teamId))
+      )
       .catch(console.log);
 
   return (
-    <FavoriteContext.Provider value={{ favorites, createFavorite }}>
+    <FavoriteContext.Provider
+      value={{ favorites, createFavorite, deleteFavorite }}
+    >
       {children}
     </FavoriteContext.Provider>
   );

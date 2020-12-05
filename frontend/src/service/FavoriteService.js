@@ -13,3 +13,6 @@ export const addFavorite = (teamId, token) =>
   axios
     .post('/api/favorites', { teamId }, header(token))
     .then((response) => response.data);
+
+export const removeFavorite = (teamId, token) =>
+  axios.delete('/api/favorites/' + teamId, header(token));

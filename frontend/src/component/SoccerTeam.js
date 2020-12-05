@@ -35,7 +35,7 @@ const SoccerTeamStyled = styled.button`
   transition: background var(--speed);
   padding-left: 2px;
   color: var(--blue-main);
-  font-size: var(--size-l);
+  font-size: var(--size-m);
   text-decoration: none;
   margin-right: 2px;
 

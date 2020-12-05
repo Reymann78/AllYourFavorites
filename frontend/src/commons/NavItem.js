@@ -17,28 +17,17 @@ export default function NavItem(props) {
 
 const NavItemStyled = styled.li`
   width: calc(var(--nav-size) * 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 10px;
 `;
 
 const IconButtonStyled = styled.button`
-  --button-size: calc(var(--nav-size) * 0.6);
+  --button-size: calc(var(--nav-size) * 1);
   width: var(--button-size);
   height: var(--button-size);
-  background-color: var(--white);
-  color: var(--blue-main);
-  border-radius: var(--border-radius);
-  padding: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-color: var(--blue-main);
-  font-size: var(--size-xl);
+  background-color: linear-gradient(20deg, var(--blue-main), var(--blue-75));
+  font-size: var(--size-xxl);
+  padding-top: 6px;
 
   &:hover {
-    color: var(--blue-main);
-    background-color: lightgrey;
+    color: darkgrey;
   }
 `;

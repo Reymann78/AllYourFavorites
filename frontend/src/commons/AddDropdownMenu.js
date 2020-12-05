@@ -105,14 +105,14 @@ export default function AddDropdownMenu() {
 }
 
 const DropdownItemStyled = styled.div`
-  height: 50px;
+  height: 20px;
   display: flex;
   align-items: center;
   border-radius: var(--border-radius);
   transition: background var(--speed);
   padding: 0.2rem;
   color: var(--blue-main);
-  font-size: var(--size-l);
+  font-size: var(--size-m);
   text-decoration: none;
   margin-right: 2px;
 
@@ -138,13 +138,13 @@ const RightIconStyled = styled.span`
 
 const DropdownMenuStyled = styled.span`
   position: absolute;
-  top: 70px;
-  width: 240px;
-  transform: translateX(-45%);
+  top: 50px;
+  width: 200px;
+  transform: translateX(-84%);
   background-color: ghostwhite;
   border: var(--blue-border);
   border-radius: var(--border-radius);
-  padding: 0.5rem;
+  padding: 0.4rem;
   overflow: hidden;
-  transition: height var(--spees) ease;
+  transition: height var(--speed) ease;
 `;

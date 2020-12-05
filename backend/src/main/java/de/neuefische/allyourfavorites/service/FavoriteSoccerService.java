@@ -46,7 +46,7 @@ public class FavoriteSoccerService {
             return soccerMatchesByTeamDb.findAllById(favorites);
     }
 
-    public String addFavoriteTeamId(String favoriteTeamId, String principalName) {
+    public void addFavoriteTeamId(String favoriteTeamId, String principalName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(principalName));
 
@@ -54,8 +54,6 @@ public class FavoriteSoccerService {
         update.addToSet("favorites", favoriteTeamId);
 
         mongoTemplate.updateFirst(query, update, User.class);
-
-        return favoriteTeamId;
     }
 
     public void removeFavoriteTeamId(String favoriteTeamId, String principalName) {
