@@ -20,25 +20,25 @@ export default function LoginPage() {
       <Main>
         <Form onSubmit={handleSubmit}>
           <Label>
+            Username
             <input
               name="username"
               value={credentials.username}
               onChange={handleChange}
               type="text"
-              placeholder="Username"
             />
           </Label>
           <Label>
+            Password
             <input
               name="password"
               value={credentials.password}
               onChange={handleChange}
               type="password"
-              placeholder="Password"
             />
           </Label>
           {error && <p>{error}</p>}
-          <Button>Login</Button>
+          <Button value="login">Login</Button>
         </Form>
       </Main>
     </>
