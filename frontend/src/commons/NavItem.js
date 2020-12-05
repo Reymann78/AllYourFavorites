@@ -7,9 +7,7 @@ export default function NavItem(props) {
 
   return (
     <NavItemStyled>
-      <IconButtonStyled onClick={() => setOpen(!open)}>
-        {props.icon}
-      </IconButtonStyled>
+      <IconButton onClick={() => setOpen(!open)}>{props.icon}</IconButton>
       {open && props.children}
     </NavItemStyled>
   );
@@ -19,7 +17,7 @@ const NavItemStyled = styled.li`
   width: calc(var(--nav-size) * 0.9);
 `;
 
-const IconButtonStyled = styled.button`
+const IconButton = styled.button`
   --button-size: calc(var(--nav-size) * 1);
   width: var(--button-size);
   height: var(--button-size);

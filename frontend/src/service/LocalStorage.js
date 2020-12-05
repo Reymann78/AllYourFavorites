@@ -1,5 +1,5 @@
-const USER_DATA = 'USER_DATA';
 const ACCESS_TOKEN = 'ACCESS_TOKEN';
+const USER_DATA = 'USER_DATA';
 
 export const loadTokenFromLocalStorage = () =>
   localStorage.getItem(ACCESS_TOKEN);
@@ -24,3 +24,6 @@ export const saveUserDataToLocalStorage = (userData) => {
 export const deleteTokenFromLocalStorage = () => {
   localStorage.removeItem(ACCESS_TOKEN);
 };
+
+export const deleteUserDataFromLocalStorage = () =>
+  localStorage.removeItem(USER_DATA);

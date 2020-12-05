@@ -4,6 +4,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import {
   deleteTokenFromLocalStorage,
+  deleteUserDataFromLocalStorage,
   loadTokenFromLocalStorage,
   loadUserDataFromLocalStorage,
   saveTokenToLocalStorage,
@@ -39,6 +40,7 @@ export default function UserContextProvider({ children }) {
 
   function logout() {
     deleteTokenFromLocalStorage();
+    deleteUserDataFromLocalStorage();
   }
 
   return (

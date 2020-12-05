@@ -42,7 +42,7 @@ export default createGlobalStyle`
     padding: 0;
   }
   
-  html, header, body, p {
+  html, header, body {
     margin: 0;
     padding: 0;
     color: var(--white);
