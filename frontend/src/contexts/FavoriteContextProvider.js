@@ -9,16 +9,15 @@ import UserContext from './UserContext';
 
 export default function FavoriteContextProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
-  const { token } = useContext(UserContext);
+  const { token, tokenIsValid } = useContext(UserContext);
 
   useEffect(() => {
-    token && getFavorites(token).then(setFavorites).catch(console.log);
-  }, [token]);
+    tokenIsValid && getFavorites(token).then(setFavorites).catch(console.log);
+  }, [token, tokenIsValid]);
 
   const createFavorite = (teamId) =>
     addFavorite(teamId, token)
       .then(token && getFavorites(token).then(setFavorites))
-      //.then((newFavorite) => setFavorites([...favorites, newFavorite]))
       .catch(console.log);
 
   const deleteFavorite = (teamId) =>

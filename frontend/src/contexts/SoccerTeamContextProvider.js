@@ -5,11 +5,12 @@ import UserContext from './UserContext';
 
 export default function SoccerTeamContextProvider({ children }) {
   const [soccerTeams, setSoccerTeams] = useState([]);
-  const { token } = useContext(UserContext);
+  const { token, tokenIsValid } = useContext(UserContext);
 
   useEffect(() => {
-    token && getSoccerTeams(token).then(setSoccerTeams).catch(console.log);
-  }, [token]);
+    tokenIsValid &&
+      getSoccerTeams(token).then(setSoccerTeams).catch(console.log);
+  }, [token, tokenIsValid]);
 
   return (
     <SoccerTeamContext.Provider value={{ soccerTeams }}>
