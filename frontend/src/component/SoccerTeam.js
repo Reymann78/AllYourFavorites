@@ -21,7 +21,7 @@ export default function SoccerTeam({ soccerTeam }) {
 }
 
 const LogoStyled = styled.img`
-  height: 1.1rem;
+  height: 1.2rem;
   padding-right: 8px;
 `;
 
@@ -36,7 +36,6 @@ const SoccerTeamStyled = styled.button`
   padding-left: 2px;
   color: var(--blue-main);
   font-size: var(--size-l);
-  text-decoration: none;
   margin-right: 2px;
 
   &:hover {
