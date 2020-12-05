@@ -26,8 +26,8 @@ const HeaderStyled = styled.header`
   align-items: center;
   text-transform: uppercase;
   font-size: var(--size-m);
-  background: linear-gradient(20deg, var(--blue-75), var(--blue-25));
-  padding: var(--size-xl);
+  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
+  padding: var(--size-s);
 `;
 
 const HeadingStyled = styled.h1`

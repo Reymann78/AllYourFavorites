@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import FavoriteContext from '../contexts/FavoriteContext';
+import OpenMenuContext from '../contexts/OpenMenuContext';
 
 export default function SoccerTeam({ soccerTeam }) {
   const { createFavorite } = useContext(FavoriteContext);
-  console.log({ soccerTeam });
+  const { open, setOpen } = useContext(OpenMenuContext);
 
   return (
     <SoccerTeamStyled onClick={() => handleClick(soccerTeam.teamId)}>
@@ -15,11 +16,12 @@ export default function SoccerTeam({ soccerTeam }) {
 
   function handleClick(teamId) {
     createFavorite(teamId);
+    setOpen(!open);
   }
 }
 
 const LogoStyled = styled.img`
-  height: 1rem;
+  height: 1.2rem;
   padding-right: 8px;
 `;
 
@@ -32,12 +34,11 @@ const SoccerTeamStyled = styled.button`
   border-radius: var(--border-radius);
   transition: background var(--speed);
   padding-left: 2px;
-  color: var(--blue-50);
-  font-size: var(--size-m);
-  text-decoration: none;
+  color: var(--blue-main);
+  font-size: var(--size-l);
   margin-right: 2px;
 
   &:hover {
-    background-color: var(--blue-25);
+    background-color: lightgrey;
   }
 `;

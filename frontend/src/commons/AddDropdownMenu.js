@@ -2,7 +2,7 @@ import './menu.css';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import { CgChevronRight, CgChevronLeft } from 'react-icons/cg';
-import { GiSoccerBall, GiBasketballBall } from 'react-icons/gi';
+import { GiSoccerBall } from 'react-icons/gi';
 import { BsFillCaretUpFill } from 'react-icons/bs';
 import { CSSTransition } from 'react-transition-group';
 import SoccerTeamList from '../component/SoccerTeamList';
@@ -57,22 +57,22 @@ export default function AddDropdownMenu() {
           <DropdownItem
             leftIcon={<GiSoccerBall />}
             rightIcon={<CgChevronRight />}
-            goToMenu="soccerTeams"
+            goToMenu="bundesliga"
           >
-            Soccer
+            Bundesliga
           </DropdownItem>
           <DropdownItem
-            leftIcon={<GiBasketballBall />}
+            leftIcon={<GiSoccerBall />}
             rightIcon={<CgChevronRight />}
-            goToMenu="basketballTeams"
+            goToMenu="premierLeague"
           >
-            Basketball
+            Premier League
           </DropdownItem>
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === 'soccerTeams'}
+        in={activeMenu === 'bundesliga'}
         timeout={500}
         classNames="menu-secondary"
         unmountOnExit
@@ -80,14 +80,14 @@ export default function AddDropdownMenu() {
       >
         <div className="menu">
           <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
-            <h3>Sport</h3>
+            <h3>Bundesliga</h3>
           </DropdownItem>
           <SoccerTeamList />
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === 'basketballTeams'}
+        in={activeMenu === 'premierLeague'}
         timeout={500}
         classNames="menu-secondary"
         unmountOnExit
@@ -95,13 +95,9 @@ export default function AddDropdownMenu() {
       >
         <div className="menu">
           <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
-            <h3>Sport</h3>
+            <h3>Premier League</h3>
           </DropdownItem>
-          <DropdownItem>Ulm</DropdownItem>
-          <DropdownItem>FC Bayern</DropdownItem>
-          <DropdownItem>Ludwigsburg</DropdownItem>
-          <DropdownItem>Alba Berlin</DropdownItem>
-          <DropdownItem>Oldenburg</DropdownItem>
+          <SoccerTeamList />
         </div>
       </CSSTransition>
     </DropdownMenuStyled>
@@ -115,7 +111,7 @@ const DropdownItemStyled = styled.div`
   border-radius: var(--border-radius);
   transition: background var(--speed);
   padding: 0.2rem;
-  color: var(--blue-50);
+  color: var(--blue-main);
   font-size: var(--size-l);
   text-decoration: none;
   margin-right: 2px;
@@ -129,7 +125,7 @@ const LeftIconStyled = styled.span`
   --button-size: calc(var(--nav-size) * 0.8);
   width: var(--button-size);
   height: var(--button-size);
-  color: var(--blue-50);
+  color: var(--blue-main);
   border-radius: var(--border-radius);
   display: flex;
   align-items: center;

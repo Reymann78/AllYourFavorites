@@ -1,5 +1,6 @@
 package de.neuefische.allyourfavorites.serviceTests;
 
+import de.neuefische.allyourfavorites.db.SoccerMatchesByTeamDb;
 import de.neuefische.allyourfavorites.db.SoccerTeamDb;
 import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
@@ -21,7 +22,8 @@ public class FavoriteSoccerServiceTest {
     final SoccerTeamDb soccerTeamDb = mock(SoccerTeamDb.class);
     final MongoTemplate mongoTemplate = mock(MongoTemplate.class);
     final UserDb userDb = mock(UserDb.class);
-    final FavoriteSoccerService favoriteSoccerService = new FavoriteSoccerService(soccerTeamDb, mongoTemplate, userDb);
+    final SoccerMatchesByTeamDb soccerMatchesByTeamDb = mock(SoccerMatchesByTeamDb.class);
+    final FavoriteSoccerService favoriteSoccerService = new FavoriteSoccerService(soccerTeamDb, mongoTemplate, userDb, soccerMatchesByTeamDb);
 
     @Test
     @DisplayName("The getListOfSoccerTeams method should return all soccer teams of the soccer db")

@@ -7,18 +7,14 @@ export default createGlobalStyle`
    --blue-50: #2E64FE;
    --blue-25: #81BEF7;
    --white: #ffffff;
-
-   //--red-main: #8A1C0E;
-   //--red-75: #B40404;
-   //--red-50: #FF0000;
-   //--red-25: #FE2E2E;
-  
+ 
    --size-xs: 4px;
    --size-s: 8px;
    --size-m: 12px;
    --size-l: 16px;
-   --size-xl: 24px;
-   --size-xxl: 32px;
+   --size-xl: 20px;
+   --size-xxl: 24px;
+   --size-xxxl: 32px;
    
    --bg: var(--blue-main);
    --bg-accent: var(--blue-25);
@@ -26,7 +22,7 @@ export default createGlobalStyle`
    
    --nav-size: 50px;
    
-   --blue-shadow: 2px 2px 2px var(--blue-main);
+   --blue-shadow: 1px 1px 1px var(--blue-50);
    --blue-border: 2px solid var(--blue-main);
    --border-radius: 8px;
    
@@ -34,17 +30,16 @@ export default createGlobalStyle`
   
   }
 
-
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
   
-  html, header, body {
+  html, header, body, p {
     margin: 0;
+    padding: 0;
     color: var(--white);
-    font-family: 'Arial', sans-serif;
-    background: var(--white);;
+    font-family: "Helvetica Neue", sans-serif;
   }
 `;

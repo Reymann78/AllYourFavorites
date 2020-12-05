@@ -16,25 +16,26 @@ export default function NavItem(props) {
 }
 
 const NavItemStyled = styled.li`
-  width: calc(var(--nav-size) * 1);
+  width: calc(var(--nav-size) * 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 10px;
 `;
 
 const IconButtonStyled = styled.button`
-  --button-size: calc(var(--nav-size) * 0.8);
+  --button-size: calc(var(--nav-size) * 0.6);
   width: var(--button-size);
   height: var(--button-size);
   background-color: var(--white);
-  color: var(--blue-50);
+  color: var(--blue-main);
   border-radius: var(--border-radius);
-  padding: 5px;
-  margin: 2px;
+  padding: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-color: var(--blue-50);
+  border-color: var(--blue-main);
+  font-size: var(--size-xl);
 
   &:hover {
     color: var(--blue-main);
