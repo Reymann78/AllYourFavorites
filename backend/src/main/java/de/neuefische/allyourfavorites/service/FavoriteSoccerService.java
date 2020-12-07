@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FavoriteSoccerService {
@@ -46,7 +47,7 @@ public class FavoriteSoccerService {
             return soccerMatchesByTeamDb.findAllById(favorites);
     }
 
-    public void addFavoriteTeamId(String favoriteTeamId, String principalName) {
+    public Optional<User> addFavoriteTeamId(String favoriteTeamId, String principalName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(principalName));
 
@@ -54,6 +55,8 @@ public class FavoriteSoccerService {
         update.addToSet("favorites", favoriteTeamId);
 
         mongoTemplate.updateFirst(query, update, User.class);
+
+        return userDb.findById(principalName);
     }
 
     public void removeFavoriteTeamId(String favoriteTeamId, String principalName) {
