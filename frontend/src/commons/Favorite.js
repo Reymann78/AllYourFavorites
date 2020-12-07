@@ -55,7 +55,7 @@ const FavoriteWrapper = styled.section`
   background: #eff8fb;
 `;
 
-const Header = styled.header`
+const FavoriteHeader = styled.header`
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
   align-items: center;
