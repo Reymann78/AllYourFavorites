@@ -29,8 +29,7 @@ public class FavoriteSoccerController {
 
     @GetMapping
     public Iterable<FavoriteMatches> getAllMatchesOfFavoritesOfUser(Principal principal) {
-        List<String> favoritesOfUser = new ArrayList<>(favoriteSoccerService.getAllFavoritesOfUser(principal.getName()));
-        return favoriteSoccerService.getAllMatchesOfFavorites(favoritesOfUser);
+        return favoriteSoccerService.getAllMatchesOfFavorites(favoriteSoccerService.getAllFavoritesOfUser(principal.getName()));
     }
 
     @PostMapping

@@ -21,7 +21,7 @@ export default function SoccerTeam({ soccerTeam }) {
 }
 
 const LogoStyled = styled.img`
-  height: 1.1rem;
+  height: 1.2rem;
   padding-right: 8px;
 `;
 

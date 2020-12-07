@@ -26,7 +26,7 @@ const FavoriteListStyled = styled.ul`
 
   display: grid;
   grid-auto-rows: min-content;
-  gap: var(--size-l);
+  grid-gap: var(--size-l);
 
   li:last-child:after {
     content: '';
