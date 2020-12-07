@@ -8,7 +8,7 @@ export default function Favorite({ favorite, className }) {
   console.log(favorite);
   return (
     <FavoriteWrapper className={className}>
-      <Header>
+      <FavoriteHeader>
         <Logo src={favorite.crestUrl} alt="Team Logo" />
         {favorite.name}
         <RemoveButton onClick={handleRemove}>
