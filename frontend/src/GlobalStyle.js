@@ -29,14 +29,21 @@ export default createGlobalStyle`
    --speed: 500ms;
   
   }
-
+  
+  button {
+  border: none;
+  outline: none;
+  color: white;
+  padding: 0;
+  }
+  
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
   
-  html, header, body, p {
+  html, header, body {
     margin: 0;
     padding: 0;
     color: var(--white);

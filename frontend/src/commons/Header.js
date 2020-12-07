@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { FaPlus } from 'react-icons/fa';
+import { CgAddR } from 'react-icons/cg';
 import { IoMdLogOut } from 'react-icons/io';
 import Navbar from './Navbar';
 import NavItem from './NavItem';
 import AddDropdownMenu from './AddDropdownMenu';
+import UserContext from '../contexts/UserContext';
 
 export default function Header({ title }) {
+  const history = useHistory();
+  const { logout } = useContext(UserContext);
+
   return (
     <HeaderStyled>
-      <HeadingStyled>{title}</HeadingStyled>
-      <Navbar>
-        <NavItem icon={<FaPlus />}>
-          <AddDropdownMenu></AddDropdownMenu>
-        </NavItem>
-        <NavItem icon={<IoMdLogOut />} />
-      </Navbar>
+      <Heading>{title}</Heading>
+      {window.location.pathname === '/favorites' ? (
+        <Navbar>
+          <NavItem icon={<CgAddR />}>
+            <AddDropdownMenu></AddDropdownMenu>
+          </NavItem>
+          <RemoveButton onClick={handleLogout}>
+            <IoMdLogOut />
+          </RemoveButton>
+        </Navbar>
+      ) : (
+        ''
+      )}
     </HeaderStyled>
   );
+
+  function handleLogout() {
+    logout();
+    history.push('/login');
+  }
 }
 
 const HeaderStyled = styled.header`
@@ -30,6 +46,19 @@ const HeaderStyled = styled.header`
   padding: var(--size-s);
 `;
 
-const HeadingStyled = styled.h1`
+const Heading = styled.h1`
   margin: 0;
+`;
+
+const RemoveButton = styled.button`
+  --button-size: calc(var(--nav-size) * 1);
+  width: var(--button-size);
+  height: var(--button-size);
+  background-color: linear-gradient(20deg, var(--blue-main), var(--blue-75));
+  font-size: var(--size-xxl);
+  padding-top: 6px;
+
+  &:hover {
+    color: darkgrey;
+  }
 `;

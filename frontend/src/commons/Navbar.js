@@ -4,17 +4,17 @@ import styled from 'styled-components/macro';
 export default function Navbar({ children }) {
   return (
     <NavbarStyled>
-      <NavbarNavStyled>{children}</NavbarNavStyled>
+      <NavbarNav>{children}</NavbarNav>
     </NavbarStyled>
   );
 }
 
 const NavbarStyled = styled.nav`
   height: var(--nav-size);
-  padding: 0 1px;
+  display: flex;
 `;
 
-const NavbarNavStyled = styled.ul`
+const NavbarNav = styled.ul`
   display: flex;
   justify-content: flex-end;
 `;

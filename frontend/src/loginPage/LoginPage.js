@@ -38,7 +38,7 @@ export default function LoginPage() {
             />
           </Label>
           {error && <p>{error}</p>}
-          <Button>Login</Button>
+          <Button value="login">Login</Button>
         </Form>
       </Main>
     </>
@@ -67,6 +67,7 @@ const Main = styled.main`
 
 const Form = styled.form`
   width: 100%;
+  height: border-box;
   display: grid;
   grid-auto-rows: min-content;
   gap: var(--size-xxl);
@@ -75,19 +76,19 @@ const Form = styled.form`
     border-color: var(--blue-main);
     display: block;
     width: 100%;
-    font-size: var(--size-xxl);
+    font-size: var(--size-l);
     color: var(--blue-main);
   }
 `;
 
 const Label = styled.label`
-  color: var(--blue-main);
+  //color: var(--blue-main);
 `;
 
 const Button = styled.button`
   padding: var(--size-m);
   border: none;
-  background: var(--blue-main);
+  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
   color: var(--white);
   border-radius: var(--size-s);
   font-size: 1em;
