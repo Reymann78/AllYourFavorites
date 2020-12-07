@@ -40,7 +40,9 @@ export default function UserContextProvider({ children }) {
 
   function logout() {
     deleteTokenFromLocalStorage();
+    setToken('');
     deleteUserDataFromLocalStorage();
+    setUserData('');
   }
 
   return (

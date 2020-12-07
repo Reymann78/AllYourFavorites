@@ -20,7 +20,7 @@ export default function Header({ title }) {
           <NavItem icon={<CgAddR />}>
             <AddDropdownMenu></AddDropdownMenu>
           </NavItem>
-          <RemoveButton key="logout" onClick={handleLogout}>
+          <RemoveButton onClick={handleLogout}>
             <IoMdLogOut />
           </RemoveButton>
         </Navbar>

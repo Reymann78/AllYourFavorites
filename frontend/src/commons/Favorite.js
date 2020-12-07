@@ -11,7 +11,7 @@ export default function Favorite({ favorite, className }) {
       <FavoriteHeader>
         <LogoStyled src={favorite.crestUrl} alt="Team Logo" />
         {favorite.name}
-        <RemoveButtonStyled key="remove" onClick={handleRemove}>
+        <RemoveButtonStyled onClick={handleRemove}>
           {<CgRemoveR />}
         </RemoveButtonStyled>
       </FavoriteHeader>
@@ -19,8 +19,7 @@ export default function Favorite({ favorite, className }) {
         <div className="date">Sa 28.11.2020 15:30 Uhr</div>
         <div>{favorite.lastMatch.homeTeam}</div>
         <div className="result">
-          {favorite.lastMatch.homeTeamGoals} :{' '}
-          {favorite.lastMatch.awayTeamGoals}
+          {`${favorite.lastMatch.homeTeamGoals} : ${favorite.lastMatch.awayTeamGoals}`}
         </div>
         <div>{favorite.lastMatch.awayTeam}</div>
       </MatchStyled>
@@ -28,8 +27,7 @@ export default function Favorite({ favorite, className }) {
         <div className="date">Mi 02.12.2020 21:00 Uhr</div>
         <div>{favorite.currentMatch.homeTeam}</div>
         <div className="result">
-          {favorite.currentMatch.homeTeamGoals} :{' '}
-          {favorite.currentMatch.awayTeamGoals}
+          {`${favorite.currentMatch.homeTeamGoals} : ${favorite.currentMatch.awayTeamGoals}`}
         </div>
         <div>{favorite.currentMatch.awayTeam}</div>
       </MatchStyled>
@@ -37,8 +35,7 @@ export default function Favorite({ favorite, className }) {
         <div className="date">Sa 05.12.2020 15:30 Uhr</div>
         <div>{favorite.nextMatch.homeTeam}</div>
         <div className="result">
-          {favorite.nextMatch.homeTeamGoals} :{' '}
-          {favorite.nextMatch.awayTeamGoals}
+          {`${favorite.nextMatch.homeTeamGoals} : ${favorite.nextMatch.awayTeamGoals}`}
         </div>
         <div>{favorite.nextMatch.awayTeam}</div>
       </MatchStyled>

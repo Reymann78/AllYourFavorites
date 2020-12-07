@@ -8,7 +8,7 @@ export default function SoccerTeamContextProvider({ children }) {
   const { token, tokenIsValid } = useContext(UserContext);
 
   useEffect(() => {
-    tokenIsValid &&
+    tokenIsValid() &&
       getSoccerTeams(token).then(setSoccerTeams).catch(console.log);
   }, [token, tokenIsValid]);
 

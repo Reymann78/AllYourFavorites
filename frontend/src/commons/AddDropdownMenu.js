@@ -105,12 +105,12 @@ export default function AddDropdownMenu() {
 }
 
 const DropdownItemStyled = styled.div`
-  height: 20px;
+  height: 1.2em;
   display: flex;
   align-items: center;
   border-radius: var(--border-radius);
   transition: background var(--speed);
-  padding: 0.2rem;
+  padding: 0.2em;
   color: var(--blue-main);
   font-size: var(--size-m);
   text-decoration: none;

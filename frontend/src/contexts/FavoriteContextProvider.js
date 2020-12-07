@@ -12,12 +12,12 @@ export default function FavoriteContextProvider({ children }) {
   const { token, tokenIsValid } = useContext(UserContext);
 
   useEffect(() => {
-    tokenIsValid && getFavorites(token).then(setFavorites).catch(console.log);
+    tokenIsValid() && getFavorites(token).then(setFavorites).catch(console.log);
   }, [token, tokenIsValid]);
 
   const createFavorite = (teamId) =>
     addFavorite(teamId, token)
-      .then(token && getFavorites(token).then(setFavorites))
+      .then(() => token && getFavorites(token).then(setFavorites))
       .catch(console.log);
 
   const deleteFavorite = (teamId) =>
