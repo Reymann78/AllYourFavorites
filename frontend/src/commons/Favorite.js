@@ -13,9 +13,9 @@ export default function Favorite({ favorite, className }) {
         {favorite.name}
         <RemoveButton onClick={handleRemove}>
           {<CgRemoveR />}
-        </RemoveButtonStyled>
+        </RemoveButton>
       </FavoriteHeader>
-      <MatchStyled>
+      <Match>
         <div className="date">Sa 28.11.2020 15:30 Uhr</div>
         <div>{favorite.lastMatch.homeTeam}</div>
         <div className="result">
