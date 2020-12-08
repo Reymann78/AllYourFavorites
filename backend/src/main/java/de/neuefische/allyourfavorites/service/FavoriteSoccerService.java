@@ -3,7 +3,7 @@ package de.neuefische.allyourfavorites.service;
 import de.neuefische.allyourfavorites.db.SoccerMatchesByTeamDb;
 import de.neuefische.allyourfavorites.db.SoccerTeamDb;
 import de.neuefische.allyourfavorites.db.UserDb;
-import de.neuefische.allyourfavorites.model.FavoriteMatches;
+import de.neuefische.allyourfavorites.model.Favorite;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +43,11 @@ public class FavoriteSoccerService {
         return user.getFavorites();
     }
 
-    public Iterable<FavoriteMatches> getAllMatchesOfFavorites(List<String> favorites) {
+    public Iterable<Favorite> getAllMatchesOfFavorites(List<String> favorites) {
             return soccerMatchesByTeamDb.findAllById(favorites);
     }
 
-    public Optional<User> addFavoriteTeamId(String favoriteTeamId, String principalName) {
+    public void addFavoriteTeamId(String favoriteTeamId, String principalName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(principalName));
 
@@ -56,7 +56,7 @@ public class FavoriteSoccerService {
 
         mongoTemplate.updateFirst(query, update, User.class);
 
-        return userDb.findById(principalName);
+        //return userDb.findById(principalName);
     }
 
     public void removeFavoriteTeamId(String favoriteTeamId, String principalName) {

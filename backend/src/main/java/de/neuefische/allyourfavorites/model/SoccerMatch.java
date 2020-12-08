@@ -1,5 +1,6 @@
 package de.neuefische.allyourfavorites.model;
 
+import de.neuefische.allyourfavorites.dto.ApiSoccerTeam;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,11 @@ public class SoccerMatch {
     private String matchId;
     private int matchDay;
     private Date matchDate;
-    private String competitionId;
+    private String status;
+    private int competitionId;
     private String competitionName;
-    private String homeTeam;
-    private String awayTeam;
-    private String homeTeamGoals;
-    private String awayTeamGoals;
+    private ApiSoccerTeam homeTeam;
+    private ApiSoccerTeam awayTeam;
+    private int homeTeamGoals;
+    private int awayTeamGoals;
 }

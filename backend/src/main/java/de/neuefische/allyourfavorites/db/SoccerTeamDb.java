@@ -8,4 +8,5 @@ import java.util.List;
 public interface SoccerTeamDb extends PagingAndSortingRepository<SoccerTeam, String> {
 
     List<SoccerTeam> findAll();
+    SoccerTeam findSoccerTeamByTeamId(String teamId);
 }

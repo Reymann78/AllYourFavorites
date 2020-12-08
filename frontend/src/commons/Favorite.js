@@ -11,33 +11,37 @@ export default function Favorite({ favorite, className }) {
       <FavoriteHeader>
         <Logo src={favorite.crestUrl} alt="Team Logo" />
         {favorite.name}
-        <RemoveButton onClick={handleRemove}>
-          {<CgRemoveR />}
-        </RemoveButton>
+        <RemoveButton onClick={handleRemove}>{<CgRemoveR />}</RemoveButton>
       </FavoriteHeader>
       <Match>
-        <div className="date">Sa 28.11.2020 15:30 Uhr</div>
-        <div>{favorite.lastMatch.homeTeam}</div>
+        <div className="date">
+          {new Date(favorite.lastMatch.matchDate).toLocaleString('de-De')}
+        </div>
+        <div>{favorite.lastMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.lastMatch.homeTeamGoals} : ${favorite.lastMatch.awayTeamGoals}`}
         </div>
-        <div>{favorite.lastMatch.awayTeam}</div>
+        <div>{favorite.lastMatch.awayTeam.name}</div>
       </Match>
       <Match>
-        <time className="date">Mi 02.12.2020 21:00 Uhr</time>
-        <div>{favorite.currentMatch.homeTeam}</div>
+        <time className="date">
+          {new Date(favorite.currentMatch.matchDate).toLocaleString('de-De')}
+        </time>
+        <div>{favorite.currentMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.currentMatch.homeTeamGoals} : ${favorite.currentMatch.awayTeamGoals}`}
         </div>
-        <div>{favorite.currentMatch.awayTeam}</div>
+        <div>{favorite.currentMatch.awayTeam.name}</div>
       </Match>
       <Match>
-        <time className="date">Sa 05.12.2020 15:30 Uhr</time>
-        <div>{favorite.nextMatch.homeTeam}</div>
+        <time className="date">
+          {new Date(favorite.nextMatch.matchDate).toLocaleString('de-De')}
+        </time>
+        <div>{favorite.nextMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.nextMatch.homeTeamGoals} : ${favorite.nextMatch.awayTeamGoals}`}
         </div>
-        <div>{favorite.nextMatch.awayTeam}</div>
+        <div>{favorite.nextMatch.awayTeam.name}</div>
       </Match>
     </FavoriteWrapper>
   );
