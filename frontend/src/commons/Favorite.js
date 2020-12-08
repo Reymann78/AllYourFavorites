@@ -14,9 +14,11 @@ export default function Favorite({ favorite, className }) {
         <RemoveButton onClick={handleRemove}>{<CgRemoveR />}</RemoveButton>
       </FavoriteHeader>
       <Match>
-        <div className="date">
-          {new Date(favorite.lastMatch.matchDate).toLocaleString('de-De')}
-        </div>
+        <div className="competition">{favorite.lastMatch.competitionName}</div>
+        <div className="round">Spieltag: {favorite.lastMatch.matchDay}</div>
+        <time className="date">
+          {new Date(favorite.lastMatch.matchDate).toUTCString()}
+        </time>
         <div>{favorite.lastMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.lastMatch.homeTeamGoals} : ${favorite.lastMatch.awayTeamGoals}`}
@@ -24,8 +26,12 @@ export default function Favorite({ favorite, className }) {
         <div>{favorite.lastMatch.awayTeam.name}</div>
       </Match>
       <Match>
+        <div className="competition">
+          {favorite.currentMatch.competitionName}
+        </div>
+        <div className="round">Spieltag: {favorite.currentMatch.matchDay}</div>
         <time className="date">
-          {new Date(favorite.currentMatch.matchDate).toLocaleString('de-De')}
+          {new Date(favorite.currentMatch.matchDate).toUTCString()}
         </time>
         <div>{favorite.currentMatch.homeTeam.name}</div>
         <div className="result">
@@ -34,8 +40,10 @@ export default function Favorite({ favorite, className }) {
         <div>{favorite.currentMatch.awayTeam.name}</div>
       </Match>
       <Match>
+        <div className="competition">{favorite.nextMatch.competitionName}</div>
+        <div className="round">Spieltag: {favorite.nextMatch.matchDay}</div>
         <time className="date">
-          {new Date(favorite.nextMatch.matchDate).toLocaleString('de-De')}
+          {new Date(favorite.nextMatch.matchDate).toUTCString()}
         </time>
         <div>{favorite.nextMatch.homeTeam.name}</div>
         <div className="result">
@@ -78,13 +86,27 @@ const Logo = styled.img`
 `;
 
 const Match = styled.section`
+  color: var(--blue-main);
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
-  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 3fr 1fr 3fr;
+  grid-template-rows: 1fr 1fr 2fr;
   align-items: center;
   border-bottom: var(--size-xs) solid #eff8fb;
   padding: var(--size-s);
-  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
+  background: var(--white);
+  font-size: 0.8em;
+
+  .competition {
+    text-align: left;
+    font-size: 0.7em;
+    grid-column: 1/3;
+  }
+
+  .round {
+    text-align: right;
+    font-size: 0.7em;
+    grid-column: 0/4;
+  }
 
   .date {
     text-align: center;

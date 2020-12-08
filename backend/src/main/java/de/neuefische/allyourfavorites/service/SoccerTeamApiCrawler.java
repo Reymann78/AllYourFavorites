@@ -62,33 +62,44 @@ public class SoccerTeamApiCrawler {
         favorite.setTeamId(teamId);
         favorite.setName(soccerTeamDb.findSoccerTeamByTeamId(teamId).getName());
         favorite.setCrestUrl(soccerTeamDb.findSoccerTeamByTeamId(teamId).getCrestUrl());
-        List<SoccerMatch> currentSoccerMatches = findCurrentMatches(formattedSoccerMatches);
-        //assert currentSoccerMatches != null;
-        favorite.setLastMatch(currentSoccerMatches.get(0));
-        favorite.setCurrentMatch(currentSoccerMatches.get(1));
-        favorite.setNextMatch(currentSoccerMatches.get(2));
+        favorite.setLastMatch(getLastMatch(formattedSoccerMatches));
+        favorite.setCurrentMatch(getCurrentMatch(formattedSoccerMatches));
+        favorite.setNextMatch(getNextMatch(formattedSoccerMatches));
         soccerMatchesDb.save(favorite);
         return favorite;
     }
 
-    private List<SoccerMatch> findCurrentMatches(List<SoccerMatch> soccerMatches) {
-        List<SoccerMatch> currentSoccerMatches = new ArrayList<>();
+    private SoccerMatch getLastMatch(List<SoccerMatch> soccerMatches) {
         List<SoccerMatch> finishedSoccerMatches = new ArrayList<>();
-        List<SoccerMatch> scheduledSoccerMatches = new ArrayList<>();
         for(SoccerMatch soccerMatch : soccerMatches) {
-            if(soccerMatch.getStatus().equals("FINISHED")) {
+            if (soccerMatch.getStatus().equals("FINISHED")) {
                 finishedSoccerMatches.add(soccerMatch);
-            }
-            if(soccerMatch.getStatus().equals("SCHEDULED")) {
-                scheduledSoccerMatches.add(soccerMatch);
             }
         }
         finishedSoccerMatches.sort(Comparator.comparing(SoccerMatch::getMatchDate));
+        return finishedSoccerMatches.get(finishedSoccerMatches.size()-2);
+    }
+
+    private SoccerMatch getCurrentMatch(List<SoccerMatch> soccerMatches) {
+        List<SoccerMatch> finishedSoccerMatches = new ArrayList<>();
+        for(SoccerMatch soccerMatch : soccerMatches) {
+            if (soccerMatch.getStatus().equals("FINISHED")) {
+                finishedSoccerMatches.add(soccerMatch);
+            }
+        }
+        finishedSoccerMatches.sort(Comparator.comparing(SoccerMatch::getMatchDate));
+        return finishedSoccerMatches.get(finishedSoccerMatches.size()-1);
+    }
+
+    private SoccerMatch getNextMatch(List<SoccerMatch> soccerMatches) {
+        List<SoccerMatch> scheduledSoccerMatches = new ArrayList<>();
+        for(SoccerMatch soccerMatch : soccerMatches) {
+            if (!soccerMatch.getStatus().equals("FINISHED")) {
+                scheduledSoccerMatches.add(soccerMatch);
+            }
+        }
         scheduledSoccerMatches.sort(Comparator.comparing(SoccerMatch::getMatchDate));
-        currentSoccerMatches.add(finishedSoccerMatches.get(finishedSoccerMatches.size()-2));
-        currentSoccerMatches.add(finishedSoccerMatches.get(finishedSoccerMatches.size()-1));
-        currentSoccerMatches.add(scheduledSoccerMatches.get(0));
-    return currentSoccerMatches;
+        return scheduledSoccerMatches.get(0);
     }
 
     private List<SoccerMatch> buildSoccerMatch(List<ApiSoccerMatch> apiSoccerMatches) throws ParseException {
