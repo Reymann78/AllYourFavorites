@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ApiResult {
 
-    private int homeTeam;
-    private int awayTeam;
+    private String homeTeam;
+    private String awayTeam;
 }

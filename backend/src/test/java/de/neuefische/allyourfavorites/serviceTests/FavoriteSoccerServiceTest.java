@@ -5,6 +5,7 @@ import de.neuefische.allyourfavorites.db.SoccerTeamDb;
 import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.service.FavoriteSoccerService;
+import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -23,7 +24,8 @@ public class FavoriteSoccerServiceTest {
     final MongoTemplate mongoTemplate = mock(MongoTemplate.class);
     final UserDb userDb = mock(UserDb.class);
     final SoccerMatchesByTeamDb soccerMatchesByTeamDb = mock(SoccerMatchesByTeamDb.class);
-    final FavoriteSoccerService favoriteSoccerService = new FavoriteSoccerService(soccerTeamDb, mongoTemplate, userDb, soccerMatchesByTeamDb);
+    final SoccerTeamApiCrawler soccerTeamApiCrawler = mock(SoccerTeamApiCrawler.class);
+    final FavoriteSoccerService favoriteSoccerService = new FavoriteSoccerService(soccerTeamDb, mongoTemplate, userDb, soccerMatchesByTeamDb, soccerTeamApiCrawler);
 
     @Test
     @DisplayName("The getListOfSoccerTeams method should return all soccer teams of the soccer db")

@@ -94,9 +94,15 @@ public class SoccerTeamApiCrawler {
     private List<SoccerMatch> buildSoccerMatch(List<ApiSoccerMatch> apiSoccerMatches) throws ParseException {
         List<SoccerMatch> formattedSoccerMatches = new ArrayList<>();
         for(ApiSoccerMatch apiSoccerMatch : apiSoccerMatches) {
+        String goalsHomeTeam = "-";
+        String goalsAwayTeam = "-";
         String utcDate = apiSoccerMatch.getUtcDate();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        Date formattedDate = dateFormat.parse(utcDate);
+        SimpleDateFormat dateFormatted = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        Date formattedDate = dateFormatted.parse(utcDate);
+        if(apiSoccerMatch.getStatus().equals("FINISHED")) {
+            goalsHomeTeam = apiSoccerMatch.getScore().getFullTime().getHomeTeam();
+            goalsAwayTeam = apiSoccerMatch.getScore().getFullTime().getAwayTeam();
+        }
         SoccerMatch formattedSoccerMatch = new SoccerMatch(
             apiSoccerMatch.getId(),
             apiSoccerMatch.getMatchday(),
@@ -106,8 +112,8 @@ public class SoccerTeamApiCrawler {
             apiSoccerMatch.getCompetition().getName(),
             apiSoccerMatch.getHomeTeam(),
             apiSoccerMatch.getAwayTeam(),
-            apiSoccerMatch.getScore().getFullTime().getHomeTeam(),
-            apiSoccerMatch.getScore().getFullTime().getAwayTeam());
+            goalsHomeTeam,
+            goalsAwayTeam);
         formattedSoccerMatches.add(formattedSoccerMatch);
         }
         return formattedSoccerMatches;

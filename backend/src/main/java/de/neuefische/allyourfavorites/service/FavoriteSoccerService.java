@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,13 +26,15 @@ public class FavoriteSoccerService {
     private final SoccerTeamDb soccerTeamDb;
     private final UserDb userDb;
     private final SoccerMatchesByTeamDb soccerMatchesByTeamDb;
+    private final SoccerTeamApiCrawler soccerTeamApiCrawler;
 
     @Autowired
-    public FavoriteSoccerService(SoccerTeamDb soccerTeamDb, MongoTemplate mongoTemplate, UserDb userDb, SoccerMatchesByTeamDb soccerMatchesByTeamDb) {
+    public FavoriteSoccerService(SoccerTeamDb soccerTeamDb, MongoTemplate mongoTemplate, UserDb userDb, SoccerMatchesByTeamDb soccerMatchesByTeamDb, SoccerTeamApiCrawler soccerTeamApiCrawler) {
         this.mongoTemplate = mongoTemplate;
         this.soccerTeamDb = soccerTeamDb;
         this.userDb = userDb;
         this.soccerMatchesByTeamDb = soccerMatchesByTeamDb;
+        this.soccerTeamApiCrawler = soccerTeamApiCrawler;
     }
 
     public List<SoccerTeam> getListOfSoccerTeams() {
@@ -47,7 +50,7 @@ public class FavoriteSoccerService {
             return soccerMatchesByTeamDb.findAllById(favorites);
     }
 
-    public void addFavoriteTeamId(String favoriteTeamId, String principalName) {
+    public Optional<User> addFavoriteTeamId(String favoriteTeamId, String principalName) throws ParseException {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(principalName));
 
@@ -55,8 +58,8 @@ public class FavoriteSoccerService {
         update.addToSet("favorites", favoriteTeamId);
 
         mongoTemplate.updateFirst(query, update, User.class);
-
-        //return userDb.findById(principalName);
+        soccerTeamApiCrawler.getMatchesOfFavoriteByTeamId(favoriteTeamId);
+        return userDb.findById(principalName);
     }
 
     public void removeFavoriteTeamId(String favoriteTeamId, String principalName) {

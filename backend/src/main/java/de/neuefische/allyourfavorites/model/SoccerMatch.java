@@ -19,6 +19,6 @@ public class SoccerMatch {
     private String competitionName;
     private ApiSoccerTeam homeTeam;
     private ApiSoccerTeam awayTeam;
-    private int homeTeamGoals;
-    private int awayTeamGoals;
+    private String homeTeamGoals;
+    private String awayTeamGoals;
 }
