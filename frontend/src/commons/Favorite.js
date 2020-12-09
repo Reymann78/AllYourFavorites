@@ -60,11 +60,11 @@ export default function Favorite({ favorite, className }) {
 }
 
 const FavoriteWrapper = styled.section`
-  padding: var(--size-s);
-  box-shadow: 2px 2px 2px var(--blue-75);
+  padding: var(--size-xs);
+  box-shadow: 3px 3px 3px var(--blue-50);
   border: var(--blue-border);
   border-radius: var(--size-s);
-  background: #eff8fb;
+  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
 `;
 
 const FavoriteHeader = styled.header`
@@ -72,7 +72,7 @@ const FavoriteHeader = styled.header`
   grid-template-columns: 1fr 6fr 1fr;
   align-items: center;
   padding-bottom: var(--size-s);
-  color: var(--blue-main);
+  color: var(--white);
   text-align: center;
   font-weight: 600;
   font-size: 1.2rem;
@@ -91,7 +91,7 @@ const Match = styled.section`
   grid-template-columns: 3fr 1fr 3fr;
   grid-template-rows: 1fr 1fr 2fr;
   align-items: center;
-  border-bottom: var(--size-xs) solid #eff8fb;
+  border-bottom: var(--size-xs) solid var(--blue-75);
   padding: var(--size-s);
   background: var(--white);
   font-size: 0.8em;
@@ -123,10 +123,10 @@ const RemoveButton = styled.button`
   --button-size: calc(var(--nav-size) * 0.6);
   width: var(--button-size);
   height: var(--button-size);
-  color: #cc0033;
+  color: var(--white);
   justify-self: end;
   font-size: var(--size-xl);
-  background-color: #eff8fb;
+  background-color: linear-gradient(20deg, var(--blue-main), var(--blue-75));
   padding-bottom: 10px;
   padding-left: 10px;
 

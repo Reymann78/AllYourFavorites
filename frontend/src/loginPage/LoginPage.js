@@ -3,6 +3,7 @@ import Header from '../commons/Header';
 import styled from 'styled-components/macro';
 import UserContext from '../contexts/UserContext';
 import { useHistory } from 'react-router-dom';
+import appLogo from '../assets/allYourFavoritesLogo.png';
 
 const emptyCredentials = {
   username: '',
@@ -16,8 +17,9 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   return (
     <>
-      <Header title="Login" />
+      <Header title="All Your Favorites" />
       <Main>
+        <AppLogo src={appLogo} alt="appLogo" />
         <Form onSubmit={handleSubmit}>
           <Label>
             Username
@@ -56,6 +58,10 @@ export default function LoginPage() {
   }
 }
 
+const AppLogo = styled.img`
+  width: 60%;
+`;
+
 const Main = styled.main`
   overflow-y: scroll;
   display: flex;
@@ -63,6 +69,7 @@ const Main = styled.main`
   align-items: center;
   padding: var(--size-xxl);
   color: var(--blue-main);
+  text-shadow: 1px 1px 1px var(--blue-50);
 `;
 
 const Form = styled.form`
@@ -75,17 +82,21 @@ const Form = styled.form`
   input {
     border-color: var(--blue-main);
     display: block;
-    width: 100%;
+    width: 98%;
+    height: 30px;
     font-size: var(--size-l);
     color: var(--blue-main);
+    box-shadow: 3px 3px 3px var(--blue-50);
+    border-radius: var(--size-s);
   }
 `;
 
 const Label = styled.label`
-  //color: var(--blue-main);
+  font-size: 1.2em;
 `;
 
 const Button = styled.button`
+  margin-top: var(--size-xxl);
   padding: var(--size-m);
   border: none;
   background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
@@ -93,4 +104,5 @@ const Button = styled.button`
   border-radius: var(--size-s);
   font-size: 1em;
   font-weight: 600;
+  box-shadow: 3px 3px 3px var(--blue-50); ;
 `;
