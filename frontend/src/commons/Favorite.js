@@ -17,7 +17,7 @@ export default function Favorite({ favorite, className }) {
         <div className="competition">{favorite.lastMatch.competitionName}</div>
         <div className="round">Spieltag: {favorite.lastMatch.matchDay}</div>
         <time className="date">
-          {new Date(favorite.lastMatch.matchDate).toUTCString()}
+          {new Date(favorite.lastMatch.matchDate).toLocaleString()}
         </time>
         <div>{favorite.lastMatch.homeTeam.name}</div>
         <div className="result">
@@ -31,7 +31,7 @@ export default function Favorite({ favorite, className }) {
         </div>
         <div className="round">Spieltag: {favorite.currentMatch.matchDay}</div>
         <time className="date">
-          {new Date(favorite.currentMatch.matchDate).toUTCString()}
+          {new Date(favorite.currentMatch.matchDate).toLocaleString()}
         </time>
         <div>{favorite.currentMatch.homeTeam.name}</div>
         <div className="result">
@@ -43,7 +43,7 @@ export default function Favorite({ favorite, className }) {
         <div className="competition">{favorite.nextMatch.competitionName}</div>
         <div className="round">Spieltag: {favorite.nextMatch.matchDay}</div>
         <time className="date">
-          {new Date(favorite.nextMatch.matchDate).toUTCString()}
+          {new Date(favorite.nextMatch.matchDate).toLocaleString()}
         </time>
         <div>{favorite.nextMatch.homeTeam.name}</div>
         <div className="result">
