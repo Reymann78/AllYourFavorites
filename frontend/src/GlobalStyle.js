@@ -33,7 +33,7 @@ export default createGlobalStyle`
   button {
   border: none;
   outline: none;
-  color: white;
+  color: var(--white);
   padding: 0;
   }
   

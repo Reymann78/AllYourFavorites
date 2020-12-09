@@ -5,12 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+public class ApiReferee {
 
-public class ApiCountry {
-    private int id;
+    private String id;
     private String name;
-    private String code;
-    private String ensignUrl;
+    private String role;
+    private String nationality;
 }

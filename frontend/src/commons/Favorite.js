@@ -11,33 +11,45 @@ export default function Favorite({ favorite, className }) {
       <FavoriteHeader>
         <Logo src={favorite.crestUrl} alt="Team Logo" />
         {favorite.name}
-        <RemoveButton onClick={handleRemove}>
-          {<CgRemoveR />}
-        </RemoveButton>
+        <RemoveButton onClick={handleRemove}>{<CgRemoveR />}</RemoveButton>
       </FavoriteHeader>
       <Match>
-        <div className="date">Sa 28.11.2020 15:30 Uhr</div>
-        <div>{favorite.lastMatch.homeTeam}</div>
+        <div className="competition">{favorite.lastMatch.competitionName}</div>
+        <div className="round">Spieltag: {favorite.lastMatch.matchDay}</div>
+        <time className="date">
+          {new Date(favorite.lastMatch.matchDate).toLocaleString()}
+        </time>
+        <div>{favorite.lastMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.lastMatch.homeTeamGoals} : ${favorite.lastMatch.awayTeamGoals}`}
         </div>
-        <div>{favorite.lastMatch.awayTeam}</div>
+        <div>{favorite.lastMatch.awayTeam.name}</div>
       </Match>
       <Match>
-        <time className="date">Mi 02.12.2020 21:00 Uhr</time>
-        <div>{favorite.currentMatch.homeTeam}</div>
+        <div className="competition">
+          {favorite.currentMatch.competitionName}
+        </div>
+        <div className="round">Spieltag: {favorite.currentMatch.matchDay}</div>
+        <time className="date">
+          {new Date(favorite.currentMatch.matchDate).toLocaleString()}
+        </time>
+        <div>{favorite.currentMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.currentMatch.homeTeamGoals} : ${favorite.currentMatch.awayTeamGoals}`}
         </div>
-        <div>{favorite.currentMatch.awayTeam}</div>
+        <div>{favorite.currentMatch.awayTeam.name}</div>
       </Match>
       <Match>
-        <time className="date">Sa 05.12.2020 15:30 Uhr</time>
-        <div>{favorite.nextMatch.homeTeam}</div>
+        <div className="competition">{favorite.nextMatch.competitionName}</div>
+        <div className="round">Spieltag: {favorite.nextMatch.matchDay}</div>
+        <time className="date">
+          {new Date(favorite.nextMatch.matchDate).toLocaleString()}
+        </time>
+        <div>{favorite.nextMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.nextMatch.homeTeamGoals} : ${favorite.nextMatch.awayTeamGoals}`}
         </div>
-        <div>{favorite.nextMatch.awayTeam}</div>
+        <div>{favorite.nextMatch.awayTeam.name}</div>
       </Match>
     </FavoriteWrapper>
   );
@@ -74,13 +86,27 @@ const Logo = styled.img`
 `;
 
 const Match = styled.section`
+  color: var(--blue-main);
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
-  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 3fr 1fr 3fr;
+  grid-template-rows: 1fr 1fr 2fr;
   align-items: center;
   border-bottom: var(--size-xs) solid #eff8fb;
   padding: var(--size-s);
-  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
+  background: var(--white);
+  font-size: 0.8em;
+
+  .competition {
+    text-align: left;
+    font-size: 0.7em;
+    grid-column: 1/3;
+  }
+
+  .round {
+    text-align: right;
+    font-size: 0.7em;
+    grid-column: 0/4;
+  }
 
   .date {
     text-align: center;

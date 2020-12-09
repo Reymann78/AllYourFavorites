@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "soccerMatchesByTeam")
-public class FavoriteMatches {
+public class Favorite {
     @Id
     private String teamId;
     private String name;

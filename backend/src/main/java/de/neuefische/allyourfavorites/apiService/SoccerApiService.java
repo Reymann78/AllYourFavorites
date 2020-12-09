@@ -1,5 +1,6 @@
 package de.neuefische.allyourfavorites.apiService;
 
+import de.neuefische.allyourfavorites.dto.ApiSoccerMatchList;
 import de.neuefische.allyourfavorites.dto.ApiSoccerTeamList;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -24,6 +25,13 @@ public class SoccerApiService {
         HttpEntity<String> entity = new HttpEntity<>("parameters", createHttpHeaders(xAuthToken));
         ResponseEntity<ApiSoccerTeamList> response = restTemplate
                 .exchange(soccerApiUrl + "competitions/" + competitionId + "/teams", HttpMethod.GET, entity, ApiSoccerTeamList.class);
+        return Objects.requireNonNull(response.getBody());
+    }
+
+    public ApiSoccerMatchList getMatchesOfFavoriteByTeamId(String teamId) {
+        HttpEntity<String> entity = new HttpEntity<>("parameter", createHttpHeaders(xAuthToken));
+        ResponseEntity<ApiSoccerMatchList> response = restTemplate
+                .exchange(soccerApiUrl + "teams/" + teamId + "/matches", HttpMethod.GET, entity, ApiSoccerMatchList.class);
         return Objects.requireNonNull(response.getBody());
     }
 
