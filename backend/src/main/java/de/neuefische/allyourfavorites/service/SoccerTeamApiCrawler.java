@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.*;
 
 @Service
@@ -55,7 +54,7 @@ public class SoccerTeamApiCrawler {
         return listOfSoccerTeams;
     }
 
-    public Favorite getMatchesOfFavoriteByTeamId(String teamId) throws ParseException {
+    public Favorite getMatchesOfFavoriteByTeamId(String teamId) {
         List<ApiSoccerMatch> apiSoccerMatches = soccerApiService.getMatchesOfFavoriteByTeamId(teamId).getMatches();
         List<SoccerMatch> formattedSoccerMatches = buildSoccerMatch(apiSoccerMatches);
         Favorite favorite = new Favorite();
@@ -94,7 +93,7 @@ public class SoccerTeamApiCrawler {
     private SoccerMatch getNextMatch(List<SoccerMatch> soccerMatches) {
         List<SoccerMatch> scheduledSoccerMatches = new ArrayList<>();
         for(SoccerMatch soccerMatch : soccerMatches) {
-            if (!soccerMatch.getStatus().equals("FINISHED")) {
+            if (soccerMatch.getStatus().equals("SCHEDULED")) {
                 scheduledSoccerMatches.add(soccerMatch);
             }
         }
@@ -102,14 +101,13 @@ public class SoccerTeamApiCrawler {
         return scheduledSoccerMatches.get(0);
     }
 
-    private List<SoccerMatch> buildSoccerMatch(List<ApiSoccerMatch> apiSoccerMatches) throws ParseException {
+    private List<SoccerMatch> buildSoccerMatch(List<ApiSoccerMatch> apiSoccerMatches) {
         List<SoccerMatch> formattedSoccerMatches = new ArrayList<>();
         for(ApiSoccerMatch apiSoccerMatch : apiSoccerMatches) {
         String goalsHomeTeam = "-";
         String goalsAwayTeam = "-";
         String utcDate = apiSoccerMatch.getUtcDate();
-        SimpleDateFormat dateFormatted = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        Date formattedDate = dateFormatted.parse(utcDate);
+        Instant formattedDate = Instant.parse(utcDate);
         if(apiSoccerMatch.getStatus().equals("FINISHED")) {
             goalsHomeTeam = apiSoccerMatch.getScore().getFullTime().getHomeTeam();
             goalsAwayTeam = apiSoccerMatch.getScore().getFullTime().getAwayTeam();

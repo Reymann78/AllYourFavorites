@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +13,7 @@ import java.util.Date;
 public class SoccerMatch {
     private String matchId;
     private int matchDay;
-    private Date matchDate;
+    private Instant matchDate;
     private String status;
     private int competitionId;
     private String competitionName;
