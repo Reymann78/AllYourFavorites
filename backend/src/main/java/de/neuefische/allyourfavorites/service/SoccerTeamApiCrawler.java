@@ -21,6 +21,12 @@ public class SoccerTeamApiCrawler {
     private final SoccerMatchesByTeamDb soccerMatchesDb;
     private final SoccerApiService soccerApiService;
     private final static String BUNDESLIGA = "2002";
+    private final static String PREMIER_LEAGUE = "2021";
+    private final static String PRIMERA_DIVISION = "2014";
+    private final static String LIGUE_1 = "2015";
+    private final static String SERIE_A = "2019";
+    private final static String EREDIVISIE = "2003";
+    private final static String PRIMEIRA_LIGA = "2017";
 
     @Autowired
     public SoccerTeamApiCrawler(SoccerTeamDb soccerTeamDb, SoccerMatchesByTeamDb soccerMatchesDb, SoccerApiService soccerApiService) {
@@ -31,9 +37,25 @@ public class SoccerTeamApiCrawler {
 
     @PostConstruct
     private void postConstruct() {
-        List<SoccerTeam> list = getSoccerTeamsByCompetitionId(BUNDESLIGA);
-        for(SoccerTeam soccerTeam : list) {
-            soccerTeamDb.save(soccerTeam);
+        List<List<SoccerTeam>> ListOfLeagues = new ArrayList<>();
+        List<SoccerTeam> bundesliga = getSoccerTeamsByCompetitionId(BUNDESLIGA);
+        List<SoccerTeam> premierLeague = getSoccerTeamsByCompetitionId(PREMIER_LEAGUE);
+        List<SoccerTeam> primeraDivision = getSoccerTeamsByCompetitionId(PRIMERA_DIVISION);
+        List<SoccerTeam> lique1 = getSoccerTeamsByCompetitionId(LIGUE_1);
+        List<SoccerTeam> serieA = getSoccerTeamsByCompetitionId(SERIE_A);
+        List<SoccerTeam> eredivisie = getSoccerTeamsByCompetitionId(EREDIVISIE);
+        List<SoccerTeam> primeiraLiga = getSoccerTeamsByCompetitionId(PRIMEIRA_LIGA);
+        ListOfLeagues.add(bundesliga);
+        ListOfLeagues.add(premierLeague);
+        ListOfLeagues.add(primeraDivision);
+        ListOfLeagues.add(lique1);
+        ListOfLeagues.add(serieA);
+        ListOfLeagues.add(eredivisie);
+        ListOfLeagues.add(primeiraLiga);
+        for(List<SoccerTeam> list : ListOfLeagues) {
+            for (SoccerTeam soccerTeam : list) {
+                soccerTeamDb.save(soccerTeam);
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 import SoccerTeamContext from './SoccerTeamContext';
 import React, { useState, useEffect, useContext } from 'react';
-import { getSoccerTeams } from '../service/SoccerTeamService';
+import { getSoccerTeams } from '../service/soccerTeamService';
 import UserContext from './UserContext';
 
 export default function SoccerTeamContextProvider({ children }) {

@@ -1,17 +1,14 @@
 import './menu.css';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import { CgChevronRight, CgChevronLeft } from 'react-icons/cg';
 import { GiSoccerBall } from 'react-icons/gi';
-import { BsFillCaretUpFill } from 'react-icons/bs';
 import { CSSTransition } from 'react-transition-group';
 import SoccerTeamList from '../component/SoccerTeamList';
-import OpenMenuContext from '../contexts/OpenMenuContext';
 
 export default function AddDropdownMenu() {
   const [activeMenu, setActiveMenu] = useState('main');
   const [menuHeight, setMenuHeight] = useState(null);
-  const { open, setOpen } = useContext(OpenMenuContext);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -49,30 +46,59 @@ export default function AddDropdownMenu() {
       >
         <div className="menu">
           <DropdownItem
-            leftIcon={<BsFillCaretUpFill />}
-            onClick={() => setOpen(!open)}
-          >
-            <h3>Exit</h3>
-          </DropdownItem>
-          <DropdownItem
             leftIcon={<GiSoccerBall />}
             rightIcon={<CgChevronRight />}
-            goToMenu="bundesliga"
+            goToMenu="Bundesliga"
           >
             Bundesliga
           </DropdownItem>
           <DropdownItem
             leftIcon={<GiSoccerBall />}
             rightIcon={<CgChevronRight />}
-            goToMenu="premierLeague"
+            goToMenu="Premier League"
           >
             Premier League
+          </DropdownItem>
+          <DropdownItem
+            leftIcon={<GiSoccerBall />}
+            rightIcon={<CgChevronRight />}
+            goToMenu="Primera Division"
+          >
+            Primera Division
+          </DropdownItem>
+          <DropdownItem
+            leftIcon={<GiSoccerBall />}
+            rightIcon={<CgChevronRight />}
+            goToMenu="Lique 1"
+          >
+            Ligue 1
+          </DropdownItem>
+          <DropdownItem
+            leftIcon={<GiSoccerBall />}
+            rightIcon={<CgChevronRight />}
+            goToMenu="Serie A"
+          >
+            Serie A
+          </DropdownItem>
+          <DropdownItem
+            leftIcon={<GiSoccerBall />}
+            rightIcon={<CgChevronRight />}
+            goToMenu="Eredivisie"
+          >
+            Eredivisie
+          </DropdownItem>
+          <DropdownItem
+            leftIcon={<GiSoccerBall />}
+            rightIcon={<CgChevronRight />}
+            goToMenu="Primeira Liga"
+          >
+            Primeira Liga
           </DropdownItem>
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === 'bundesliga'}
+        in={activeMenu === 'Bundesliga'}
         timeout={500}
         classNames="menu-secondary"
         unmountOnExit
@@ -82,12 +108,12 @@ export default function AddDropdownMenu() {
           <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
             <h3>Bundesliga</h3>
           </DropdownItem>
-          <SoccerTeamList />
+          <SoccerTeamList leagueName="Bundesliga" />
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === 'premierLeague'}
+        in={activeMenu === 'Premier League'}
         timeout={500}
         classNames="menu-secondary"
         unmountOnExit
@@ -97,7 +123,82 @@ export default function AddDropdownMenu() {
           <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
             <h3>Premier League</h3>
           </DropdownItem>
-          <SoccerTeamList />
+          <SoccerTeamList leagueName="Premier League" />
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={activeMenu === 'Primera Division'}
+        timeout={500}
+        classNames="menu-secondary"
+        unmountOnExit
+        onEnter={calcHeight}
+      >
+        <div className="menu">
+          <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
+            <h3>Primera Division</h3>
+          </DropdownItem>
+          <SoccerTeamList leagueName="Primera Division" />
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={activeMenu === 'Ligue 1'}
+        timeout={500}
+        classNames="menu-secondary"
+        unmountOnExit
+        onEnter={calcHeight}
+      >
+        <div className="menu">
+          <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
+            <h3>Ligue 1</h3>
+          </DropdownItem>
+          <SoccerTeamList leagueName="Ligue 1" />
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={activeMenu === 'Serie A'}
+        timeout={500}
+        classNames="menu-secondary"
+        unmountOnExit
+        onEnter={calcHeight}
+      >
+        <div className="menu">
+          <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
+            <h3>Serie A</h3>
+          </DropdownItem>
+          <SoccerTeamList leagueName="Serie A" />
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={activeMenu === 'Eredivisie'}
+        timeout={500}
+        classNames="menu-secondary"
+        unmountOnExit
+        onEnter={calcHeight}
+      >
+        <div className="menu">
+          <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
+            <h3>Eredivisie</h3>
+          </DropdownItem>
+          <SoccerTeamList leagueName="Eredivisie" />
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={activeMenu === 'Primeira Liga'}
+        timeout={500}
+        classNames="menu-secondary"
+        unmountOnExit
+        onEnter={calcHeight}
+      >
+        <div className="menu">
+          <DropdownItem leftIcon={<CgChevronLeft />} goToMenu="main">
+            <h3>Primeira Liga</h3>
+          </DropdownItem>
+          <SoccerTeamList leagueName="Primeira Liga" />
         </div>
       </CSSTransition>
     </DropdownMenuStyled>

@@ -4,7 +4,7 @@ import {
   addFavorite,
   getFavorites,
   removeFavorite,
-} from '../service/FavoriteService';
+} from '../service/favoriteService';
 import UserContext from './UserContext';
 
 export default function FavoriteContextProvider({ children }) {
