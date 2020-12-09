@@ -9,7 +9,7 @@ import {
   loadUserDataFromLocalStorage,
   saveTokenToLocalStorage,
   saveUserDataToLocalStorage,
-} from '../service/LocalStorage';
+} from '../service/localStorage';
 
 export default function UserContextProvider({ children }) {
   const [token, setToken] = useState(loadTokenFromLocalStorage());
