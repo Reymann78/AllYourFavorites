@@ -78,15 +78,18 @@ const Form = styled.form`
   display: grid;
   grid-auto-rows: min-content;
   gap: var(--size-xxl);
+  *:focus {
+    outline: none;
+  }
 
   input {
-    border-color: var(--blue-main);
+    border-color: var(--blue-50);
     display: block;
     width: 98%;
     height: 30px;
     font-size: var(--size-l);
     color: var(--blue-main);
-    box-shadow: 3px 3px 3px var(--blue-50);
+    box-shadow: 2px 2px 2px var(--blue-25);
     border-radius: var(--size-s);
   }
 `;
