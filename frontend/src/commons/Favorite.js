@@ -112,6 +112,7 @@ const Match = styled.section`
   display: grid;
   grid-template-columns: 3fr 1fr 3fr;
   grid-template-rows: 1fr 1fr 2fr;
+  grid-gap: 2px;
   align-items: center;
   border-bottom: var(--size-xs) solid var(--blue-75);
   padding: var(--size-s);
