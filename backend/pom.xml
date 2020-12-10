@@ -63,6 +63,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>all-your-favorites</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

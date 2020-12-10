@@ -1,3 +1,1 @@
-spring.data.mongodb:
-    database: allYourFavorites
 x.auth.token: sometoken
