@@ -16,9 +16,7 @@ export default function Favorite({ favorite, className }) {
       <Match>
         <div className="competition">{favorite.lastMatch.competitionName}</div>
         <div className="round">Spieltag: {favorite.lastMatch.matchDay}</div>
-        <time className="date">
-          {new Date(favorite.lastMatch.matchDate).toLocaleString()}
-        </time>
+        <time className="date">{formatDate(favorite.lastMatch.matchDate)}</time>
         <div>{favorite.lastMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.lastMatch.homeTeamGoals} : ${favorite.lastMatch.awayTeamGoals}`}
@@ -31,7 +29,7 @@ export default function Favorite({ favorite, className }) {
         </div>
         <div className="round">Spieltag: {favorite.currentMatch.matchDay}</div>
         <time className="date">
-          {new Date(favorite.currentMatch.matchDate).toLocaleString()}
+          {formatDate(favorite.currentMatch.matchDate)}
         </time>
         <div>{favorite.currentMatch.homeTeam.name}</div>
         <div className="result">
@@ -42,9 +40,7 @@ export default function Favorite({ favorite, className }) {
       <Match>
         <div className="competition">{favorite.nextMatch.competitionName}</div>
         <div className="round">Spieltag: {favorite.nextMatch.matchDay}</div>
-        <time className="date">
-          {new Date(favorite.nextMatch.matchDate).toLocaleString()}
-        </time>
+        <time className="date">{formatDate(favorite.nextMatch.matchDate)}</time>
         <div>{favorite.nextMatch.homeTeam.name}</div>
         <div className="result">
           {`${favorite.nextMatch.homeTeamGoals} : ${favorite.nextMatch.awayTeamGoals}`}
@@ -56,6 +52,32 @@ export default function Favorite({ favorite, className }) {
 
   function handleRemove() {
     deleteFavorite(favorite.teamId);
+  }
+
+  function formatDate(date) {
+    let d = new Date(date);
+    const weekday = new Array(7);
+    weekday[0] = 'Sonntag';
+    weekday[1] = 'Montag';
+    weekday[2] = 'Dienstag';
+    weekday[3] = 'Mittwoch';
+    weekday[4] = 'Donnerstag';
+    weekday[5] = 'Freitag';
+    weekday[6] = 'Samstag';
+
+    let formattedWeekday = weekday[d.getDay()] + ' ',
+      day = d.getDate() + '.',
+      month = d.getMonth() + 1 + '.',
+      year = d.getFullYear() + ' ',
+      hour = d.getHours() + ':',
+      min = d.getMinutes() + ':',
+      sec = '00';
+
+    if (month.length < 3) month = '0' + month;
+    if (day.length < 3) day = '0' + day;
+    if (min.length < 3) min = '0' + min;
+
+    return [formattedWeekday, day, month, year, hour, min, sec];
   }
 }
 

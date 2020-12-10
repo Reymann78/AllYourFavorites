@@ -76,7 +76,7 @@ export default function AddDropdownMenu() {
           <DropdownItem
             leftIcon={<GiSoccerBall />}
             rightIcon={<CgChevronRight />}
-            goToMenu="Ligue 1 "
+            goToMenu="Serie A"
           >
             Serie A
           </DropdownItem>
