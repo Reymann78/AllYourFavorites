@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import SoccerTeamContext from '../contexts/SoccerTeamContext';
+import styled from 'styled-components/macro';
 import SoccerTeam from './SoccerTeam';
 
 export default function SoccerTeamList({ leagueName }) {
@@ -9,13 +10,19 @@ export default function SoccerTeamList({ leagueName }) {
     <ul>
       {soccerTeams
         .filter((soccerTeam) => soccerTeam.competitionName === leagueName)
-        .sort()
         .map((soccerTeam) => (
-          <li key={soccerTeam.id}>
+          <SoccerTeamListStyled key={soccerTeam.id}>
             <SoccerTeam soccerTeam={soccerTeam} />
-          </li>
+          </SoccerTeamListStyled>
         ))}
       ;
     </ul>
   );
 }
+
+const SoccerTeamListStyled = styled.li`
+  padding: var(--size-xs);
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+`;

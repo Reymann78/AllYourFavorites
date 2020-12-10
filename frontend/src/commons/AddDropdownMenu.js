@@ -69,14 +69,14 @@ export default function AddDropdownMenu() {
           <DropdownItem
             leftIcon={<GiSoccerBall />}
             rightIcon={<CgChevronRight />}
-            goToMenu="Lique 1"
+            goToMenu="Ligue 1"
           >
             Ligue 1
           </DropdownItem>
           <DropdownItem
             leftIcon={<GiSoccerBall />}
             rightIcon={<CgChevronRight />}
-            goToMenu="Serie A"
+            goToMenu="Ligue 1 "
           >
             Serie A
           </DropdownItem>
@@ -211,11 +211,10 @@ const DropdownItemStyled = styled.div`
   align-items: center;
   border-radius: var(--border-radius);
   transition: background var(--speed);
-  padding: 0.2em;
+  padding: 0.5em;
   color: var(--blue-main);
   font-size: var(--size-m);
   text-decoration: none;
-  margin-right: 2px;
 
   &:hover {
     background-color: lightgrey;
