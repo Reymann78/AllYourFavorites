@@ -1,13 +1,12 @@
 name: Deploy All-your-Favorites
 
 on:
+  push:
+    branches:
+      -main
 
-push:
-  branches:
-    -main
-
-    jobs:
-      build-frontend
+jobs:
+  build-frontend:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
