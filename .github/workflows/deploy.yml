@@ -61,4 +61,15 @@ jobs:
         with:
           name: backend-build.jar
           path: backend/target
-      - run: heroku
+      - name: login to heroku container
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY}}
+        run: heroku container:login
+      - name: push docker container to heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY}}
+        run: heroku container:push web -a all-your-favorites
+      - name: deploy/release docker container to heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY}}
+        run: heroku container:release web -a all-your-favorites
