@@ -17,7 +17,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   return (
     <>
-      <Header title="All Your Favorites" />
+      <Header title="Login" />
       <Main>
         <AppLogo src={appLogo} alt="appLogo" />
         <Form onSubmit={handleSubmit}>
@@ -69,7 +69,7 @@ const Main = styled.main`
   align-items: center;
   padding: var(--size-xxl);
   color: var(--blue-main);
-  text-shadow: 1px 1px 1px var(--blue-50);
+  text-shadow: 1px 1px 1px var(--blue-25);
 `;
 
 const Form = styled.form`
