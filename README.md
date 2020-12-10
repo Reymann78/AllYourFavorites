@@ -1,4 +1,4 @@
-# AllYourFavorites
+# All Your Favorites
 
 With this app you get a quick overview of the current results and upcoming games of all your favorite teams. Regardless of the kind of sport and the league in which your favorite teams are active.
 
