@@ -3,7 +3,7 @@ name: Deploy All-your-Favorites
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   build-frontend:
