@@ -41,13 +41,14 @@ const HeaderStyled = styled.header`
   justify-content: space-between;
   align-items: center;
   text-transform: uppercase;
-  font-size: var(--size-m);
+  font-size: 10px;
   background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
   padding: var(--size-s);
 `;
 
 const Heading = styled.h1`
   margin: 0;
+  padding: var(--size-s);
 `;
 
 const RemoveButton = styled.button`
