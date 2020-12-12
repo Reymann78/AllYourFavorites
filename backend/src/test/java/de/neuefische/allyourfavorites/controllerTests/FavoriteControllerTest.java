@@ -4,7 +4,7 @@ import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.dto.UserLoginDto;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.model.User;
-import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
+import de.neuefische.allyourfavorites.service.ApiCrawler;
 import de.neuefische.allyourfavorites.service.SoccerTeamService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class FavoriteControllerTest {
     private SoccerTeamService soccerTeamService;
 
     @MockBean
-    private SoccerTeamApiCrawler soccerTeamApiCrawler;
+    private ApiCrawler apiCrawler;
 
     @BeforeEach
     public void setupDb() {

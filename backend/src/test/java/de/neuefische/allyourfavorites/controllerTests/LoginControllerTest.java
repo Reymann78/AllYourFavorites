@@ -3,7 +3,7 @@ package de.neuefische.allyourfavorites.controllerTests;
 import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.dto.UserLoginDto;
 import de.neuefische.allyourfavorites.model.User;
-import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
+import de.neuefische.allyourfavorites.service.ApiCrawler;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +40,7 @@ class LoginControllerTest {
     private final String secretKey = "sometoken";
 
     @MockBean
-    private SoccerTeamApiCrawler soccerTeamApiCrawler;
+    private ApiCrawler apiCrawler;
 
     @BeforeEach
     public void setupUser() {

@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,14 +22,14 @@ public class FavoriteService {
     private final MongoTemplate mongoTemplate;
     private final UserDb userDb;
     private final SoccerMatchesByTeamDb soccerMatchesByTeamDb;
-    private final SoccerTeamApiCrawler soccerTeamApiCrawler;
+    private final ApiCrawler apiCrawler;
 
     @Autowired
-    public FavoriteService(MongoTemplate mongoTemplate, UserDb userDb, SoccerMatchesByTeamDb soccerMatchesByTeamDb, SoccerTeamApiCrawler soccerTeamApiCrawler) {
+    public FavoriteService(MongoTemplate mongoTemplate, UserDb userDb, SoccerMatchesByTeamDb soccerMatchesByTeamDb, ApiCrawler apiCrawler) {
         this.mongoTemplate = mongoTemplate;
         this.userDb = userDb;
         this.soccerMatchesByTeamDb = soccerMatchesByTeamDb;
-        this.soccerTeamApiCrawler = soccerTeamApiCrawler;
+        this.apiCrawler = apiCrawler;
     }
 
     public List<String> getAllFavoritesOfUser(String principalName) {
@@ -50,7 +49,7 @@ public class FavoriteService {
         update.addToSet("favorites", favoriteTeamId);
 
         mongoTemplate.updateFirst(query, update, User.class);
-        soccerTeamApiCrawler.getMatchesOfFavoriteByTeamId(favoriteTeamId);
+        apiCrawler.getMatchesOfFavoriteByTeamId(favoriteTeamId);
         return userDb.findById(principalName);
     }
 
