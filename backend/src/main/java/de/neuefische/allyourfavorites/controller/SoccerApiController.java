@@ -6,7 +6,6 @@ import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -26,7 +25,7 @@ public class SoccerApiController {
     }
 
     @GetMapping("team/{teamId}/matches")
-    public Favorite getMatchesOfFavoriteByTeamId(@PathVariable String teamId) throws ParseException {
+    public Favorite getMatchesOfFavoriteByTeamId(@PathVariable String teamId) {
         return soccerTeamApiCrawler.getMatchesOfFavoriteByTeamId(teamId);
     }
 

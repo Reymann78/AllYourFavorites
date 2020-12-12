@@ -8,5 +8,5 @@ const header = (token) => ({
 
 export const getSoccerTeams = (token) =>
   axios
-    .get('/api/favorites/soccerTeams', header(token))
+    .get('/api/soccerTeams', header(token))
     .then((response) => response.data);
