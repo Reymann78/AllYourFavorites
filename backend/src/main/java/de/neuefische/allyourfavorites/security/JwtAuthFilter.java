@@ -1,6 +1,7 @@
 package de.neuefische.allyourfavorites.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -49,8 +50,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 ));
             }
 
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (JwtException e) {
+            logger.error("parsing went wrong", e);
         }
 
         filterChain.doFilter(httpServletRequest, httpServletResponse);
