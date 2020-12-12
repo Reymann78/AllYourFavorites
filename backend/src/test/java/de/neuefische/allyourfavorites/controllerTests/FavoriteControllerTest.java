@@ -4,8 +4,8 @@ import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.dto.UserLoginDto;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.model.User;
-import de.neuefische.allyourfavorites.service.FavoriteSoccerService;
-import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
+import de.neuefische.allyourfavorites.service.ApiCrawler;
+import de.neuefische.allyourfavorites.service.SoccerTeamService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = {"jwt.secretkey=sometoken"})
-public class FavoriteSoccerControllerTest {
+public class FavoriteControllerTest {
 
     @LocalServerPort
     private int port;
@@ -38,10 +38,10 @@ public class FavoriteSoccerControllerTest {
     private UserDb userDb;
 
     @MockBean
-    private FavoriteSoccerService favoriteSoccerService;
+    private SoccerTeamService soccerTeamService;
 
     @MockBean
-    private SoccerTeamApiCrawler soccerTeamApiCrawler;
+    private ApiCrawler apiCrawler;
 
     @BeforeEach
     public void setupDb() {
@@ -51,7 +51,7 @@ public class FavoriteSoccerControllerTest {
     }
 
     private String getSoccerTeamsUrl() {
-        return "http://localhost:" + port + "/api/favorites";
+        return "http://localhost:" + port + "/api";
     }
 
     private String login(){
@@ -81,7 +81,7 @@ public class FavoriteSoccerControllerTest {
         ));
 
         String url = getSoccerTeamsUrl() + "/soccerTeams";
-        when(favoriteSoccerService.getListOfSoccerTeams()).thenReturn(listOfTeamsInSoccerTeamDb);
+        when(soccerTeamService.getListOfSoccerTeams()).thenReturn(listOfTeamsInSoccerTeamDb);
 
         //WHEN
         HttpEntity<Void> entity = getValidAuthorizationEntity(null);

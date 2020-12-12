@@ -1,14 +1,10 @@
 package de.neuefische.allyourfavorites.serviceTests;
 
-import de.neuefische.allyourfavorites.db.SoccerMatchesByTeamDb;
 import de.neuefische.allyourfavorites.db.SoccerTeamDb;
-import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
-import de.neuefische.allyourfavorites.service.FavoriteSoccerService;
-import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
+import de.neuefische.allyourfavorites.service.SoccerTeamService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +14,10 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.*;
 
-public class FavoriteSoccerServiceTest {
+public class SoccerTeamServiceTest {
 
     final SoccerTeamDb soccerTeamDb = mock(SoccerTeamDb.class);
-    final MongoTemplate mongoTemplate = mock(MongoTemplate.class);
-    final UserDb userDb = mock(UserDb.class);
-    final SoccerMatchesByTeamDb soccerMatchesByTeamDb = mock(SoccerMatchesByTeamDb.class);
-    final SoccerTeamApiCrawler soccerTeamApiCrawler = mock(SoccerTeamApiCrawler.class);
-    final FavoriteSoccerService favoriteSoccerService = new FavoriteSoccerService(soccerTeamDb, mongoTemplate, userDb, soccerMatchesByTeamDb, soccerTeamApiCrawler);
+    final SoccerTeamService soccerTeamService = new SoccerTeamService(soccerTeamDb);
 
     @Test
     @DisplayName("The getListOfSoccerTeams method should return all soccer teams of the soccer db")
@@ -40,7 +32,7 @@ public class FavoriteSoccerServiceTest {
         when(soccerTeamDb.findAll()).thenReturn(listOfTeamsInSoccerTeamDb);
 
         //When
-        List<SoccerTeam> allTeams = favoriteSoccerService.getListOfSoccerTeams();
+        List<SoccerTeam> allTeams = soccerTeamService.getListOfSoccerTeams();
 
         //Then
         assertThat(allTeams, containsInAnyOrder(listOfTeamsInSoccerTeamDb.toArray()));

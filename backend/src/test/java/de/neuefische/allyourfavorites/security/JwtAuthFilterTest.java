@@ -1,6 +1,6 @@
 package de.neuefische.allyourfavorites.security;
 
-import de.neuefische.allyourfavorites.service.SoccerTeamApiCrawler;
+import de.neuefische.allyourfavorites.service.ApiCrawler;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ class JwtAuthFilterTest {
     private final String secretKey = "sometoken";
 
     @MockBean
-    private SoccerTeamApiCrawler soccerTeamApiCrawler;
+    private ApiCrawler apiCrawler;
 
     @Test
     public void getWithValidJwtTokenShouldReturnStatusOk(){

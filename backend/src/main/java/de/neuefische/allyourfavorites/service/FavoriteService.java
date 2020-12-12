@@ -1,10 +1,8 @@
 package de.neuefische.allyourfavorites.service;
 
 import de.neuefische.allyourfavorites.db.SoccerMatchesByTeamDb;
-import de.neuefische.allyourfavorites.db.SoccerTeamDb;
 import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.model.Favorite;
-import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -15,30 +13,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FavoriteSoccerService {
+public class FavoriteService {
 
     private final MongoTemplate mongoTemplate;
-    private final SoccerTeamDb soccerTeamDb;
     private final UserDb userDb;
     private final SoccerMatchesByTeamDb soccerMatchesByTeamDb;
-    private final SoccerTeamApiCrawler soccerTeamApiCrawler;
+    private final ApiCrawler apiCrawler;
 
     @Autowired
-    public FavoriteSoccerService(SoccerTeamDb soccerTeamDb, MongoTemplate mongoTemplate, UserDb userDb, SoccerMatchesByTeamDb soccerMatchesByTeamDb, SoccerTeamApiCrawler soccerTeamApiCrawler) {
+    public FavoriteService(MongoTemplate mongoTemplate, UserDb userDb, SoccerMatchesByTeamDb soccerMatchesByTeamDb, ApiCrawler apiCrawler) {
         this.mongoTemplate = mongoTemplate;
-        this.soccerTeamDb = soccerTeamDb;
         this.userDb = userDb;
         this.soccerMatchesByTeamDb = soccerMatchesByTeamDb;
-        this.soccerTeamApiCrawler = soccerTeamApiCrawler;
-    }
-
-    public List<SoccerTeam> getListOfSoccerTeams() {
-        return soccerTeamDb.findAll();
+        this.apiCrawler = apiCrawler;
     }
 
     public List<String> getAllFavoritesOfUser(String principalName) {
@@ -50,7 +41,7 @@ public class FavoriteSoccerService {
             return soccerMatchesByTeamDb.findAllById(favorites);
     }
 
-    public Optional<User> addFavoriteTeamId(String favoriteTeamId, String principalName) throws ParseException {
+    public Optional<User> addFavoriteTeamId(String favoriteTeamId, String principalName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(principalName));
 
@@ -58,7 +49,7 @@ public class FavoriteSoccerService {
         update.addToSet("favorites", favoriteTeamId);
 
         mongoTemplate.updateFirst(query, update, User.class);
-        soccerTeamApiCrawler.getMatchesOfFavoriteByTeamId(favoriteTeamId);
+        apiCrawler.getMatchesOfFavoriteByTeamId(favoriteTeamId);
         return userDb.findById(principalName);
     }
 
