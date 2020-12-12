@@ -47,7 +47,7 @@ public class FavoriteControllerTest {
     public void setupDb() {
         userDb.deleteAll();
         String password = new BCryptPasswordEncoder().encode("123456");
-        userDb.save(new User("sven", password, List.of()));
+        userDb.save(new User("sven", password, "emailadress@test.com", List.of()));
     }
 
     private String getSoccerTeamsUrl() {

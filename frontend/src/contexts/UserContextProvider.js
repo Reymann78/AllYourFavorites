@@ -38,6 +38,9 @@ export default function UserContextProvider({ children }) {
       .post('/auth/login', loginData)
       .then((response) => setToken(response.data));
 
+  const postSignUp = (signUpData) =>
+    axios.post('/auth/signup', signUpData).then((response) => response.data);
+
   function logout() {
     deleteTokenFromLocalStorage();
     setToken('');
@@ -47,7 +50,7 @@ export default function UserContextProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ token, userData, tokenIsValid, postLogin, logout }}
+      value={{ token, userData, tokenIsValid, postLogin, logout, postSignUp }}
     >
       {children}
     </UserContext.Provider>
