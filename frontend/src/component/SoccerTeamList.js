@@ -11,7 +11,7 @@ export default function SoccerTeamList({ leagueName }) {
       {soccerTeams
         .filter((soccerTeam) => soccerTeam.competitionName === leagueName)
         .map((soccerTeam) => (
-          <SoccerTeamListStyled key={soccerTeam.id}>
+          <SoccerTeamListStyled key={soccerTeam.name}>
             <SoccerTeam soccerTeam={soccerTeam} />
           </SoccerTeamListStyled>
         ))}
