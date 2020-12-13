@@ -40,7 +40,10 @@ export default function LoginPage() {
             />
           </Label>
           {error && <p>{error}</p>}
-          <Button value="login">Login</Button>
+          <Button type="submit">Login</Button>
+          <Button type="button" onClick={() => history.push('/signUp')}>
+            Neu anmelden
+          </Button>
         </Form>
       </Main>
     </>
