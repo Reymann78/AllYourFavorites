@@ -53,7 +53,7 @@ export default function LoginPage() {
     event.preventDefault();
     postLogin(credentials)
       .then(() => history.push('/favorites'))
-      .catch(() => setError('Unknown username or password!'));
+      .catch(() => setError('Username oder Passwort sind nicht bekannt!'));
   }
 
   function handleChange(event) {
