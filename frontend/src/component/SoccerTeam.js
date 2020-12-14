@@ -22,13 +22,14 @@ export default function SoccerTeam({ soccerTeam }) {
 
 const LogoStyled = styled.img`
   height: 1.2rem;
-  padding-right: 8px;
+  padding-right: var(--size-s);
 `;
 
 const SoccerTeamStyled = styled.button`
   display: flex;
   justify-content: start;
-  align-content: center;
+  align-items: center;
+  width: 200px;
   border: none;
   background: none;
   border-radius: var(--border-radius);
