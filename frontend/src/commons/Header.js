@@ -20,13 +20,17 @@ export default function Header({ title }) {
           <NavItem icon={<CgAddR />}>
             <AddDropdownMenu></AddDropdownMenu>
           </NavItem>
-          <RemoveButton onClick={handleLogout}>
+          <ActionButton onClick={handleLogout}>
             <IoMdLogOut />
-          </RemoveButton>
+          </ActionButton>
         </Navbar>
       ) : (
         ''
       )}
+      <ImprintButton onClick={() => history.push('/imprint/')}>
+        {' '}
+        Impressum{' '}
+      </ImprintButton>
     </HeaderStyled>
   );
 
@@ -41,7 +45,7 @@ const HeaderStyled = styled.header`
   justify-content: space-between;
   align-items: center;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: var(--size-s);
   background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
   padding: var(--size-s);
 `;
@@ -51,13 +55,18 @@ const Heading = styled.h1`
   padding: var(--size-s);
 `;
 
-const RemoveButton = styled.button`
-  --button-size: calc(var(--nav-size) * 1);
+const ImprintButton = styled.button`
+  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
+  text-decoration: none;
+`;
+
+const ActionButton = styled.button`
+  --button-size: calc(var(--nav-size) * 0.7);
   width: var(--button-size);
   height: var(--button-size);
   background-color: linear-gradient(20deg, var(--blue-main), var(--blue-75));
   font-size: var(--size-xxl);
-  padding-top: 6px;
+  padding-top: 14px;
 
   &:hover {
     color: darkgrey;

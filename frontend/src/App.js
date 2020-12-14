@@ -9,6 +9,7 @@ import UserContextProvider from './contexts/UserContextProvider';
 import ProtectedRoute from './routing/ProtectedRoute';
 import FavoriteContextProvider from './contexts/FavoriteContextProvider';
 import SignUpPage from './signUpPage/SignUpPage';
+import ImprintPage from './imprintPage/ImprintPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Switch>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/signUp" component={SignUpPage} />
+                <Route path="/imprint" component={ImprintPage} />
                 <ProtectedRoute path="/favorites" component={HomePage} />
                 <Route path="/">
                   <Redirect to="/login" />

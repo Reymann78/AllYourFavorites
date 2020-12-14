@@ -43,6 +43,11 @@ export default createGlobalStyle`
     padding: 0;
   }
   
+  h1, h2, h3, p {
+  margin: 0;
+  padding: var(--size-xs);
+  }
+  
   html, header, body {
     margin: 0;
     padding: 0;
