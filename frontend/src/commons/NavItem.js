@@ -14,16 +14,16 @@ export default function NavItem(props) {
 }
 
 const NavItemStyled = styled.li`
-  width: calc(var(--nav-size) * 0.9);
+  width: calc(var(--nav-size) * 0.7);
 `;
 
 const IconButton = styled.button`
-  --button-size: calc(var(--nav-size) * 1);
+  --button-size: calc(var(--nav-size) * 0.7);
   width: var(--button-size);
   height: var(--button-size);
   background-color: linear-gradient(20deg, var(--blue-main), var(--blue-75));
   font-size: var(--size-xxl);
-  padding-top: 6px;
+  padding-top: 14px;
 
   &:hover {
     color: darkgrey;
