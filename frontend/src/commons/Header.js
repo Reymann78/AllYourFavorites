@@ -27,10 +27,13 @@ export default function Header({ title }) {
       ) : (
         ''
       )}
-      <ImprintButton onClick={() => history.push('/imprint/')}>
-        {' '}
-        Impressum{' '}
+      {window.location.pathname === '/favorites'  || window.location.pathname === '/login' ? (
+      <ImprintButton onClick={() => history.push('/imprint')}>
+        Impressum
       </ImprintButton>
+      ) : (
+        ''
+      )}
     </HeaderStyled>
   );
 
