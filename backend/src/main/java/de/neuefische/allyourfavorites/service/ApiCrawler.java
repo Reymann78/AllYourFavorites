@@ -6,10 +6,12 @@ import de.neuefische.allyourfavorites.dto.*;
 import de.neuefische.allyourfavorites.model.Favorite;
 import de.neuefische.allyourfavorites.model.SoccerMatch;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
+import de.neuefische.allyourfavorites.model.User;
 import de.neuefische.allyourfavorites.utils.SoccerFavoriteUtils;
 import de.neuefische.allyourfavorites.utils.SoccerMatchUtils;
 import de.neuefische.allyourfavorites.utils.SoccerTeamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +22,7 @@ public class ApiCrawler {
 
     private final SoccerTeamDb soccerTeamDb;
     private final SoccerApiService soccerApiService;
+    private final UserService userService;
     private final SoccerTeamUtils soccerTeamUtils;
     private final SoccerFavoriteUtils soccerFavoriteUtils;
     private final SoccerMatchUtils soccerMatchUtils;
@@ -32,9 +35,10 @@ public class ApiCrawler {
     private final static String PRIMEIRA_LIGA = "2017";
 
     @Autowired
-    public ApiCrawler(SoccerTeamDb soccerTeamDb, SoccerApiService soccerApiService, SoccerTeamUtils soccerTeamUtils, SoccerFavoriteUtils soccerFavoriteUtils, SoccerMatchUtils soccerMatchUtils) {
+    public ApiCrawler(SoccerTeamDb soccerTeamDb, SoccerApiService soccerApiService, UserService userService, SoccerTeamUtils soccerTeamUtils, SoccerFavoriteUtils soccerFavoriteUtils, SoccerMatchUtils soccerMatchUtils) {
         this.soccerTeamDb = soccerTeamDb;
         this.soccerApiService = soccerApiService;
+        this.userService = userService;
         this.soccerTeamUtils = soccerTeamUtils;
         this.soccerFavoriteUtils = soccerFavoriteUtils;
         this.soccerMatchUtils = soccerMatchUtils;
@@ -64,6 +68,13 @@ public class ApiCrawler {
         }
     }
 
+    @Scheduled(cron = "0 30/60 * * * ?")
+    private void scheduled() {
+        Set<String> teamIds = getAllTeamIdsOfUsersInDb();
+        updateFavoritesInDb(teamIds);
+    }
+
+
     public List<SoccerTeam> getSoccerTeamsByCompetitionId(String competitionId) {
         ApiSoccerTeamList apiSoccerTeams = soccerApiService.getSoccerTeamsByCompetitionId(competitionId);
         return soccerTeamUtils.getSoccerTeamsByCompetitionId(apiSoccerTeams);
@@ -73,6 +84,22 @@ public class ApiCrawler {
         List<ApiSoccerMatch> apiSoccerMatches = soccerApiService.getMatchesOfFavoriteByTeamId(teamId).getMatches();
         List<SoccerMatch> formattedSoccerMatches = soccerMatchUtils.buildSoccerMatch(apiSoccerMatches);
         return soccerFavoriteUtils.buildSoccerFavorite(formattedSoccerMatches, teamId);
+    }
+
+    private Set<String> getAllTeamIdsOfUsersInDb() {
+        Iterable<User> users = userService.getAllUsers();
+        Set<String> allTeamIds = new HashSet<>();
+        for(User user : users) {
+            List<String> teamIds = (user.getFavorites());
+            allTeamIds.addAll(teamIds);
+        }
+        return allTeamIds;
+    }
+
+    private void updateFavoritesInDb(Set<String> teamIds) {
+        for(String teamId : teamIds) {
+            getMatchesOfFavoriteByTeamId(teamId);
+        }
     }
 
 }
