@@ -5,7 +5,6 @@ import FavoriteContext from '../contexts/FavoriteContext';
 
 export default function Favorite({ favorite, className }) {
   const { deleteFavorite } = useContext(FavoriteContext);
-  console.log(favorite);
   return (
     <FavoriteWrapper className={className}>
       <FavoriteHeader>
