@@ -86,7 +86,7 @@ public class ApiCrawler {
         return soccerFavoriteUtils.buildSoccerFavorite(formattedSoccerMatches, teamId);
     }
 
-    private Set<String> getAllTeamIdsOfUsersInDb() {
+    public Set<String> getAllTeamIdsOfUsersInDb() {
         Iterable<User> users = userService.getAllUsers();
         Set<String> allTeamIds = new HashSet<>();
         for(User user : users) {
@@ -96,7 +96,7 @@ public class ApiCrawler {
         return allTeamIds;
     }
 
-    private void updateFavoritesInDb(Set<String> teamIds) {
+    public void updateFavoritesInDb(Set<String> teamIds) {
         for(String teamId : teamIds) {
             getMatchesOfFavoriteByTeamId(teamId);
         }
