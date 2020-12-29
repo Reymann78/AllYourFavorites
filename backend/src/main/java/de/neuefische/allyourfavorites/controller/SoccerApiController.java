@@ -1,6 +1,7 @@
 package de.neuefische.allyourfavorites.controller;
 
 import de.neuefische.allyourfavorites.model.Favorite;
+import de.neuefische.allyourfavorites.model.SoccerLeagueTable;
 import de.neuefische.allyourfavorites.model.SoccerTeam;
 import de.neuefische.allyourfavorites.service.ApiCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class SoccerApiController {
     @GetMapping("team/{teamId}/matches")
     public Favorite getMatchesOfFavoriteByTeamId(@PathVariable String teamId) {
         return apiCrawler.getMatchesOfFavoriteByTeamId(teamId);
+    }
+
+    @GetMapping("competitions/{competitionId}/standings")
+    public SoccerLeagueTable getSoccerLeagueTable(@PathVariable String competitionId) {
+        return apiCrawler.getSoccerLeagueTable(competitionId);
     }
 
 }

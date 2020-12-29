@@ -112,7 +112,7 @@ public class SoccerMatchUtils {
                 0,
                 null,
                 "",
-                0,
+                "0",
                 "",
                 null,
                 null,

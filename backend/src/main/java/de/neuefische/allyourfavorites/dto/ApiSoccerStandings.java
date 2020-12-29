@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiSoccerMatchList {
+public class ApiSoccerStandings {
 
-    private int count;
-    private ApiFilter filters;
-    private List<ApiSoccerMatch> matches;
+    private String stage;
+    private String type;
+    private String group;
+    public ApiSoccerTable[] table;
 }

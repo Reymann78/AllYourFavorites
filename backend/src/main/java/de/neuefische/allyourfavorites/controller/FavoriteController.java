@@ -2,6 +2,7 @@ package de.neuefische.allyourfavorites.controller;
 
 import de.neuefische.allyourfavorites.dto.TeamIdDto;
 import de.neuefische.allyourfavorites.model.Favorite;
+import de.neuefische.allyourfavorites.model.SoccerLeagueTable;
 import de.neuefische.allyourfavorites.model.User;
 import de.neuefische.allyourfavorites.service.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class FavoriteController {
     @GetMapping
     public Iterable<Favorite> getAllMatchesOfFavoritesOfUser(Principal principal) {
         return favoriteService.getAllMatchesOfFavorites(favoriteService.getAllFavoritesOfUser(principal.getName()));
+    }
+
+    @GetMapping("{competitionId}")
+    public SoccerLeagueTable getSoccerLeagueTable(@PathVariable String competitionId) {
+        return favoriteService.getSoccerLeagueTable(competitionId);
     }
 
     @PostMapping
