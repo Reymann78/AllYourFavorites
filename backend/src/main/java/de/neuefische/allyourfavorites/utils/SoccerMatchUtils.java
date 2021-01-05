@@ -20,11 +20,12 @@ public class SoccerMatchUtils {
             String goalsAwayTeam = goalsOfTeams[1];
             SoccerMatch formattedSoccerMatch = new SoccerMatch(
                     apiSoccerMatch.getId(),
-                    apiSoccerMatch.getMatchday(),
+                    apiSoccerMatch.getMatchDay(),
                     formateUtcDate(apiSoccerMatch.getUtcDate()),
                     apiSoccerMatch.getStatus(),
                     apiSoccerMatch.getCompetition().getId(),
                     apiSoccerMatch.getCompetition().getName(),
+                    apiSoccerMatch.getGroup(),
                     apiSoccerMatch.getHomeTeam(),
                     apiSoccerMatch.getAwayTeam(),
                     goalsHomeTeam,
@@ -114,6 +115,7 @@ public class SoccerMatchUtils {
                 "",
                 "0",
                 "",
+                null,
                 null,
                 null,
                 "",

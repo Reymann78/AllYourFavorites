@@ -45,9 +45,11 @@ public class FavoriteService {
         return soccerMatchesByTeamDb.findAllById(favorites);
     }
 
-    public SoccerLeagueTable getSoccerLeagueTable(String competitionId) {
+    public SoccerLeagueTable getSoccerLeagueTable(String competitionId, String matchDay, String groupName, String tableType) {
         apiCrawler.getSoccerLeagueTable(competitionId);
-        return soccerLeagueTableDb.findByCompetitionId(competitionId);
+        SoccerLeagueTable soccerLeagueTable = soccerLeagueTableDb.findSoccerLeagueTableByCompetitionIdAndCurrentMatchDayAndGroupNameAndTableType(competitionId, matchDay, groupName, tableType);
+        soccerLeagueTableDb.deleteAll();
+        return soccerLeagueTable;
     }
 
     public Optional<User> addFavoriteTeamId(String favoriteTeamId, String principalName) {

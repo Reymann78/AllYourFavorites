@@ -31,7 +31,7 @@ public class SoccerApiController {
     }
 
     @GetMapping("competitions/{competitionId}/standings")
-    public SoccerLeagueTable getSoccerLeagueTable(@PathVariable String competitionId) {
+    public List<SoccerLeagueTable> getSoccerLeagueTable(@PathVariable String competitionId) {
         return apiCrawler.getSoccerLeagueTable(competitionId);
     }
 

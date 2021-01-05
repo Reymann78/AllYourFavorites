@@ -17,6 +17,7 @@ public class SoccerMatch {
     private String status;
     private String competitionId;
     private String competitionName;
+    private String group;
     private ApiSoccerTeam homeTeam;
     private ApiSoccerTeam awayTeam;
     private String homeTeamGoals;

@@ -104,7 +104,7 @@ public class ApiCrawler {
         }
     }
 
-    public SoccerLeagueTable getSoccerLeagueTable(String competitionId) {
+    public List<SoccerLeagueTable> getSoccerLeagueTable(String competitionId) {
         ApiSoccerLeagueTable apiSoccerLeagueTable = soccerApiService.getSoccerLeagueTable(competitionId);
         return soccerLeagueTableUtils.buildSoccerLeagueTable(apiSoccerLeagueTable);
     }

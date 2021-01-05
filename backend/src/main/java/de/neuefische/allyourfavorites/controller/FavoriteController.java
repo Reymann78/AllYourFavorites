@@ -1,5 +1,6 @@
 package de.neuefische.allyourfavorites.controller;
 
+import de.neuefische.allyourfavorites.dto.StandingParamsDto;
 import de.neuefische.allyourfavorites.dto.TeamIdDto;
 import de.neuefische.allyourfavorites.model.Favorite;
 import de.neuefische.allyourfavorites.model.SoccerLeagueTable;
@@ -27,9 +28,13 @@ public class FavoriteController {
         return favoriteService.getAllMatchesOfFavorites(favoriteService.getAllFavoritesOfUser(principal.getName()));
     }
 
-    @GetMapping("{competitionId}")
-    public SoccerLeagueTable getSoccerLeagueTable(@PathVariable String competitionId) {
-        return favoriteService.getSoccerLeagueTable(competitionId);
+    @GetMapping("/standings")
+    public SoccerLeagueTable getSoccerLeagueTable(@RequestBody StandingParamsDto allParams) {
+        String competitionId = allParams.getCompetitionId();
+        String matchDay = allParams.getMatchDay();
+        String groupName = allParams.getGroupName();
+        String tableType = allParams.getTableType();
+        return favoriteService.getSoccerLeagueTable(competitionId, matchDay, groupName, tableType);
     }
 
     @PostMapping
