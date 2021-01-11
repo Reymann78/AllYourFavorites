@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components/macro';
 import { CgRemoveR } from 'react-icons/cg';
 import FavoriteContext from '../contexts/FavoriteContext';
+import Table from './Table'
+import PositionList from "../homePage/PositionList";
 
 export default function Favorite({ favorite, className }) {
-  const { deleteFavorite } = useContext(FavoriteContext);
+  const { deleteFavorite, getLeagueTable } = useContext(FavoriteContext);
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <FavoriteWrapper className={className}>
       <FavoriteHeader>
@@ -35,6 +39,12 @@ export default function Favorite({ favorite, className }) {
           {`${favorite.currentMatch.homeTeamGoals} : ${favorite.currentMatch.awayTeamGoals}`}
         </div>
         <div>{favorite.currentMatch.awayTeam.name}</div>
+        <div>
+          <RequestButton onClick={() => { handleRequest(); setIsOpen(true) }}>Tabelle</RequestButton>
+          <Table open={isOpen} onClose={() => setIsOpen(false)} >
+            <PositionList />
+          </Table>
+        </div>
       </Match>
       <Match>
         <div className="competition">{favorite.nextMatch.competitionName}</div>
@@ -51,6 +61,10 @@ export default function Favorite({ favorite, className }) {
 
   function handleRemove() {
     deleteFavorite(favorite.teamId);
+  }
+
+  function handleRequest() {
+    getLeagueTable(favorite.currentMatch.competitionId, favorite.currentMatch.matchDay, favorite.currentMatch.groupName, "TOTAL");
   }
 
   function formatDate(date) {
@@ -156,3 +170,19 @@ const RemoveButton = styled.button`
     color: darkgrey;
   }
 `;
+
+const RequestButton = styled.button`
+  --button-size: calc(var(--nav-size) * 2);
+  width: var(--button-size);
+  height: calc(var(--button-size) / 3.5);
+  //color: var(--white);
+  justify-self: center;
+  font-size: var(--size-m);
+  background-color: var(--blue-75);
+  border-radius: var(--size-s);
+
+  &:hover {
+    color: darkgrey;
+  }
+`;
+

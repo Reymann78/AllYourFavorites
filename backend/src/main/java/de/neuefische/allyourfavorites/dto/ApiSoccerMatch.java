@@ -16,7 +16,7 @@ public class ApiSoccerMatch {
     private ApiSeason season;
     private String utcDate;
     private String status;
-    private int matchDay;
+    private String matchday;
     private String stage;
     private String group;
     private String lastUpdate;

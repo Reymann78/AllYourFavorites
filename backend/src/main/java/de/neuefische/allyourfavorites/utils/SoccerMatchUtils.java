@@ -20,7 +20,7 @@ public class SoccerMatchUtils {
             String goalsAwayTeam = goalsOfTeams[1];
             SoccerMatch formattedSoccerMatch = new SoccerMatch(
                     apiSoccerMatch.getId(),
-                    apiSoccerMatch.getMatchDay(),
+                    apiSoccerMatch.getMatchday(),
                     formateUtcDate(apiSoccerMatch.getUtcDate()),
                     apiSoccerMatch.getStatus(),
                     apiSoccerMatch.getCompetition().getId(),
@@ -110,7 +110,7 @@ public class SoccerMatchUtils {
     private SoccerMatch createEmptyMatch() {
         return new SoccerMatch(
                 "",
-                0,
+                "0",
                 null,
                 "",
                 "0",
