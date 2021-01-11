@@ -46,9 +46,18 @@ public class FavoriteService {
     }
 
     public SoccerLeagueTable getSoccerLeagueTable(String competitionId, String matchDay, String groupName, String tableType) {
-        apiCrawler.getSoccerLeagueTable(competitionId);
-        SoccerLeagueTable soccerLeagueTable = soccerLeagueTableDb.findSoccerLeagueTableByCompetitionIdAndCurrentMatchDayAndGroupNameAndTableType(competitionId, matchDay, groupName, tableType);
-        soccerLeagueTableDb.deleteAll();
+        SoccerLeagueTable soccerLeagueTable;
+        if(soccerLeagueTableDb.findSoccerLeagueTableByCompetitionIdAndCurrentMatchDayAndGroupNameAndTableType(competitionId, matchDay, groupName, tableType) != null) {
+            soccerLeagueTable = soccerLeagueTableDb.findSoccerLeagueTableByCompetitionIdAndCurrentMatchDayAndGroupNameAndTableType(competitionId, matchDay, groupName, tableType);
+        }
+        else if (soccerLeagueTableDb.findSoccerLeagueTableByCompetitionIdAndGroupNameAndTableType(competitionId, groupName, tableType) != null) {
+            soccerLeagueTable = soccerLeagueTableDb.findSoccerLeagueTableByCompetitionIdAndGroupNameAndTableType(competitionId, groupName, tableType);
+        }
+        else {
+            List<SoccerLeagueTable> tableList = apiCrawler.getSoccerLeagueTable(competitionId);
+            String currentMatchDay = tableList.get(0).getCurrentMatchDay();
+            soccerLeagueTable = soccerLeagueTableDb.findSoccerLeagueTableByCompetitionIdAndCurrentMatchDayAndGroupNameAndTableType(competitionId, currentMatchDay, groupName, tableType);
+        }
         return soccerLeagueTable;
     }
 

@@ -6,6 +6,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface SoccerLeagueTableDb extends PagingAndSortingRepository<SoccerLeagueTable, String> {
 
+    SoccerLeagueTable findSoccerLeagueTableByCompetitionIdAndGroupNameAndTableType(
+            String competitionId,
+            String groupName,
+            String tableType);
+
     SoccerLeagueTable findSoccerLeagueTableByCompetitionIdAndCurrentMatchDayAndGroupNameAndTableType(
             String competitionId,
             String matchDay,

@@ -28,12 +28,12 @@ public class FavoriteController {
         return favoriteService.getAllMatchesOfFavorites(favoriteService.getAllFavoritesOfUser(principal.getName()));
     }
 
-    @GetMapping("/standings")
-    public SoccerLeagueTable getSoccerLeagueTable(@RequestBody StandingParamsDto allParams) {
-        String competitionId = allParams.getCompetitionId();
-        String matchDay = allParams.getMatchDay();
-        String groupName = allParams.getGroupName();
-        String tableType = allParams.getTableType();
+    @PostMapping("/standings")
+    public SoccerLeagueTable getSoccerLeagueTable(@RequestBody StandingParamsDto tableParams) {
+        String competitionId = tableParams.getCompetitionId();
+        String matchDay = tableParams.getMatchDay();
+        String groupName = tableParams.getGroupName();
+        String tableType = tableParams.getTableType();
         return favoriteService.getSoccerLeagueTable(competitionId, matchDay, groupName, tableType);
     }
 
