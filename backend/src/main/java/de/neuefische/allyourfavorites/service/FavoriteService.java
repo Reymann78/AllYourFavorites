@@ -1,10 +1,12 @@
 package de.neuefische.allyourfavorites.service;
 
 import de.neuefische.allyourfavorites.db.SoccerLeagueTableDb;
+import de.neuefische.allyourfavorites.db.SoccerMatchDayTableDb;
 import de.neuefische.allyourfavorites.db.SoccerMatchesByTeamDb;
 import de.neuefische.allyourfavorites.db.UserDb;
 import de.neuefische.allyourfavorites.model.Favorite;
 import de.neuefische.allyourfavorites.model.SoccerLeagueTable;
+import de.neuefische.allyourfavorites.model.SoccerMatchDayTable;
 import de.neuefische.allyourfavorites.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -25,14 +27,16 @@ public class FavoriteService {
     private final UserDb userDb;
     private final SoccerMatchesByTeamDb soccerMatchesByTeamDb;
     private final SoccerLeagueTableDb soccerLeagueTableDb;
+    private final SoccerMatchDayTableDb soccerMatchDayTableDb;
     private final ApiCrawler apiCrawler;
 
     @Autowired
-    public FavoriteService(MongoTemplate mongoTemplate, UserDb userDb, SoccerMatchesByTeamDb soccerMatchesByTeamDb, SoccerLeagueTableDb soccerLeagueTableDb, ApiCrawler apiCrawler) {
+    public FavoriteService(MongoTemplate mongoTemplate, UserDb userDb, SoccerMatchesByTeamDb soccerMatchesByTeamDb, SoccerLeagueTableDb soccerLeagueTableDb, SoccerMatchDayTableDb soccerMatchDayTableDb, ApiCrawler apiCrawler) {
         this.mongoTemplate = mongoTemplate;
         this.userDb = userDb;
         this.soccerMatchesByTeamDb = soccerMatchesByTeamDb;
         this.soccerLeagueTableDb = soccerLeagueTableDb;
+        this.soccerMatchDayTableDb = soccerMatchDayTableDb;
         this.apiCrawler = apiCrawler;
     }
 
@@ -59,6 +63,20 @@ public class FavoriteService {
             soccerLeagueTable = soccerLeagueTableDb.findSoccerLeagueTableByCompetitionIdAndCurrentMatchDayAndGroupNameAndTableType(competitionId, currentMatchDay, groupName, tableType);
         }
         return soccerLeagueTable;
+    }
+
+    public SoccerMatchDayTable getSoccerMatchDayTable(String competitionId, String matchDay) {
+        SoccerMatchDayTable soccerMatchDayTable;
+        if(soccerMatchDayTableDb.findSoccerMatchDayTableByCompetitionIdAndTableMatchDay(competitionId, matchDay) != null) {
+                soccerMatchDayTable = soccerMatchDayTableDb.findSoccerMatchDayTableByCompetitionIdAndTableMatchDay(competitionId, matchDay);
+            }
+        else {
+            soccerMatchDayTable = apiCrawler.getSoccerMatchDayTable(competitionId, matchDay);
+            if(soccerMatchDayTable.getIsMatchDayComplete()) {
+                soccerMatchDayTableDb.save(soccerMatchDayTable);
+            }
+        }
+        return soccerMatchDayTable;
     }
 
     public Optional<User> addFavoriteTeamId(String favoriteTeamId, String principalName) {
