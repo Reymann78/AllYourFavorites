@@ -4,7 +4,6 @@ import de.neuefische.allyourfavorites.dto.ApiSoccerMatch;
 import de.neuefische.allyourfavorites.model.SoccerMatch;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -44,6 +43,14 @@ public class SoccerMatchUtils {
             goalsOfTeams[1] = apiSoccerMatch.getScore().getFullTime().getAwayTeam();
         }
         return goalsOfTeams;
+    }
+
+    public  List<SoccerMatch> getMatches(List<SoccerMatch> soccerMatches) {
+        List<SoccerMatch> listOfMatches = new ArrayList<>();
+        listOfMatches.add(getLastMatch(soccerMatches));
+        listOfMatches.add(getCurrentMatch(soccerMatches));
+        listOfMatches.add(getNextMatch(soccerMatches));
+        return sortFinishedMatches(listOfMatches);
     }
 
     public SoccerMatch getLastMatch(List<SoccerMatch> soccerMatches) {
