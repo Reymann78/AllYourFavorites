@@ -4,11 +4,9 @@ import { CgRemoveR } from 'react-icons/cg';
 
 export default function Table({ open, children, onClose }) {
     if (!open) return null;
-
     return (
       <TableStyled>
           <TableHeader>
-              Tabelle
               <RemoveButton onClick={onClose}>{<CgRemoveR />}</RemoveButton>
           </TableHeader>
         {children}
@@ -35,14 +33,14 @@ const RemoveButton = styled.button`
   background-color: linear-gradient(20deg, var(--blue-main), var(--blue-75));
 
   &:hover {
-    color: darkgrey;
+    color: var(--blue-25);
   }
 `;
 
 const TableHeader = styled.header`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
+  grid-template-columns: 1fr;
+  align-items: end;
   padding-bottom: var(--size-s);
   color: var(--white);
   background-color: var(--blue-75);

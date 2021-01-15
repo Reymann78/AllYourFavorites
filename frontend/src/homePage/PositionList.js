@@ -27,19 +27,21 @@ export default function PositionList() {
 }
 
 const TableHead = styled.div`
-   display: grid;
-   grid-template-columns: 1fr 1fr 6fr 1fr 2fr 1fr 1fr;
-   align-items: center;
-   color: var(--blue-main);
-   text-align: start;
-   font-weight: 600;
-   font-size: .6rem;
-   padding: 0.2rem;
-   border-bottom: 2px solid var(--blue-main);
+  display: grid;
+  grid-template-columns: 1fr 1fr 6fr 1fr 2fr 1fr 1fr;
+  align-items: center;
+  color: linear-gradient(20deg, var(--blue-main), var(--blue-75));
+  text-align: start;
+  font-weight: 600;
+  font-size: .6rem;
+  padding: 0.2rem;
+  border-bottom: 2px solid var(--blue-main);
 `;
 
 const PositionListStyled = styled.ul`
   overflow: scroll;
+  height: 60vh;
+  width: 40vh;
   margin: 0;
   padding: var(--size-s);
   list-style: none;

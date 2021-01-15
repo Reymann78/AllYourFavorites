@@ -22,7 +22,4 @@ public class ApiSoccerTeam {
     private String clubColors;
     private String venue;
     private String lastUpdate;
-    private ApiSoccerTeam homeTeam;
-    private ApiSoccerTeam awayTeam;
-    private ApiReferee referees;
 }

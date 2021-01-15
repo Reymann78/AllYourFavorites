@@ -61,6 +61,10 @@ const Heading = styled.h1`
 const ImprintButton = styled.button`
   background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
   text-decoration: none;
+  
+  &:hover {
+    color: var(--blue-25);
+  }
 `;
 
 const ActionButton = styled.button`
@@ -72,6 +76,6 @@ const ActionButton = styled.button`
   padding-top: 14px;
 
   &:hover {
-    color: darkgrey;
+    color: var(--blue-25);
   }
 `;

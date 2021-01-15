@@ -4,10 +4,13 @@ import { CgRemoveR } from 'react-icons/cg';
 import FavoriteContext from '../contexts/FavoriteContext';
 import Table from './Table'
 import PositionList from "../homePage/PositionList";
+import MatchDayList from "../homePage/MatchDayList";
+import formatDate from "../utils/DateUtil";
 
 export default function Favorite({ favorite, className }) {
-  const { deleteFavorite, getLeagueTable } = useContext(FavoriteContext);
+  const { deleteFavorite, getLeagueTable, getMatchDayTableByMatchDay } = useContext(FavoriteContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [requestedTable, setRequestedTable] = useState('');
 
   return (
     <FavoriteWrapper className={className}>
@@ -39,12 +42,15 @@ export default function Favorite({ favorite, className }) {
           {`${favorite.currentMatch.homeTeamGoals} : ${favorite.currentMatch.awayTeamGoals}`}
         </div>
         <div>{favorite.currentMatch.awayTeam.name}</div>
-        <div>
-          <RequestButton onClick={() => { handleRequest(); setIsOpen(true) }}>Tabelle</RequestButton>
-          <Table open={isOpen} onClose={() => setIsOpen(false)} >
-            <PositionList />
-          </Table>
+        <div className="dayTable">
+          <RequestButton onClick={() => { handleMatchDayTableRequest(); setIsOpen(true) }}>Spieltag</RequestButton>
         </div>
+        <div className="leagueTable">
+          <RequestButton onClick={() => { handleLeagueTableRequest(); setIsOpen(true) }}>Tabelle</RequestButton>
+        </div>
+          <Table open={isOpen} onClose={() => setIsOpen(false)} >
+            {requestedTable === 'leagueTable' ? <PositionList /> : <MatchDayList />}
+          </Table>
       </Match>
       <Match>
         <div className="competition">{favorite.nextMatch.competitionName}</div>
@@ -63,34 +69,14 @@ export default function Favorite({ favorite, className }) {
     deleteFavorite(favorite.teamId);
   }
 
-  function handleRequest() {
+  function handleLeagueTableRequest() {
+    setRequestedTable('leagueTable');
     getLeagueTable(favorite.currentMatch.competitionId, favorite.currentMatch.matchDay, favorite.currentMatch.groupName, "TOTAL");
   }
 
-  function formatDate(date) {
-    let d = new Date(date);
-    const weekday = new Array(7);
-    weekday[0] = 'Sonntag';
-    weekday[1] = 'Montag';
-    weekday[2] = 'Dienstag';
-    weekday[3] = 'Mittwoch';
-    weekday[4] = 'Donnerstag';
-    weekday[5] = 'Freitag';
-    weekday[6] = 'Samstag';
-
-    let formattedWeekday = weekday[d.getDay()] + ' ',
-      day = d.getDate() + '.',
-      month = d.getMonth() + 1 + '.',
-      year = d.getFullYear() + ' ',
-      hour = d.getHours() + ':',
-      min = d.getMinutes() + ':',
-      sec = '00';
-
-    if (month.length < 3) month = '0' + month;
-    if (day.length < 3) day = '0' + day;
-    if (min.length < 3) min = '0' + min;
-
-    return [formattedWeekday, day, month, year, hour, min, sec];
+  function handleMatchDayTableRequest() {
+    setRequestedTable('matchDayTable');
+    getMatchDayTableByMatchDay(favorite.currentMatch.competitionId, favorite.currentMatch.matchDay);
   }
 }
 
@@ -124,7 +110,7 @@ const Match = styled.section`
   color: var(--blue-main);
   display: grid;
   grid-template-columns: 3fr 1fr 3fr;
-  grid-template-rows: 1fr 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-gap: 2px;
   align-items: center;
   border-bottom: var(--size-xs) solid var(--blue-75);
@@ -149,9 +135,15 @@ const Match = styled.section`
     font-weight: 600;
     grid-column: 1/4;
   }
-
-  .result {
-    padding: var(--size-s);
+  
+  .dayTable {
+  grid-column: 0/1;
+  text-align: center;
+  }
+  
+  .leagueTable {
+  grid-column: 3/4;
+  text-align: center;
   }
 `;
 
@@ -167,22 +159,20 @@ const RemoveButton = styled.button`
   padding-left: 10px;
 
   &:hover {
-    color: darkgrey;
+    color: var(--blue-25);
   }
 `;
 
 const RequestButton = styled.button`
-  --button-size: calc(var(--nav-size) * 2);
+  --button-size: calc(var(--nav-size) * 1.6);
   width: var(--button-size);
-  height: calc(var(--button-size) / 3.5);
-  //color: var(--white);
-  justify-self: center;
+  height: calc(var(--button-size) / 3);
   font-size: var(--size-m);
   background-color: var(--blue-75);
-  border-radius: var(--size-s);
+  border-radius: var(--size-s);  
 
   &:hover {
-    color: darkgrey;
+    color: var(--blue-25);
   }
 `;
 

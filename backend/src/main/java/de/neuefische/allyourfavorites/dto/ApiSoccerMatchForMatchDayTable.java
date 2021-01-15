@@ -1,8 +1,12 @@
 package de.neuefische.allyourfavorites.dto;
 
+import de.neuefische.allyourfavorites.model.SoccerTeam;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.Instant;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -11,7 +15,7 @@ public class ApiSoccerMatchForMatchDayTable {
 
     private String id;
     private ApiSeason season;
-    private String utcDate;
+    private Instant utcDate;
     private String status;
     private String matchday;
     private String stage;
@@ -19,4 +23,7 @@ public class ApiSoccerMatchForMatchDayTable {
     private String lastUpdated;
     private ApiOdd odds;
     private ApiScore score;
+    private SoccerTeam homeTeam;
+    private SoccerTeam awayTeam;
+    private List<ApiReferee> referees;
 }

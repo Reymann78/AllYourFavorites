@@ -4,13 +4,15 @@ import {
   addFavorite,
   getFavorites,
   removeFavorite,
-  getStanding
+  getStanding,
+  getMatchDayTable
 } from '../service/favoriteService';
 import UserContext from './UserContext';
 
 export default function FavoriteContextProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
-  const [leagueTable, setLeagueTable] = useState([])
+  const [leagueTable, setLeagueTable] = useState([]);
+  const [matchDayTable, setMatchDayTable] = useState([]);
   const { token, tokenIsValid } = useContext(UserContext);
 
   useEffect(() => {
@@ -35,9 +37,14 @@ export default function FavoriteContextProvider({ children }) {
           .then(setLeagueTable)
           .catch(console.log);
 
+  const getMatchDayTableByMatchDay = (competitionId, matchDay) =>
+      getMatchDayTable(competitionId, matchDay, token)
+          .then(setMatchDayTable)
+          .catch(console.log);
+
   return (
     <FavoriteContext.Provider
-      value={{ favorites, leagueTable, getLeagueTable, createFavorite, deleteFavorite }}
+      value={{ favorites, leagueTable, matchDayTable, getLeagueTable, createFavorite, deleteFavorite, getMatchDayTableByMatchDay }}
     >
       {children}
     </FavoriteContext.Provider>

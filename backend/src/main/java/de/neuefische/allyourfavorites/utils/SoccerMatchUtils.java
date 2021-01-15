@@ -21,7 +21,7 @@ public class SoccerMatchUtils {
             SoccerMatch formattedSoccerMatch = new SoccerMatch(
                     apiSoccerMatch.getId(),
                     apiSoccerMatch.getMatchday(),
-                    formateUtcDate(apiSoccerMatch.getUtcDate()),
+                    apiSoccerMatch.getUtcDate(),
                     apiSoccerMatch.getStatus(),
                     apiSoccerMatch.getCompetition().getId(),
                     apiSoccerMatch.getCompetition().getName(),
@@ -33,10 +33,6 @@ public class SoccerMatchUtils {
             formattedSoccerMatches.add(formattedSoccerMatch);
         }
         return formattedSoccerMatches;
-    }
-
-    private Instant formateUtcDate (String utcDate) {
-        return Instant.parse(utcDate);
     }
 
     private String[] getGoalsOfTeams(ApiSoccerMatch apiSoccerMatch) {

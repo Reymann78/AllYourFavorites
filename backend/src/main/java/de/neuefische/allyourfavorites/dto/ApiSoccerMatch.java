@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -14,7 +15,7 @@ public class ApiSoccerMatch {
     private String id;
     private ApiCompetition competition;
     private ApiSeason season;
-    private String utcDate;
+    private Instant utcDate;
     private String status;
     private String matchday;
     private String stage;

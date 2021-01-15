@@ -31,6 +31,6 @@ const FavoriteListStyled = styled.ul`
   li:last-child:after {
     content: '';
     display: block;
-    height: 56px;
+    height: 4px;
   }
 `;
