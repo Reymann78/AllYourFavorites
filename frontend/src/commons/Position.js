@@ -32,6 +32,5 @@ const PositionStyled = styled.div`
 const Logo = styled.img`
   height: 1.2rem;
   padding-right: var(--size-xs);
-  // justify-self: end;
   font-weight: 600;
 `;

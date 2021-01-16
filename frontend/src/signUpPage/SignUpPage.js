@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import Header from '../commons/Header';
+import Header from '../component/Header';
 
 const initialState = {
   username: '',

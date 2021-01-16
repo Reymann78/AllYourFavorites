@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import FavoriteContext from '../contexts/FavoriteContext';
-import Favorite from '../commons/Favorite';
+import Favorite from '../component/Favorite';
 
 export default function FavoriteList() {
   const { favorites } = useContext(FavoriteContext);

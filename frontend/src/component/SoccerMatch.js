@@ -58,7 +58,7 @@ const Match = styled.section`
   color: var(--blue-main);
   display: grid;
   grid-template-columns: 3fr 1fr 3fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto 2fr auto;
   grid-gap: 2px;
   align-items: center;
   border-bottom: var(--size-xs) solid var(--blue-75);
@@ -82,6 +82,10 @@ const Match = styled.section`
     text-align: center;
     font-weight: 600;
     grid-column: 1/4;
+  }
+  
+  .result {
+    padding: var(--size-xs);
   }
   
   .dayTable {

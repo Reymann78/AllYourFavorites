@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import Header from '../commons/Header';
+import Header from '../component/Header';
 import styled from 'styled-components/macro';
 import UserContext from '../contexts/UserContext';
 import { useHistory } from 'react-router-dom';

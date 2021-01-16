@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function formatDate(date) {
     let d = new Date(date);
