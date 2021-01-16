@@ -50,7 +50,7 @@ public class SoccerMatchUtils {
         listOfMatches.add(getLastMatch(soccerMatches));
         listOfMatches.add(getCurrentMatch(soccerMatches));
         listOfMatches.add(getNextMatch(soccerMatches));
-        return sortFinishedMatches(listOfMatches);
+        return listOfMatches;
     }
 
     public SoccerMatch getLastMatch(List<SoccerMatch> soccerMatches) {

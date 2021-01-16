@@ -19,8 +19,8 @@ export default function MatchDayList() {
             ))}
         </MatchDayListStyled>
     );
-
 }
+
 const TableHead = styled.div`
   display: grid;
   grid-template-columns: 1fr;
