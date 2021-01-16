@@ -38,7 +38,9 @@ public class SoccerMatchUtils {
         String[] goalsOfTeams = new String[2];
         goalsOfTeams[0] = "-";
         goalsOfTeams[1] = "-";
-        if (apiSoccerMatch.getStatus().equals("FINISHED")) {
+        if (apiSoccerMatch.getStatus().equals("FINISHED")
+                || apiSoccerMatch.getStatus().equals("IN_PLAY")
+                || apiSoccerMatch.getStatus().equals("PAUSED")) {
             goalsOfTeams[0] = apiSoccerMatch.getScore().getFullTime().getHomeTeam();
             goalsOfTeams[1] = apiSoccerMatch.getScore().getFullTime().getAwayTeam();
         }
@@ -88,7 +90,9 @@ public class SoccerMatchUtils {
         List<SoccerMatch> finishedSoccerMatches = new ArrayList<>();
 
         for (SoccerMatch soccerMatch : soccerMatches) {
-            if (soccerMatch.getStatus().equals("FINISHED")) {
+            if (soccerMatch.getStatus().equals("FINISHED")
+                    || soccerMatch.getStatus().equals("IN_PLAY")
+                    || soccerMatch.getStatus().equals("PAUSED")) {
                 finishedSoccerMatches.add(soccerMatch);
             }
         }
@@ -101,7 +105,7 @@ public class SoccerMatchUtils {
         List<SoccerMatch> notFinishedSoccerMatches = new ArrayList<>();
 
         for (SoccerMatch soccerMatch : soccerMatches) {
-            if (soccerMatch.getStatus().equals("SCHEDULED") || soccerMatch.getStatus().equals("IN_PLAY")) {
+            if (soccerMatch.getStatus().equals("SCHEDULED")) {
                 notFinishedSoccerMatches.add(soccerMatch);
             }
         }

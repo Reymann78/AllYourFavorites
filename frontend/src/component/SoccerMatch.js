@@ -21,7 +21,7 @@ export default function SoccerMatch({ match }) {
                 {formatDate(match.matchDate)}
             </time>
             <div>{match.homeTeam.name}</div>
-            <div className="result">
+            <div className={match.status === "IN_PLAY" || match.status === "PAUSED" ? "live" : "result"}>
                 {`${match.homeTeamGoals} : ${match.awayTeamGoals}`}
             </div>
             <div>{match.awayTeam.name}</div>
@@ -86,6 +86,13 @@ const Match = styled.section`
   
   .result {
     padding: var(--size-xs);
+    font-weight: 600;
+  }
+  
+  .live {
+    color: red;
+    padding: var(--size-xs);
+    font-weight: 600;
   }
   
   .dayTable {
