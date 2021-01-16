@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class ApiSoccerMatchList {
+@NoArgsConstructor
+public class ApiSoccerLeagueTable {
 
-    private int count;
     private ApiFilter filters;
-    private List<ApiSoccerMatch> matches;
+    private ApiCompetition competition;
+    private ApiSeason season;
+    public List<ApiSoccerStandings> standings;
 }

@@ -3,13 +3,8 @@ package de.neuefische.allyourfavorites.service;
 import de.neuefische.allyourfavorites.apiService.SoccerApiService;
 import de.neuefische.allyourfavorites.db.SoccerTeamDb;
 import de.neuefische.allyourfavorites.dto.*;
-import de.neuefische.allyourfavorites.model.Favorite;
-import de.neuefische.allyourfavorites.model.SoccerMatch;
-import de.neuefische.allyourfavorites.model.SoccerTeam;
-import de.neuefische.allyourfavorites.model.User;
-import de.neuefische.allyourfavorites.utils.SoccerFavoriteUtils;
-import de.neuefische.allyourfavorites.utils.SoccerMatchUtils;
-import de.neuefische.allyourfavorites.utils.SoccerTeamUtils;
+import de.neuefische.allyourfavorites.model.*;
+import de.neuefische.allyourfavorites.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -26,6 +21,8 @@ public class ApiCrawler {
     private final SoccerTeamUtils soccerTeamUtils;
     private final SoccerFavoriteUtils soccerFavoriteUtils;
     private final SoccerMatchUtils soccerMatchUtils;
+    private final SoccerLeagueTableUtils soccerLeagueTableUtils;
+    private final SoccerMatchDayTableUtils soccerMatchDayTableUtils;
     private final static String BUNDESLIGA = "2002";
     private final static String PREMIER_LEAGUE = "2021";
     private final static String PRIMERA_DIVISION = "2014";
@@ -35,13 +32,18 @@ public class ApiCrawler {
     private final static String PRIMEIRA_LIGA = "2017";
 
     @Autowired
-    public ApiCrawler(SoccerTeamDb soccerTeamDb, SoccerApiService soccerApiService, UserService userService, SoccerTeamUtils soccerTeamUtils, SoccerFavoriteUtils soccerFavoriteUtils, SoccerMatchUtils soccerMatchUtils) {
+    public ApiCrawler(SoccerTeamDb soccerTeamDb, SoccerApiService soccerApiService,
+                      UserService userService, SoccerTeamUtils soccerTeamUtils,
+                      SoccerFavoriteUtils soccerFavoriteUtils, SoccerMatchUtils soccerMatchUtils,
+                      SoccerLeagueTableUtils soccerLeagueTableUtils, SoccerMatchDayTableUtils soccerMatchDayTableUtils) {
         this.soccerTeamDb = soccerTeamDb;
         this.soccerApiService = soccerApiService;
         this.userService = userService;
         this.soccerTeamUtils = soccerTeamUtils;
         this.soccerFavoriteUtils = soccerFavoriteUtils;
         this.soccerMatchUtils = soccerMatchUtils;
+        this.soccerLeagueTableUtils = soccerLeagueTableUtils;
+        this.soccerMatchDayTableUtils = soccerMatchDayTableUtils;
     }
 
     @PostConstruct
@@ -74,7 +76,6 @@ public class ApiCrawler {
         updateFavoritesInDb(teamIds);
     }
 
-
     public List<SoccerTeam> getSoccerTeamsByCompetitionId(String competitionId) {
         ApiSoccerTeamList apiSoccerTeams = soccerApiService.getSoccerTeamsByCompetitionId(competitionId);
         return soccerTeamUtils.getSoccerTeamsByCompetitionId(apiSoccerTeams);
@@ -100,6 +101,16 @@ public class ApiCrawler {
         for(String teamId : teamIds) {
             getMatchesOfFavoriteByTeamId(teamId);
         }
+    }
+
+    public List<SoccerLeagueTable> getSoccerLeagueTable(String competitionId) {
+        ApiSoccerLeagueTable apiSoccerLeagueTable = soccerApiService.getSoccerLeagueTable(competitionId);
+        return soccerLeagueTableUtils.buildSoccerLeagueTable(apiSoccerLeagueTable);
+    }
+
+    public SoccerMatchDayTable getSoccerMatchDayTable(String competitionId, String matchDay) {
+        ApiSoccerMatchDayTable apiSoccerMatchDayTable = soccerApiService.getMatchDayTable(competitionId);
+        return soccerMatchDayTableUtils.buildSoccerMatchDayTable(apiSoccerMatchDayTable, matchDay);
     }
 
 }

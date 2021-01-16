@@ -9,9 +9,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiSoccerMatchList {
+public class ApiSoccerStandings {
 
-    private int count;
-    private ApiFilter filters;
-    private List<ApiSoccerMatch> matches;
+    private String stage;
+    private String type;
+    private String group;
+    public List<ApiSoccerTable> table;
 }

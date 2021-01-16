@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import Header from '../commons/Header';
+import Header from '../component/Header';
 
 export default function Imprint() {
   const history = useHistory();

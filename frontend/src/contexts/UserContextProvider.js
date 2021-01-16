@@ -39,7 +39,9 @@ export default function UserContextProvider({ children }) {
       .then((response) => setToken(response.data));
 
   const postSignUp = (signUpData) =>
-    axios.post('/auth/signup', signUpData).then((response) => response.data);
+    axios
+        .post('/auth/signup', signUpData)
+        .then((response) => response.data);
 
   function logout() {
     deleteTokenFromLocalStorage();

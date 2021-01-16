@@ -11,7 +11,7 @@ public class ApiSeason {
     private int id;
     private String startDate;
     private String endDate;
-    private Integer currentMatchday;
+    private String currentMatchday;
     private String winner;
 
 }

@@ -26,6 +26,6 @@ const IconButton = styled.button`
   padding-top: 14px;
 
   &:hover {
-    color: darkgrey;
+    color: var(--blue-25);
   }
 `;

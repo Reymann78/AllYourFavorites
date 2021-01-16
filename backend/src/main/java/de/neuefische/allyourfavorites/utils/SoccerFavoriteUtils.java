@@ -26,9 +26,8 @@ public class SoccerFavoriteUtils {
         favorite.setTeamId(teamId);
         favorite.setName(soccerTeamDb.findSoccerTeamByTeamId(teamId).getName());
         favorite.setCrestUrl(soccerTeamDb.findSoccerTeamByTeamId(teamId).getCrestUrl());
-        favorite.setLastMatch(soccerMatchUtils.getLastMatch(formattedSoccerMatches));
-        favorite.setCurrentMatch(soccerMatchUtils.getCurrentMatch(formattedSoccerMatches));
-        favorite.setNextMatch(soccerMatchUtils.getNextMatch(formattedSoccerMatches));
+        List<SoccerMatch> favoriteMatches = soccerMatchUtils.getMatches(formattedSoccerMatches);
+        favorite.setMatches(favoriteMatches);
         soccerMatchesDb.save(favorite);
         return favorite;
     }

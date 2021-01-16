@@ -4,7 +4,6 @@ import de.neuefische.allyourfavorites.dto.ApiSoccerMatch;
 import de.neuefische.allyourfavorites.model.SoccerMatch;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -21,10 +20,11 @@ public class SoccerMatchUtils {
             SoccerMatch formattedSoccerMatch = new SoccerMatch(
                     apiSoccerMatch.getId(),
                     apiSoccerMatch.getMatchday(),
-                    formateUtcDate(apiSoccerMatch.getUtcDate()),
+                    apiSoccerMatch.getUtcDate(),
                     apiSoccerMatch.getStatus(),
                     apiSoccerMatch.getCompetition().getId(),
                     apiSoccerMatch.getCompetition().getName(),
+                    apiSoccerMatch.getGroup(),
                     apiSoccerMatch.getHomeTeam(),
                     apiSoccerMatch.getAwayTeam(),
                     goalsHomeTeam,
@@ -32,10 +32,6 @@ public class SoccerMatchUtils {
             formattedSoccerMatches.add(formattedSoccerMatch);
         }
         return formattedSoccerMatches;
-    }
-
-    private Instant formateUtcDate (String utcDate) {
-        return Instant.parse(utcDate);
     }
 
     private String[] getGoalsOfTeams(ApiSoccerMatch apiSoccerMatch) {
@@ -47,6 +43,14 @@ public class SoccerMatchUtils {
             goalsOfTeams[1] = apiSoccerMatch.getScore().getFullTime().getAwayTeam();
         }
         return goalsOfTeams;
+    }
+
+    public  List<SoccerMatch> getMatches(List<SoccerMatch> soccerMatches) {
+        List<SoccerMatch> listOfMatches = new ArrayList<>();
+        listOfMatches.add(getLastMatch(soccerMatches));
+        listOfMatches.add(getCurrentMatch(soccerMatches));
+        listOfMatches.add(getNextMatch(soccerMatches));
+        return listOfMatches;
     }
 
     public SoccerMatch getLastMatch(List<SoccerMatch> soccerMatches) {
@@ -109,11 +113,12 @@ public class SoccerMatchUtils {
     private SoccerMatch createEmptyMatch() {
         return new SoccerMatch(
                 "",
-                0,
+                "0",
                 null,
                 "",
-                0,
+                "0",
                 "",
+                null,
                 null,
                 null,
                 "",

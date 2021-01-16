@@ -12,11 +12,12 @@ import java.time.Instant;
 @AllArgsConstructor
 public class SoccerMatch {
     private String matchId;
-    private int matchDay;
+    private String matchDay;
     private Instant matchDate;
     private String status;
-    private int competitionId;
+    private String competitionId;
     private String competitionName;
+    private String group;
     private ApiSoccerTeam homeTeam;
     private ApiSoccerTeam awayTeam;
     private String homeTeamGoals;

@@ -24,7 +24,7 @@ export default createGlobalStyle`
    
    --blue-shadow: 1px 1px 1px var(--blue-50);
    --blue-border: 2px solid var(--blue-main);
-   --border-radius: 8px;
+   --border-radius: var(--size-s);
    
    --speed: 500ms;
   
@@ -40,6 +40,10 @@ export default createGlobalStyle`
   ul {
     list-style: none;
     margin: 0;
+    padding: 0;
+  }
+  
+  div {
     padding: 0;
   }
   

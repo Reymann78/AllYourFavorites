@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { CgAddR } from 'react-icons/cg';
 import { IoMdLogOut } from 'react-icons/io';
-import Navbar from './Navbar';
-import NavItem from './NavItem';
-import AddDropdownMenu from './AddDropdownMenu';
+import Navbar from '../commons/Navbar';
+import NavItem from '../commons/NavItem';
+import DropdownMenu from '../commons/DropdownMenu';
 import UserContext from '../contexts/UserContext';
 
 export default function Header({ title }) {
@@ -18,7 +18,7 @@ export default function Header({ title }) {
       {window.location.pathname === '/favorites' ? (
         <Navbar>
           <NavItem icon={<CgAddR />}>
-            <AddDropdownMenu></AddDropdownMenu>
+            <DropdownMenu></DropdownMenu>
           </NavItem>
           <ActionButton onClick={handleLogout}>
             <IoMdLogOut />
@@ -61,6 +61,10 @@ const Heading = styled.h1`
 const ImprintButton = styled.button`
   background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
   text-decoration: none;
+  
+  &:hover {
+    color: var(--blue-25);
+  }
 `;
 
 const ActionButton = styled.button`
@@ -72,6 +76,6 @@ const ActionButton = styled.button`
   padding-top: 14px;
 
   &:hover {
-    color: darkgrey;
+    color: var(--blue-25);
   }
 `;

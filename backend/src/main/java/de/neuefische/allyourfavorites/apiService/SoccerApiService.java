@@ -1,6 +1,8 @@
 package de.neuefische.allyourfavorites.apiService;
 
+import de.neuefische.allyourfavorites.dto.ApiSoccerLeagueTable;
 import de.neuefische.allyourfavorites.dto.ApiSoccerMatchList;
+import de.neuefische.allyourfavorites.dto.ApiSoccerMatchDayTable;
 import de.neuefische.allyourfavorites.dto.ApiSoccerTeamList;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -35,6 +37,20 @@ public class SoccerApiService {
         return Objects.requireNonNull(response.getBody());
     }
 
+    public ApiSoccerLeagueTable getSoccerLeagueTable(String competitionId) {
+        HttpEntity<String> entity = new HttpEntity<>("parameter", createHttpHeaders(xAuthToken));
+        ResponseEntity<ApiSoccerLeagueTable> response = restTemplate
+                .exchange(soccerApiUrl + "competitions/" + competitionId + "/standings", HttpMethod.GET, entity, ApiSoccerLeagueTable.class);
+        return Objects.requireNonNull(response.getBody());
+    }
+
+    public ApiSoccerMatchDayTable getMatchDayTable(String competitionId) {
+        HttpEntity<String> entity = new HttpEntity<>("parameter", createHttpHeaders(xAuthToken));
+        ResponseEntity<ApiSoccerMatchDayTable> response = restTemplate
+                .exchange(soccerApiUrl + "competitions/" + competitionId + "/matches", HttpMethod.GET, entity, ApiSoccerMatchDayTable.class);
+        return Objects.requireNonNull(response.getBody());
+    }
+
     private HttpHeaders createHttpHeaders(String xAuthToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("x-auth-token", xAuthToken);
@@ -42,3 +58,4 @@ public class SoccerApiService {
     }
 
 }
+

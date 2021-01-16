@@ -6,7 +6,7 @@ import { GiSoccerBall } from 'react-icons/gi';
 import { CSSTransition } from 'react-transition-group';
 import SoccerTeamList from '../component/SoccerTeamList';
 
-export default function AddDropdownMenu() {
+export default function DropdownMenu() {
   const [activeMenu, setActiveMenu] = useState('main');
   const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
