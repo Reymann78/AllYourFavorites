@@ -5,7 +5,7 @@ import PositionList from "../lists/PositionList";
 import MatchDayList from "../lists/MatchDayList";
 import styled from "styled-components/macro";
 import FavoriteContext from "../contexts/FavoriteContext";
-import RequestButton from "../button/RequestButton";
+import RequestButton from "../buttons/RequestButton";
 
 export default function SoccerMatch({ match }) {
     const { getLeagueTable, getMatchDayTableByMatchDay } = useContext(FavoriteContext);

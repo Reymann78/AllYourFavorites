@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import UserContext from '../contexts/UserContext';
 import { useHistory } from 'react-router-dom';
 import appLogo from '../assets/allYourFavoritesLogo.png';
-import ActionButton from "../button/ActionButton";
+import ActionButton from "../buttons/ActionButton";
 
 const emptyCredentials = {
   username: '',

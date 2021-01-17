@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Header from '../component/Header';
-import ActionButton from "../button/ActionButton";
+import ActionButton from "../buttons/ActionButton";
 
 export default function Imprint() {
   const history = useHistory();

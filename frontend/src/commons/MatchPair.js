@@ -9,7 +9,9 @@ export default function MatchPair( { pair }) {
             <MatchPairStyled>
                 <div className="dateOfMatch">{formatDate(pair.utcDate)}</div>
                 <div className="homeTeam">{pair.homeTeam.name}.</div>
-                <div className="resultOfMAtch">{`${pair.score.fullTime.homeTeam} : ${pair.score.fullTime.awayTeam}`}</div>
+                <div className={pair.status === "IN_PLAY" || pair.status === "PAUSED" ? "live" : "result"}>
+                    {`${pair.score.fullTime.homeTeam} : ${pair.score.fullTime.awayTeam}`}
+                </div>
                 <div className="awayTeam">{pair.awayTeam.name}</div>
             </MatchPairStyled>
         </>
@@ -32,5 +34,11 @@ const MatchPairStyled = styled.div`
     text-align: center;
     font-weight: 600;
     grid-column: 1/4;
+  }
+
+  .live {
+    color: red;
+    padding: var(--size-xs);
+    font-weight: 600;
   }
 `;
