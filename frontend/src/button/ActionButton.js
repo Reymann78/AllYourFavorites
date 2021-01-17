@@ -4,8 +4,8 @@ import styled from 'styled-components/macro';
 export default function ActionButton({ children, ...rest }) {
 
     return (
-        <Button {...rest }>
-            {children}
+        <Button { ...rest }>
+            { children }
         </Button>
     );
 

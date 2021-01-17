@@ -5,6 +5,7 @@ import PositionList from "../lists/PositionList";
 import MatchDayList from "../lists/MatchDayList";
 import styled from "styled-components/macro";
 import FavoriteContext from "../contexts/FavoriteContext";
+import RequestButton from "../button/RequestButton";
 
 export default function SoccerMatch({ match }) {
     const { getLeagueTable, getMatchDayTableByMatchDay } = useContext(FavoriteContext);
@@ -103,18 +104,5 @@ const Match = styled.section`
   .leagueTable {
   grid-column: 3/4;
   text-align: center;
-  }
-`;
-
-const RequestButton = styled.button`
-  --button-size: calc(var(--nav-size) * 1.6);
-  width: var(--button-size);
-  height: calc(var(--button-size) / 3);
-  font-size: var(--size-m);
-  background-color: var(--blue-75);
-  border-radius: var(--size-s);  
-
-  &:hover {
-    color: var(--blue-25);
   }
 `;
