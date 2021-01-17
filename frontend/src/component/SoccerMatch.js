@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
 import formatDate from "../utils/DateUtil";
 import Table from "../commons/Table";
-import PositionList from "../homePage/PositionList";
-import MatchDayList from "../homePage/MatchDayList";
+import PositionList from "../lists/PositionList";
+import MatchDayList from "../lists/MatchDayList";
 import styled from "styled-components/macro";
 import FavoriteContext from "../contexts/FavoriteContext";
 

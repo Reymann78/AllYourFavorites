@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import { CgRemoveR } from 'react-icons/cg';
 import FavoriteContext from '../contexts/FavoriteContext';
-import SoccerMatchList from "../homePage/SoccerMatchList";
+import SoccerMatchList from "../lists/SoccerMatchList";
 
 export default function Favorite({ favorite, className }) {
   const {deleteFavorite} = useContext(FavoriteContext);
