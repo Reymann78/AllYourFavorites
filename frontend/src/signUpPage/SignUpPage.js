@@ -3,6 +3,7 @@ import UserContext from '../contexts/UserContext';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Header from '../component/Header';
+import ActionButton from "../buttons/ActionButton";
 
 const initialState = {
   username: '',
@@ -70,7 +71,7 @@ export default function SignUpPage() {
               <p>Das Passwort entspricht nicht den Vorgaben (siehe unten)</p>
             )}
           </ErrorStyling>
-          <Button type="submit">anmelden</Button>
+          <ActionButton key="submit" type="submit">anmelden</ActionButton>
           <Text>
             <p>
               Das Passwort muss aus mind. <strong>8 Zeichen</strong> bestehen
@@ -79,10 +80,15 @@ export default function SignUpPage() {
               enthalten.
             </p>
           </Text>
+          <ActionButton key="back" onClick={handleGoBack}>Zurück</ActionButton>
         </Form>
       </Main>
     </>
   );
+
+  function handleGoBack() {
+    history.goBack();
+  }
 
   function handleChange(event) {
     setSignUpData({ ...signUpData, [event.target.name]: event.target.value });
@@ -195,13 +201,3 @@ const ErrorStyling = styled.span`
   text-align: center;
 `;
 
-const Button = styled.button`
-  padding: var(--size-s);
-  border: none;
-  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
-  color: var(--white);
-  border-radius: var(--size-s);
-  font-size: 1em;
-  font-weight: 600;
-  box-shadow: 3px 3px 3px var(--blue-50); ;
-`;

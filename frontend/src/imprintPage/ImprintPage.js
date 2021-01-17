@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Header from '../component/Header';
+import ActionButton from "../buttons/ActionButton";
 
 export default function Imprint() {
   const history = useHistory();
@@ -162,7 +163,7 @@ export default function Imprint() {
           erstellt.
         </p>
       </Content>
-      <ReturnButton onClick={handleGoBack}>Zurück</ReturnButton>
+      <ActionButton key="back" onClick={handleGoBack}>Zurück</ActionButton>
     </>
   );
 
@@ -179,13 +180,3 @@ const Content = styled.section`
   font-size: var(--size-s);
 `;
 
-const ReturnButton = styled.button`
-  padding: var(--size-m);
-  border: none;
-  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
-  color: var(--white);
-  border-radius: var(--size-s);
-  font-size: 1em;
-  font-weight: 600;
-  box-shadow: 3px 3px 3px var(--blue-50); ;
-`;

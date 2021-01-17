@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import SoccerTeamContext from '../contexts/SoccerTeamContext';
 import styled from 'styled-components/macro';
-import SoccerTeam from './SoccerTeam';
+import SoccerTeam from '../component/SoccerTeam';
 
 export default function SoccerTeamList({ leagueName }) {
   const { soccerTeams } = useContext(SoccerTeamContext);

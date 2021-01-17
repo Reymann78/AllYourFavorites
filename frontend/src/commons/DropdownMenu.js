@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { CgChevronRight, CgChevronLeft } from 'react-icons/cg';
 import { GiSoccerBall } from 'react-icons/gi';
 import { CSSTransition } from 'react-transition-group';
-import SoccerTeamList from '../component/SoccerTeamList';
+import SoccerTeamList from '../lists/SoccerTeamList';
 
 export default function DropdownMenu() {
   const [activeMenu, setActiveMenu] = useState('main');

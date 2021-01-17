@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import UserContext from '../contexts/UserContext';
 import { useHistory } from 'react-router-dom';
 import appLogo from '../assets/allYourFavoritesLogo.png';
+import ActionButton from "../buttons/ActionButton";
 
 const emptyCredentials = {
   username: '',
@@ -40,10 +41,10 @@ export default function LoginPage() {
             />
           </Label>
           {error && <p>{error}</p>}
-          <Button type="submit">Login</Button>
-          <Button type="button" onClick={() => history.push('/signUp')}>
+          <ActionButton key="login" type="submit">Login</ActionButton>
+          <ActionButton key="signUp" type="button" onClick={() => history.push('/signUp')}>
             Neu anmelden
-          </Button>
+          </ActionButton>
         </Form>
       </Main>
     </>
@@ -99,16 +100,4 @@ const Form = styled.form`
 
 const Label = styled.label`
   font-size: 1.2em;
-`;
-
-const Button = styled.button`
-  margin-top: var(--size-xxl);
-  padding: var(--size-m);
-  border: none;
-  background: linear-gradient(20deg, var(--blue-main), var(--blue-75));
-  color: var(--white);
-  border-radius: var(--size-s);
-  font-size: 1em;
-  font-weight: 600;
-  box-shadow: 3px 3px 3px var(--blue-50); ;
 `;
