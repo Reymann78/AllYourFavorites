@@ -16,4 +16,10 @@ public interface SoccerLeagueTableDb extends PagingAndSortingRepository<SoccerLe
             String matchDay,
             String groupName,
             String tableType);
+
+    SoccerLeagueTable findSoccerLeagueTableByCompetitionIdAndCurrentMatchDayAndTableType(
+            String competitionId,
+            String matchDay,
+            String tableType);
+
 }
