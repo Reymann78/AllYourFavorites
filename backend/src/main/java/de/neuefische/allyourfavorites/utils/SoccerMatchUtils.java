@@ -1,12 +1,18 @@
 package de.neuefische.allyourfavorites.utils;
 
 import de.neuefische.allyourfavorites.dto.ApiSoccerMatch;
+import de.neuefische.allyourfavorites.dto.ApiSoccerTeam;
 import de.neuefische.allyourfavorites.model.SoccerMatch;
+import de.neuefische.allyourfavorites.model.SoccerTeam;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+
+import static java.time.Instant.now;
 
 @Component
 public class SoccerMatchUtils {
@@ -115,16 +121,20 @@ public class SoccerMatchUtils {
     }
 
     private SoccerMatch createEmptyMatch() {
+        ApiSoccerTeam noName = new ApiSoccerTeam();
+        noName.setName("-");
+        noName.setCrestUrl("-");
+
         return new SoccerMatch(
                 "",
-                "0",
-                null,
                 "",
-                "0",
+                now(),
                 "",
-                null,
-                null,
-                null,
+                "",
+                "",
+                "",
+                noName,
+                noName,
                 "",
                 "");
     }
