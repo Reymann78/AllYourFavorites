@@ -46,7 +46,7 @@ export default function SoccerMatch({ match }) {
 
     function handleLeagueTableRequest() {
         setRequestedTable('leagueTable');
-        getLeagueTable(match.competitionId, match.matchDay, match.groupName, "TOTAL");
+        getLeagueTable(match.competitionId, match.matchDay, match.group, "TOTAL");
     }
 
     function handleMatchDayTableRequest() {

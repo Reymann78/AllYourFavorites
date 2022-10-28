@@ -7,7 +7,7 @@ export default function SoccerMatchList( {favorite} ) {
     return (
         <MatchList>
             {favorite.matches && favorite.matches.map((match) => (
-                <li key={match.id}>
+                <li key={match.matchId}>
                     <SoccerMatch match={match} />
                 </li>
             ))}

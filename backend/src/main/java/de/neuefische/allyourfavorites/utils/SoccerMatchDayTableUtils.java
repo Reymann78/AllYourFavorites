@@ -5,7 +5,6 @@ import de.neuefische.allyourfavorites.dto.ApiSoccerMatchForMatchDayTable;
 import de.neuefische.allyourfavorites.model.SoccerMatchDayTable;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class SoccerMatchDayTableUtils {
         List<ApiSoccerMatchForMatchDayTable> listOfSoccerMatchesByMatchDay = new ArrayList<>();
         List<ApiSoccerMatchForMatchDayTable> listOfAllSoccerMatches = apiSoccerMatchDayTable.getMatches();
         for(ApiSoccerMatchForMatchDayTable soccerMatch : listOfAllSoccerMatches) {
-            if(soccerMatch.getMatchday().equals(matchDay)) {
+            if(soccerMatch.getMatchday() != null && soccerMatch.getMatchday().equals(matchDay)) {
                 if(soccerMatch.getScore().getFullTime().getHomeTeam() == null) {
                     soccerMatch.getScore().getFullTime().setHomeTeam("-");
                     soccerMatch.getScore().getFullTime().setAwayTeam("-");
@@ -46,7 +45,7 @@ public class SoccerMatchDayTableUtils {
     private boolean isMatchDayComplete(ApiSoccerMatchDayTable apiSoccerMatchDayTable, String matchDay) {
         List<ApiSoccerMatchForMatchDayTable> listOfAllSoccerMatches = apiSoccerMatchDayTable.getMatches();
         for(ApiSoccerMatchForMatchDayTable soccerMatch : listOfAllSoccerMatches) {
-            if(soccerMatch.getMatchday().equals(matchDay) && !soccerMatch.getStatus().equals("FINISHED")) {
+            if(soccerMatch.getMatchday() != null && soccerMatch.getMatchday().equals(matchDay) && !soccerMatch.getStatus().equals("FINISHED")) {
                 return false;
             }
         }
