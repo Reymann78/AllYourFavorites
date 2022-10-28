@@ -20,6 +20,7 @@ const TableStyled = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border: 2px solid var(--blue-main);
   background-color: var(--white);
   `;
 

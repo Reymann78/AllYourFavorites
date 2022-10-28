@@ -15,12 +15,12 @@ export default function formatDate(date) {
         month = d.getMonth() + 1 + '.',
         year = d.getFullYear() + ' ',
         hour = d.getHours() + ':',
-        min = d.getMinutes() + ':',
-        sec = '00';
+        min = d.getMinutes() + ' '
+        const description = 'Uhr';
 
     if (month.length < 3) month = '0' + month;
     if (day.length < 3) day = '0' + day;
     if (min.length < 3) min = '0' + min;
 
-    return [formattedWeekday, day, month, year, hour, min, sec];
+    return [formattedWeekday, day, month, year, hour, min, description];
 }
